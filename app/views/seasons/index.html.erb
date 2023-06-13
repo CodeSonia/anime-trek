@@ -1,0 +1,10 @@
+<h1>All Seasons</h1>
+<ul>
+  <% @seasons.each do |season| %>
+    <li>
+      <%= link_to season.title, anime_season_path(@anime, season) %>
+    </li>
+  <%= end %>
+</ul>
+
+<%= link_to 'Back to Anime', anime_path(@anime) %>
