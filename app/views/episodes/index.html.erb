@@ -1,0 +1,10 @@
+<h1>Episodes List</h1>
+
+
+<ul>
+  <% @episodes.each do |episode|  %>
+    <li>
+      <%= link_to @episode.title, anime_season_episode_path(@anime, @season, id: episode.id) %>
+    </li>
+  <% end %>
+</ul>

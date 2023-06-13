@@ -1,0 +1,7 @@
+<h1><%= @episode.title %></h1>
+<p><%= @episode.description %></p>
+<p>Date aired: <%= @episode.date_aired %></p>
+<p>Rating: <%= @episode.rating %></p>
+<%= image_tag @episode.image %>
+
+<%= link_to 'Back to Episode List', anime_season_episodes_path(@anime, @season) %>

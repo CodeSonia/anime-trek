@@ -1,0 +1,11 @@
+<h1>Edit Review</h1>
+
+<%= simple_form_for [@anime, @review] do |f| %>
+  <%= f.input :content %>
+  <%= f.input :rating %>
+  <%= f.input :likes %>
+  <%= f.input :user_id, as: :hidden, input_html: { value: current_user.id } %>
+  <%= f.input :anime_id, as: :hidden, input_html: { value: @review.anime_id }  %>
+
+  <%= f.button :submit, class: 'btn btn-primary' %>
+<% end %>
