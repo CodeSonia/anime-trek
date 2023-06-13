@@ -8,6 +8,6 @@ class Anime < ApplicationRecord
   validates :date_start, presence: true
   validates :date_finish, presence: true
   validates :genre, presence: true
-  validates :rating, presence: true, numericality: { greater_than_or_equal_to: 0, less_than_or_equal_to: 5 }
+  validates :rating, presence: true
   validates :image, presence: true
 end
