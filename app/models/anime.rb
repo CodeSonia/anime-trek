@@ -1,6 +1,5 @@
 class Anime < ApplicationRecord
-  has_many :seasons
-  has_many :episodes, through: :seasons
+  has_many :episodes, dependent: :delete_all
   has_many :reviews
 
 
