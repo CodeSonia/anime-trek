@@ -45,6 +45,9 @@ gem "bootsnap", require: false
 #gem pundit & auth
 gem "pundit"
 
+#gem better_errors
+gem 'better_errors'
+
 # Use Sass to process CSS
 gem "sassc-rails"
 

@@ -1,7 +1,12 @@
-<h1>Anime Show Page</h1>
-<p>Title: <%= @anime.title %></p>
-<p>Synopsis: <%= @anime.synopsis %></p>
-<!-- Add other anime attributes as needed -->
+<h1> <%= @anime.title %></h1>
+<p> <%= @anime.synopsis %></p>
+<p>Genre: <%= @anime.genre %></p>
+<p>Rating: <%= @anime.rating %></p>
+<p>Release Date: <%= @anime.date_start %></p>
+<p>End Date: <%= @anime.date_finish %></p>
+<%= image_tag @anime.image %>
+
+<%= link to 'Back to Anime List', animes_path %>
 
 
 <h2>Reviews</h2>

@@ -1,0 +1,7 @@
+<h1><%= @season.title %></h1>
+
+<%= image_tag @season.image %>
+<p>Release Date:<%= @season.date_start %></p>
+<p>End Date:<%= @season.date_finish %></p>
+
+<%= link_to 'Back to Season Index', anime_season_path(@anime) %>

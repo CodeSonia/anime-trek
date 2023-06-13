@@ -3,6 +3,7 @@ class Anime < ApplicationRecord
   has_many :episodes, through: :seasons
   has_many :reviews
 
+
   validates :title, presence: true
   validates :synopsis, presence: true
   validates :date_start, presence: true
