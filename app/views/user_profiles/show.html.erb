@@ -1,0 +1,10 @@
+<h1>User Profile</h1>
+
+<%= form_for @user_profile do |f| %>
+  <div>
+    <%= f.label :username %>
+    <%= f.text_field :username, readonly: true %>
+  </div>
+
+  <%= link_to "Edit", edit_user_profile_path(@user_profile) %>
+<% end %>
