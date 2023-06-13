@@ -7,4 +7,8 @@ Rails.application.routes.draw do
   # root "articles#index"
   resources :animes
   resources :seasons
+
+  resources :animes do
+    resources :reviews, only: [:create]
+  end
 end
