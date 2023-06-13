@@ -1,6 +1,4 @@
 Rails.application.routes.draw do
-  get 'episodes/index'
-  get 'episodes/show'
   devise_for :users
   root to: "pages#home"
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
@@ -14,7 +12,7 @@ Rails.application.routes.draw do
   resources :animes do
     resources :reviews, only: [:create]
     resources :seasons, only: [:show] do
-      resources :episodes, only: [:show]
+      resources :episodes, only: [:show, :index]
       resources :watchlists, only: [:create]
     end
   end
