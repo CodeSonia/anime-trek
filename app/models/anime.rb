@@ -1,5 +1,6 @@
 class Anime < ApplicationRecord
   has_many :seasons
+  has_many :episodes, trough: :seasons
 
   validates :title, presence: true
   validates :synopsis, presence: true
