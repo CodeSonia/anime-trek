@@ -5,7 +5,8 @@ class AnimesController < ApplicationController
 
   def show
     @anime = Anime.find(params[:id])
-    redirect_to root_path, alert: 'Anime not found' if @anime.nil?
+    authorize @anime
+    redirect_to animes_path, alert: 'Anime not found' if @anime.nil?
   end
 
   private
