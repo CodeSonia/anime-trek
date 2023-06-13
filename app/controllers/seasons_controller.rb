@@ -1,10 +1,12 @@
 class SeasonsController < ApplicationController
   def index
-    @seasons = Season.all
+    @anime = Anime.find(params[:anime_id])
+    @seasons = @anime.seasons
   end
 
   def show
-    @season = Season.find(params[:id])
+    @anime = Anime.find(params[:anime_id])
+    @season = @anime.seasons.find(params[:id])
     redirect_to root_path, alert: 'Season not found' if @season.nil?
   end
 
