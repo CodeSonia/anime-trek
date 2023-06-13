@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_06_12_134242) do
+ActiveRecord::Schema[7.0].define(version: 2023_06_13_154846) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -34,6 +34,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_12_134242) do
     t.string "image"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "episodecount"
+    t.integer "api_id"
   end
 
   create_table "comments", force: :cascade do |t|
@@ -52,10 +54,10 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_12_134242) do
     t.string "image"
     t.date "date_aired"
     t.integer "rating"
-    t.bigint "season_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["season_id"], name: "index_episodes_on_season_id"
+    t.bigint "anime_id", null: false
+    t.index ["anime_id"], name: "index_episodes_on_anime_id"
   end
 
   create_table "reviews", force: :cascade do |t|
@@ -117,7 +119,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_12_134242) do
   add_foreign_key "achievements", "users"
   add_foreign_key "comments", "episodes"
   add_foreign_key "comments", "users"
-  add_foreign_key "episodes", "seasons"
+  add_foreign_key "episodes", "animes"
   add_foreign_key "reviews", "animes"
   add_foreign_key "reviews", "users"
   add_foreign_key "seasons", "animes"
