@@ -1,17 +1,18 @@
 class UserProfilesController < ApplicationController
   before_action :set_user_profile, only: [:show, :edit, :update, :destroy]
 
-  def show
-    @user_profile = UserProfile.find(params[:id])
-  end
+  # def show
+    # @user_profile = current_user.user_profile
+  # end
 
-  def edit
-    @user_profile = UserProfile.find(params[:id])
-  end
+  # def edit
+    # @user_profile = current_user.user_profile
+  # end
 
   def update
+    @user_profile = current_user.user_profile
     if @user_profile.update(user_profile_params)
-      redirect_to @user_profile, notice: "User profile updated successfully."
+      redirect_to user_profile_path, notice: "User profile updated successfully."
     else
       render :edit
     end
@@ -19,9 +20,18 @@ class UserProfilesController < ApplicationController
 
   def destroy
     @user_profile.destroy
-    redirect_to user_profiles_url, notice: "User profile deleted."
+    redirect_to user_profile_path, notice: "User profile deleted."
   end
 
+  private
+
+  def set_user_profile
+    @user_profile = current_user.user_profile
+  end
+
+  def user_profile_params
+    params.require(:user_profile).permit(:photo, :bio)
+  end
 end
 
 

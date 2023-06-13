@@ -8,8 +8,8 @@ Rails.application.routes.draw do
 
   # resources :animes
   # resources :seasons
-
-  resources :users, only: [:show, :edit, :update, :destroy]
+  resources :users
+  resources :user_profile, only: [:show, :edit, :update, :destroy]
   resources :animes do
     resources :reviews, only: [:create]
     resources :seasons, only: [:show] do
