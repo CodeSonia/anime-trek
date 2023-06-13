@@ -8,11 +8,6 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   # root "articles#index"
 
-  resources :animes do
-    resources :reviews, only: [:create]
-    resources :seasons do
-      resources :episodes
-      
   # resources :animes
   # resources :seasons
 
