@@ -15,7 +15,7 @@ Rails.application.routes.draw do
     resources :reviews, only: [:create]
     resources :seasons, only: [:show] do
       resources :episodes, only: [:show]
-
+      resources :watchlists, only: [:create]
     end
   end
 end
