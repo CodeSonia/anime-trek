@@ -36,27 +36,68 @@ puts "Deleting all users..."
 # 3. create the records
 
 puts "Creating animes..."
-url = "https://api.jikan.moe/v4/top/anime?type=TV"
+url1 = "https://api.jikan.moe/v4/top/anime?type=TV"
 
 # 1. get the data from the api
-anime_serialized = URI.open(url).read
+anime1_serialized = URI.open(url1).read
 
 # 2. parse the data
-animes = JSON.parse(anime_serialized)
+anime1 = JSON.parse(anime1_serialized)
+url2 = "https://api.jikan.moe/v4/top/anime?type=TV&page=2"
 
-# 3. create the records
-animes["data"].each do |anime|
-  Anime.create!(
-    title: anime["title_english"],
-    synopsis: anime["synopsis"],
-    date_start: anime["aired"]["from"],
-    date_finish: anime["aired"]["to"],
-    genre: anime["genres"][0]["name"],
-    rating: anime["score"],
-    episodecount: anime["episodes"],
-    api_id: anime["mal_id"],
-    image: anime["images"]["jpg"]["image_url"]
-  )
+# 1. get the data from the api
+anime2_serialized = URI.open(url2).read
+
+# 2. parse the data
+anime2 = JSON.parse(anime2_serialized)
+
+url3 = "https://api.jikan.moe/v4/top/anime?type=TV&page=3"
+
+# 1. get the data from the api
+anime3_serialized = URI.open(url3).read
+
+# 2. parse the data
+anime3 = JSON.parse(anime3_serialized)
+
+ids = []
+
+anime1["data"].each do |anime|
+  ids << anime["mal_id"]
+end
+
+anime2["data"].each do |anime|
+  ids << anime["mal_id"]
+end
+
+anime3["data"].each do |anime|
+  ids << anime["mal_id"]
+end
+
+puts "Created #{ids.count} ids"
+ids.each do |id|
+  begin
+
+    sleep(1)
+    url = "https://api.jikan.moe/v4/anime/#{id}"
+    anime_serialized = URI.open(url).read
+    anime = JSON.parse(anime_serialized)
+    puts "Creating #{anime["data"]["title_english"]}, left: #{ids.count - Anime.count}"
+    if anime["data"].present?
+    Anime.create!(
+      title: anime["data"]["title_english"],
+      synopsis: anime["data"]["synopsis"],
+      date_start: anime["data"]["aired"]["from"],
+      date_finish: anime["data"]["aired"]["to"],
+      genre: anime["data"]["genres"][0]["name"],
+      rating: anime["data"]["score"] / 2,
+      episodecount: anime["data"]["episodes"],
+      api_id: anime["data"]["mal_id"],
+      image: anime["data"]["images"]["jpg"]["image_url"]
+    )
+  end
+  rescue
+    p "Broken"
+  end
 end
 
 puts "Created #{Anime.count} animes"
@@ -77,12 +118,13 @@ puts "Created #{User.count} users"
 puts "Creating episodes..."
 
 Anime.all.each do |anime|
+
   [anime.episodecount, 10].min.times do |n|
   begin
     sleep(1)
     episode_serialized = URI.open("https://api.jikan.moe/v4/anime/#{anime.api_id}/episodes/#{n + 1}").read
-    puts "Creating episode #{n + 1} for #{anime.title}"
     episodes = JSON.parse(episode_serialized)
+    puts "Creating episodes for #{anime.title}"
     if episodes["data"].present?
       Episode.create!(
         title: episodes["data"]["title"],
@@ -94,7 +136,7 @@ Anime.all.each do |anime|
       )
     end
     rescue
-      p "Broken"
+      puts "Broken..."
     end
   end
 end
@@ -106,21 +148,21 @@ puts "Creating reviews..."
 Anime.all.each do |anime|
     reviews_serialized = URI.open("https://api.jikan.moe/v4/anime/#{anime.api_id}/reviews").read
     reviews = JSON.parse(reviews_serialized)
-    reviews["data"].each do |review|
+    reviews["data"].first(5) do |review|
       begin
       sleep(1)
 
-        puts "Creating review for #{anime.title}"
+        puts "Creating review for #{anime.title}, left: #{reviews.count - Review.count} reviews"
         if review.present?
           Review.create!(
             content: review["review"],
-            rating: review["score"],
+            rating: review["score"].to_i / 2,
             user: User.all.sample,
             anime: anime,
           )
         end
       rescue
-        p "Broken"
+        puts "Broken..."
       end
   end
 end
@@ -214,15 +256,15 @@ puts "Creating achievements..."
 #   points: 10000
 # )
 
-User.all.each do |user|
-  Achievement.create!(
-    name: "First Review",
-    description: "You wrote your first review!",
-    points: 10,
-    user: user
-  )
-end
-puts "Created #{Achievement.count} achievements"
+# User.all.each do |user|
+#   Achievement.create!(
+#     name: "First Review",
+#     description: "You wrote your first review!",
+#     points: 10,
+#     user: user
+#   )
+# end
+# puts "Created #{Achievement.count} achievements"
 
 puts "Creating user profiles..."
 
