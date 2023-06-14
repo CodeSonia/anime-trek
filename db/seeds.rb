@@ -71,7 +71,7 @@ puts "Created #{User.count} users"
 puts "Creating episodes..."
 
 Anime.all.each do |anime|
-  [anime.episodecount, 2].min.times do |n|
+  [anime.episodecount, 10].min.times do |n|
   begin
     sleep(1)
     episode_serialized = URI.open("https://api.jikan.moe/v4/anime/#{anime.api_id}/episodes/#{n + 1}").read
@@ -98,8 +98,8 @@ puts "Created #{Episode.count} episodes"
 puts "Creating reviews..."
 # Let's make some reviews
 Anime.all.each do |anime|
-  reviews_serialized = URI.open("https://api.jikan.moe/v4/anime/#{anime.api_id}/reviews").read
-  reviews = JSON.parse(reviews_serialized)
+    reviews_serialized = URI.open("https://api.jikan.moe/v4/anime/#{anime.api_id}/reviews").read
+    reviews = JSON.parse(reviews_serialized)
     reviews["data"].each do |review|
       begin
       sleep(1)
@@ -116,7 +116,7 @@ Anime.all.each do |anime|
       rescue
         p "Broken"
       end
-    end
+  end
 end
 
 puts "Created #{Review.count} reviews"
