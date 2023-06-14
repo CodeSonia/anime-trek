@@ -1,16 +1,14 @@
 Rails.application.routes.draw do
   devise_for :users
   root to: "pages#home"
-  resources :users
-  resources :user_profile, only: [:show, :edit, :update, :destroy]
+
+  resources :users do
+    resource :user_profile, only: [:show]
+  end
 
   resources :animes do
     resources :reviews, only: [:new, :create, :edit, :update, :destroy]
-    resources :seasons, only: [:show] do
-
-      resources :episodes, only: [:show, :index]
-      resources :watchlists, only: [:create]
-
-    end
+    resources :episodes, only: [:show, :index]
+    resources :watchlists, only: [:create]
   end
 end
