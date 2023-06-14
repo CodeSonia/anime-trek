@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get '/search', to: 'search#index', as: 'search'
   devise_for :users
   root to: "pages#home"
 
@@ -11,4 +12,5 @@ Rails.application.routes.draw do
     resources :episodes, only: [:show, :index]
     resources :watchlists, only: [:create]
   end
+
 end
