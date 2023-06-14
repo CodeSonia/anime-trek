@@ -17,10 +17,10 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_14_141926) do
   create_table "achievements", force: :cascade do |t|
     t.string "name"
     t.string "description"
+    t.integer "points"
     t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "points"
     t.index ["user_id"], name: "index_achievements_on_user_id"
   end
 

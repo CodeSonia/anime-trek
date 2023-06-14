@@ -30,79 +30,92 @@ Watchlist.destroy_all
 # puts "Deleting all episodes..."
 # Episode.destroy_all
 # puts "Deleting all animes..."
-# Anime.destroy_all
-# puts "Deleting all users..."
+Anime.destroy_all
+puts "Deleting all users..."
 # User.destroy_all
 # # 1. get the data from the api
 # # 2. parse the data
 # # 3. create the records
 
-# puts "Creating animes..."
-# url1 = "https://api.jikan.moe/v4/top/anime?type=TV"
+puts "Creating animes..."
+url1 = "https://api.jikan.moe/v4/top/anime?type=TV"
 
-# # 1. get the data from the api
-# anime1_serialized = URI.open(url1).read
+# 1. get the data from the api
+anime1_serialized = URI.open(url1).read
 
-# # 2. parse the data
-# anime1 = JSON.parse(anime1_serialized)
-# url2 = "https://api.jikan.moe/v4/top/anime?type=TV&page=2"
+# 2. parse the data
+anime1 = JSON.parse(anime1_serialized)
+url2 = "https://api.jikan.moe/v4/top/anime?type=TV&page=2"
 
-# # 1. get the data from the api
-# anime2_serialized = URI.open(url2).read
+# 1. get the data from the api
+anime2_serialized = URI.open(url2).read
 
-# # 2. parse the data
-# anime2 = JSON.parse(anime2_serialized)
+# 2. parse the data
+anime2 = JSON.parse(anime2_serialized)
 
-# url3 = "https://api.jikan.moe/v4/top/anime?type=TV&page=3"
+url3 = "https://api.jikan.moe/v4/top/anime?type=TV&page=3"
 
-# # 1. get the data from the api
-# anime3_serialized = URI.open(url3).read
+# 1. get the data from the api
+anime3_serialized = URI.open(url3).read
 
-# # 2. parse the data
-# anime3 = JSON.parse(anime3_serialized)
+# 2. parse the data
+anime3 = JSON.parse(anime3_serialized)
 
-# ids = []
+ids = []
 
-# anime1["data"].each do |anime|
-#   ids << anime["mal_id"]
-# end
+anime1["data"].each do |anime|
+  ids << anime["mal_id"]
+end
 
-# anime2["data"].each do |anime|
-#   ids << anime["mal_id"]
-# end
+anime2["data"].each do |anime|
+  ids << anime["mal_id"]
+end
 
-# anime3["data"].each do |anime|
-#   ids << anime["mal_id"]
-# end
+anime3["data"].each do |anime|
+  ids << anime["mal_id"]
+end
 
-# puts "Created #{ids.count} ids"
-# ids.each do |id|
-#   begin
+puts "Created #{ids.count} ids"
+ids.each do |id|
+  begin
 
-#     sleep(1)
-#     url = "https://api.jikan.moe/v4/anime/#{id}"
-#     anime_serialized = URI.open(url).read
-#     anime = JSON.parse(anime_serialized)
-#     puts "Creating #{anime["data"]["title_english"]}, left: #{ids.count - Anime.count}"
-#     if anime["data"].present?
-#     Anime.create!(
-#       title: anime["data"]["title_english"],
-#       synopsis: anime["data"]["synopsis"],
-#       date_start: anime["data"]["aired"]["from"],
-#       date_finish: anime["data"]["aired"]["to"],
-#       genre: anime["data"]["genres"][0]["name"],
-#       rating: anime["data"]["score"] / 2,
-#       episodecount: anime["data"]["episodes"],
-#       api_id: anime["data"]["mal_id"],
-#       image: anime["data"]["images"]["jpg"]["image_url"]
-#     )
-#   end
-#   rescue
-#     p "Broken"
-#   end
-# end
+    sleep(1)
+    url = "https://api.jikan.moe/v4/anime/#{id}"
+    anime_serialized = URI.open(url).read
+    anime = JSON.parse(anime_serialized)
 
-# puts "Created #{Anime.count} animes"
+    sleep(1)
+    url_vidoes = "https://api.jikan.moe/v4/anime/#{id}/videos"
+    url_vidoes_serialized = URI.open(url_vidoes).read
+    videos_parse = JSON.parse(url_vidoes_serialized)
+
+    # p "Creating video: #{videos_parse["data"]["promo"][0]["trailer"]["embed_url"]}"
+    # p "Creating images: #{videos_parse["data"]["promo"][0]["trailer"]["images"]["maximum_image_url"]}"
+    # p "Creating 2nd_images: #{videos_parse["data"]["promo"][1]["trailer"]["images"]["maximum_image_url"]}"
+
+    puts "Creating #{anime["data"]["title_english"]}, left: #{ids.count - Anime.count}"
+    if anime["data"].present?
+    Anime.create!(
+      title: anime["data"]["title_english"],
+      synopsis: anime["data"]["synopsis"],
+      date_start: anime["data"]["aired"]["from"],
+      date_finish: anime["data"]["aired"]["to"],
+      genre: anime["data"]["genres"][0]["name"],
+      rating: anime["data"]["score"] / 2,
+      episodecount: anime["data"]["episodes"],
+      api_id: anime["data"]["mal_id"],
+      image: anime["data"]["images"]["jpg"]["image_url"],
+      rank: anime["data"]["rank"],
+      embed_url: videos_parse["data"]["promo"][0]["trailer"]["embed_url"],
+      image_urls: [videos_parse["data"]["promo"][0]["trailer"]["images"]["maximum_image_url"],videos_parse["data"]["promo"][1]["trailer"]["images"]["maximum_image_url"] ]
+    )
+  end
+  rescue
+    p "Broken"
+  end
+end
+
+puts "Created #{Anime.count} animes"
 
 # puts "Creating users..."
 
