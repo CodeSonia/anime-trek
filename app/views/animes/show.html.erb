@@ -4,10 +4,28 @@
 <p>Rating: <%= @anime.rating %></p>
 <p>Release Date: <%= @anime.date_start %></p>
 <p>End Date: <%= @anime.date_finish %></p>
+<p>End Date: <%= @anime.api_id %></p>
 <%= image_tag @anime.image %>
 
 <%= link_to 'Back to Anime List', root_path %>
 
+
+<h3>Episodes: </h3>
+<% if @anime.episodes.present? %>
+  <% @anime.episodes.each do |episode| %>
+    <div>
+      <p><strong>Episode: <%= episode.episodenumber %></strong></p>
+      <p>Title: <%= episode.title %></p>
+      <p>Release Date: <%= episode.date_aired.strftime("%a, %B %Y") %></p>
+      <p>Summary: <%= episode.description %></p>
+      <p>Duration: <%= episode.duration / 60 %> minutes</p>
+
+
+    </div>
+  <% end %>
+<% else %>
+  <p>No episodes found.</p>
+<% end %>
 
 <h2>Reviews</h2>
 <% if @anime.reviews.present? %>
