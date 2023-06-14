@@ -10,14 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_06_14_104514) do
+ActiveRecord::Schema[7.0].define(version: 2023_06_14_133558) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "achievements", force: :cascade do |t|
     t.string "name"
     t.string "description"
-    t.integer "points"
     t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -91,6 +90,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_14_104514) do
     t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "points"
     t.index ["user_id"], name: "index_user_profiles_on_user_id"
   end
 
