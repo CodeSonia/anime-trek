@@ -178,8 +178,8 @@ Anime.all.each do |anime|
         )
       end
     end
-  rescue Exception => e
-    puts "Broken... #{e}"
+  rescue
+    puts "Broken..."
   end
 end
 

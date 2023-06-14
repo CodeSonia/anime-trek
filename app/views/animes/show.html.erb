@@ -1,3 +1,41 @@
+<div class="py-5" style="background:linear-gradient(rgba(0, 0, 0, .7), rgba(0, 0, 0, .7)), url('<%= @anime.image_urls[0] %>');
+                        background-position: center;
+                        background-size: cover">
+  <%# can u help me make a flex with two columns please %>
+
+<div class="container text-white ">
+  <div class="row  align-items-end">
+  <div class="col">
+    <%= link_to "Back to homepage", root_path, class:"btn btn-primary mb-3" %>
+    <p class="fs-3">#<%= @anime.rank %> Most populair</p>
+    <h1 class="display-1 fw-bold"><%= @anime.title %></h1>
+    <p class="fs-6"> <%= truncate(@anime.synopsis, :length => 200) %></p>
+    <a href="#" class="btn">Add to watchlist</a>
+    </div>
+  <div class="col-4">
+    <div class="bg-secondary p-3 rounded-3 d-inline-flex">
+    <% @anime.image_urls.each do |image| %>
+      <img src="<%= image %>" class="rounded-3 mx-2" alt="" width=250 >
+    <% end %>
+    </div>
+  </div>
+  </div>
+
+  </div>
+</div>
+
+<div class="container mt-5">
+  <div class="row justify-content-between">
+  <div class="col-6">
+    <h3 class="display-5 fw-bold mb-2">Details</h3>
+    <p><%= @anime.synopsis %></p>
+  </div>
+  <div class="col-6">
+    <h3 class="display-5 fw-bold mb-2">Trailer</h3>
+    <iframe width="560" height="315" src="<%= @anime.embed_url %>" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+  </div>
+  </div>
+
 <h1> <%= @anime.title %></h1>
 <p> <%= @anime.synopsis %></p>
 <p>Genre: <%= @anime.genre %></p>
@@ -75,7 +113,7 @@
       <p>Title: <%= episode.title %></p>
       <p>Release Date: <%= episode.date_aired.strftime("%a, %B %Y") %></p>
       <p>Summary: <%= episode.description %></p>
-      <p>Duration: <%= episode.duration / 60 %> minutes</p>
+      <p>Duration: <%= episode.duration / 60 unless episode.duration.nil? %> minutes</p>
 
 
     </div>
@@ -101,4 +139,5 @@
   <% end %>
 <% else %>
   <p>No reviews found.</p>
-<% end %>-->
+<% end %>
+</div>

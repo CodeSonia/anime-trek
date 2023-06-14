@@ -1,5 +1,7 @@
 class Episode < ApplicationRecord
   belongs_to :anime, dependent: :destroy
+  has_many :reviews, dependent: :destroy
+  has_many :comments, dependent: :destroy
   # validates :season_id, presence: true
   validates :title, presence: true
   validates :description, presence: true
