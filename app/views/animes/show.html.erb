@@ -38,6 +38,63 @@ background-size: cover">
 <%= link_to 'Back to Anime List', root_path %>
 
 
+
+<div class="reviews-container">
+  <div class="reviews-header">
+    <h2 class="mt-4">Reviews</h2>
+  </div>
+  <div class="reviews-info">
+    <p><%= @anime.reviews.count %> Reviews | <%= @anime.rating %> <i class="fas fa-star"></i></p>
+  </div>
+  <div class="account-required text-center py-3" style="background-color: #eaeaea;">
+    <strong>Account Required</strong>
+    <p><strong>Please</strong> Log in or Create an Account to <strong>add a review</strong></p>
+  </div>
+  <div class="reviews-list text-center mt-4 ">
+    <% @anime.reviews.each do |review| %>
+      <div class="review-container mb-4 d-inline-block">
+        <div class="review">
+          <div class="mb-3 d-flex justify-content-start review-info">
+            <img src="" alt="User Photo" class="mr-2 rounded-circle" width="50" height="50">
+            <div>
+              <p class="mb-0 username"><%= review.user.username %></p>
+              <p class="mb-0 rating">Rating: <%= review.rating %></p>
+              <p class="mb-0 date"><%= review.created_at.strftime('%d %b %Y') %></p>
+            </div>
+          </div>
+          <div data-controller="read-more" data-read-more-more-text-value="Read more" data-read-more-less-text-value="Read less">
+            <p class="my-content" data-read-more-target="content">
+              <%= review.content %>
+            </p>
+            <button data-action="read-more#toggle" style="border-radius: 20px;">Read more</button>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+<style>
+  .review-info {
+    display: flex;
+    align-items: center;
+  }
+
+  .user-photo,
+  .username,
+  .rating,
+  .date {
+    display: inline-block;
+    margin-right: 10px;
+  }
+    .reviews-list {
+    margin-left: 100px;
+    margin-right: 100px;
+  }
+</style>
+
+<!--<h2>Reviews</h2>
+
 <h3>Episodes: </h3>
 <% if @anime.episodes.present? %>
   <% @anime.episodes.each do |episode| %>
@@ -46,7 +103,7 @@ background-size: cover">
       <p>Title: <%= episode.title %></p>
       <p>Release Date: <%= episode.date_aired.strftime("%a, %B %Y") %></p>
       <p>Summary: <%= episode.description %></p>
-      <p>Duration: <%= episode.duration / 60 %> minutes</p>
+      <p>Duration: <%= episode.duration / 60 unless episode.duration.nil? %> minutes</p>
 
 
     </div>
@@ -56,6 +113,7 @@ background-size: cover">
 <% end %>
 
 <h2>Reviews</h2>
+
 <% if @anime.reviews.present? %>
   <% @anime.reviews.each do |review| %>
     <div>

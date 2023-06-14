@@ -4,5 +4,8 @@
 
 import { application } from "./application"
 
+
+import ReadMore from 'stimulus-read-more'
 import HelloController from "./hello_controller"
 application.register("hello", HelloController)
+application.register('read-more', ReadMore)

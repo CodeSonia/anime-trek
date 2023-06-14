@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_06_14_104514) do
+ActiveRecord::Schema[7.0].define(version: 2023_06_14_141926) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -36,6 +36,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_14_104514) do
     t.datetime "updated_at", null: false
     t.integer "episodecount"
     t.integer "api_id"
+    t.integer "rank"
+    t.text "image_urls", default: [], array: true
+    t.string "embed_url"
   end
 
   create_table "comments", force: :cascade do |t|
@@ -85,12 +88,22 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_14_104514) do
     t.index ["anime_id"], name: "index_seasons_on_anime_id"
   end
 
+  create_table "user_achievements", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "achievement_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["achievement_id"], name: "index_user_achievements_on_achievement_id"
+    t.index ["user_id"], name: "index_user_achievements_on_user_id"
+  end
+
   create_table "user_profiles", force: :cascade do |t|
     t.string "photo"
     t.string "bio"
     t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "points"
     t.index ["user_id"], name: "index_user_profiles_on_user_id"
   end
 
@@ -125,6 +138,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_14_104514) do
   add_foreign_key "reviews", "animes"
   add_foreign_key "reviews", "users"
   add_foreign_key "seasons", "animes"
+  add_foreign_key "user_achievements", "achievements"
+  add_foreign_key "user_achievements", "users"
   add_foreign_key "user_profiles", "users"
   add_foreign_key "watchlists", "animes"
   add_foreign_key "watchlists", "users"
