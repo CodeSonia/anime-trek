@@ -27,12 +27,12 @@ puts "Deleting all achievements..."
 Achievement.destroy_all
 puts "Deleting all watchlists..."
 Watchlist.destroy_all
-# puts "Deleting all episodes..."
-# Episode.destroy_all
-# puts "Deleting all animes..."
+puts "Deleting all episodes..."
+Episode.destroy_all
+puts "Deleting all animes..."
 Anime.destroy_all
 puts "Deleting all users..."
-# User.destroy_all
+User.destroy_all
 # # 1. get the data from the api
 # # 2. parse the data
 # # 3. create the records
@@ -117,48 +117,48 @@ end
 
 puts "Created #{Anime.count} animes"
 
-# puts "Creating users..."
+puts "Creating users..."
 
-# 10.times do
-#   User.create!(
-#     email: Faker::Internet.email,
-#     username: Faker::Internet.username,
-#     password: "123456"
-#   )
-# end
+10.times do
+  User.create!(
+    email: Faker::Internet.email,
+    username: Faker::Internet.username,
+    password: "123456"
+  )
+end
 
-# puts "Created #{User.count} users"
+puts "Created #{User.count} users"
 
 
-# puts "Creating episodes..."
+puts "Creating episodes..."
 
-# Anime.all.each do |anime|
+Anime.all.each do |anime|
 
-#   [anime.episodecount, 10].min.times do |n|
-#   begin
-#     sleep(1)
-#     episode_serialized = URI.open("https://api.jikan.moe/v4/anime/#{anime.api_id}/episodes/#{n + 1}").read
-#     episodes = JSON.parse(episode_serialized)
-#     puts "Creating episodes for #{anime.title}"
-#     if episodes["data"].present?
-#       Episode.create!(
-#         title: episodes["data"]["title"],
-#         description: episodes["data"]["synopsis"],
-#         image: anime.image,
-#         date_aired: episodes["data"]["aired"],
-#         rating: anime.rating,
-#         episodenumber: episodes["data"]["mal_id"],
-#         duration: episodes["data"]["duration"],
-#         anime: anime,
-#       )
-#     end
-#     rescue
-#       puts "Broken..."
-#     end
-#   end
-# end
+  [anime.episodecount, 10].min.times do |n|
+  begin
+    sleep(1)
+    episode_serialized = URI.open("https://api.jikan.moe/v4/anime/#{anime.api_id}/episodes/#{n + 1}").read
+    episodes = JSON.parse(episode_serialized)
+    puts "Creating episodes for #{anime.title}"
+    if episodes["data"].present?
+      Episode.create!(
+        title: episodes["data"]["title"],
+        description: episodes["data"]["synopsis"],
+        image: anime.image,
+        date_aired: episodes["data"]["aired"],
+        rating: anime.rating,
+        episodenumber: episodes["data"]["mal_id"],
+        duration: episodes["data"]["duration"],
+        anime: anime,
+      )
+    end
+    rescue
+      puts "Broken..."
+    end
+  end
+end
 
-# puts "Created #{Episode.count} episodes"
+puts "Created #{Episode.count} episodes"
 
 puts "Creating reviews..."
 # Let's make some reviews
