@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_06_13_154846) do
+ActiveRecord::Schema[7.0].define(version: 2023_06_14_104514) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -57,6 +57,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_13_154846) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "anime_id", null: false
+    t.integer "episodenumber"
+    t.integer "duration"
     t.index ["anime_id"], name: "index_episodes_on_anime_id"
   end
 

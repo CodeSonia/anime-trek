@@ -132,6 +132,8 @@ Anime.all.each do |anime|
         image: anime.image,
         date_aired: episodes["data"]["aired"],
         rating: anime.rating,
+        episodenumber: episodes["data"]["mal_id"],
+        duration: episodes["data"]["duration"],
         anime: anime,
       )
     end
