@@ -1,9 +1,9 @@
 class Review < ApplicationRecord
-  belongs_to :user
-  belongs_to :anime
+  belongs_to :user, dependent: :destroy
+  belongs_to :anime, dependent: :destroy
 
   validates :content, presence: true
   validates :rating, presence: true, numericality: { only_integer: true,
-                                                     greater_than_or_equal_to: 1, less_than_or_equal_to: 5 }
-  validates :user_id, uniqueness: { scope: :anime_id, message: "has already reviewed this anime" }
+                                                     }
+  # validates :user_id, uniqueness: { scope: :anime_id, message: "has already reviewed this anime" }
 end
