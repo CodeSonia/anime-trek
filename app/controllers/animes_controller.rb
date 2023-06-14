@@ -1,6 +1,7 @@
 class AnimesController < ApplicationController
   def index
-    @animes = Anime.all
+    authorize Anime
+    @animes = policy_scope(Anime).all
   end
 
   def show
