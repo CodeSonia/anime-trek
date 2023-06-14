@@ -1,10 +1,8 @@
 <h1>User Profile</h1>
 
-<%= form_for @user_profile do |f| %>
-  <div>
-    <%= f.label :username %>
-    <%= f.text_field :username, readonly: true %>
-  </div>
+<p>Name: <%= @user.username %></p>
+<p>Email: <%= @user.email %></p>
+<p>Photo: <%# image_tag(@user_profile.photo) %></p>
+<p>Bio: <%= @user_profile.bio %></p>
 
-  <%= link_to "Edit", edit_user_profile_path(@user_profile) %>
-<% end %>
+<%= link_to 'back', root_path %>

@@ -19,103 +19,154 @@ if answer != "yes"
   exit
 end
 
+puts "Deleting all comments..."
+Comment.destroy_all
+puts "Deleting all reviews..."
 Review.destroy_all
+puts "Deleting all achievements..."
 Achievement.destroy_all
+puts "Deleting all watchlists..."
 Watchlist.destroy_all
-Episode.destroy_all
-Anime.destroy_all
-User.destroy_all
-# 1. get the data from the api
-# 2. parse the data
-# 3. create the records
+# puts "Deleting all episodes..."
+# Episode.destroy_all
+# puts "Deleting all animes..."
+# Anime.destroy_all
+# puts "Deleting all users..."
+# User.destroy_all
+# # 1. get the data from the api
+# # 2. parse the data
+# # 3. create the records
 
-puts "Creating animes..."
-url = "https://api.jikan.moe/v4/top/anime?type=TV"
+# puts "Creating animes..."
+# url1 = "https://api.jikan.moe/v4/top/anime?type=TV"
 
-# 1. get the data from the api
-anime_serialized = URI.open(url).read
+# # 1. get the data from the api
+# anime1_serialized = URI.open(url1).read
 
-# 2. parse the data
-animes = JSON.parse(anime_serialized)
+# # 2. parse the data
+# anime1 = JSON.parse(anime1_serialized)
+# url2 = "https://api.jikan.moe/v4/top/anime?type=TV&page=2"
 
-# 3. create the records
-animes["data"].each do |anime|
-  Anime.create!(
-    title: anime["title_english"],
-    synopsis: anime["synopsis"],
-    date_start: anime["aired"]["from"],
-    date_finish: anime["aired"]["to"],
-    genre: anime["genres"][0]["name"],
-    rating: anime["score"],
-    episodecount: anime["episodes"],
-    api_id: anime["mal_id"],
-    image: anime["images"]["jpg"]["image_url"]
-  )
-end
+# # 1. get the data from the api
+# anime2_serialized = URI.open(url2).read
 
-puts "Created #{Anime.count} animes"
+# # 2. parse the data
+# anime2 = JSON.parse(anime2_serialized)
 
-puts "Creating users..."
+# url3 = "https://api.jikan.moe/v4/top/anime?type=TV&page=3"
 
-10.times do
-  User.create!(
-    email: Faker::Internet.email,
-    username: Faker::Internet.username,
-    password: "123456"
-  )
-end
+# # 1. get the data from the api
+# anime3_serialized = URI.open(url3).read
 
-puts "Created #{User.count} users"
+# # 2. parse the data
+# anime3 = JSON.parse(anime3_serialized)
+
+# ids = []
+
+# anime1["data"].each do |anime|
+#   ids << anime["mal_id"]
+# end
+
+# anime2["data"].each do |anime|
+#   ids << anime["mal_id"]
+# end
+
+# anime3["data"].each do |anime|
+#   ids << anime["mal_id"]
+# end
+
+# puts "Created #{ids.count} ids"
+# ids.each do |id|
+#   begin
+
+#     sleep(1)
+#     url = "https://api.jikan.moe/v4/anime/#{id}"
+#     anime_serialized = URI.open(url).read
+#     anime = JSON.parse(anime_serialized)
+#     puts "Creating #{anime["data"]["title_english"]}, left: #{ids.count - Anime.count}"
+#     if anime["data"].present?
+#     Anime.create!(
+#       title: anime["data"]["title_english"],
+#       synopsis: anime["data"]["synopsis"],
+#       date_start: anime["data"]["aired"]["from"],
+#       date_finish: anime["data"]["aired"]["to"],
+#       genre: anime["data"]["genres"][0]["name"],
+#       rating: anime["data"]["score"] / 2,
+#       episodecount: anime["data"]["episodes"],
+#       api_id: anime["data"]["mal_id"],
+#       image: anime["data"]["images"]["jpg"]["image_url"]
+#     )
+#   end
+#   rescue
+#     p "Broken"
+#   end
+# end
+
+# puts "Created #{Anime.count} animes"
+
+# puts "Creating users..."
+
+# 10.times do
+#   User.create!(
+#     email: Faker::Internet.email,
+#     username: Faker::Internet.username,
+#     password: "123456"
+#   )
+# end
+
+# puts "Created #{User.count} users"
 
 
-puts "Creating episodes..."
+# puts "Creating episodes..."
 
-Anime.all.each do |anime|
-  [anime.episodecount, 10].min.times do |n|
-  begin
-    sleep(1)
-    episode_serialized = URI.open("https://api.jikan.moe/v4/anime/#{anime.api_id}/episodes/#{n + 1}").read
-    puts "Creating episode #{n + 1} for #{anime.title}"
-    episodes = JSON.parse(episode_serialized)
-    if episodes["data"].present?
-      Episode.create!(
-        title: episodes["data"]["title"],
-        description: episodes["data"]["synopsis"],
-        image: anime.image,
-        date_aired: episodes["data"]["aired"],
-        rating: anime.rating,
-        anime: anime,
-      )
-    end
-    rescue
-      p "Broken"
-    end
-  end
-end
+# Anime.all.each do |anime|
 
-puts "Created #{Episode.count} episodes"
+#   [anime.episodecount, 10].min.times do |n|
+#   begin
+#     sleep(1)
+#     episode_serialized = URI.open("https://api.jikan.moe/v4/anime/#{anime.api_id}/episodes/#{n + 1}").read
+#     episodes = JSON.parse(episode_serialized)
+#     puts "Creating episodes for #{anime.title}"
+#     if episodes["data"].present?
+#       Episode.create!(
+#         title: episodes["data"]["title"],
+#         description: episodes["data"]["synopsis"],
+#         image: anime.image,
+#         date_aired: episodes["data"]["aired"],
+#         rating: anime.rating,
+#         episodenumber: episodes["data"]["mal_id"],
+#         duration: episodes["data"]["duration"],
+#         anime: anime,
+#       )
+#     end
+#     rescue
+#       puts "Broken..."
+#     end
+#   end
+# end
+
+# puts "Created #{Episode.count} episodes"
 
 puts "Creating reviews..."
 # Let's make some reviews
 Anime.all.each do |anime|
+  sleep(1)
+  begin
     reviews_serialized = URI.open("https://api.jikan.moe/v4/anime/#{anime.api_id}/reviews").read
     reviews = JSON.parse(reviews_serialized)
-    reviews["data"].each do |review|
-      begin
-      sleep(1)
-
-        puts "Creating review for #{anime.title}"
-        if review.present?
-          Review.create!(
-            content: review["review"],
-            rating: review["score"],
-            user: User.all.sample,
-            anime: anime,
-          )
-        end
-      rescue
-        p "Broken"
+    reviews["data"].first(5).each do |review|
+      puts "Creating reviews for #{anime.title}"
+      if review.present?
+        Review.create!(
+          content: review["review"],
+          rating: review["score"].to_i / 2,
+          user: User.all.sample,
+          anime: anime,
+        )
       end
+    end
+  rescue Exception => e
+    puts "Broken... #{e}"
   end
 end
 
@@ -208,15 +259,15 @@ puts "Creating achievements..."
 #   points: 10000
 # )
 
-User.all.each do |user|
-  Achievement.create!(
-    name: "First Review",
-    description: "You wrote your first review!",
-    points: 10,
-    user: user
-  )
-end
-puts "Created #{Achievement.count} achievements"
+# User.all.each do |user|
+#   Achievement.create!(
+#     name: "First Review",
+#     description: "You wrote your first review!",
+#     points: 10,
+#     user: user
+#   )
+# end
+# puts "Created #{Achievement.count} achievements"
 
 puts "Creating user profiles..."
 
@@ -244,3 +295,17 @@ User.all.each do |user|
 end
 
 puts "Created #{Watchlist.count} user watchlists"
+
+puts "Creating comments for each episode"
+
+Episode.all.each do |episode|
+  5.times do
+    Comment.create!(
+      content: Faker::Lorem.paragraph(sentence_count: 2),
+      user: User.all.sample,
+      episode: episode
+    )
+  end
+end
+
+puts "Created #{Comment.count} comments"
