@@ -2,8 +2,13 @@
 
 <%= form_for @user_profile do |f| %>
   <div>
-    <%= f.label :username %>
-    <%= f.text_field :username %>
+    <%= f.label :bio %>
+    <%= f.text_area :bio %>
+  </div>
+
+  <div>
+    <%= f.label :photo %>
+    <%= f.file_field :photo %>
   </div>
 
   <%= f.submit "Save Changes" %>
