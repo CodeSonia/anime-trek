@@ -20,11 +20,17 @@ if answer != "yes"
 end
 
 Review.destroy_all
+puts "Deleting all reviews..."
 Achievement.destroy_all
+puts "Deleting all achievements..."
 Watchlist.destroy_all
+puts "Deleting all watchlists..."
 Episode.destroy_all
+puts "Deleting all episodes..."
 Anime.destroy_all
+puts "Deleting all animes..."
 User.destroy_all
+puts "Deleting all users..."
 # 1. get the data from the api
 # 2. parse the data
 # 3. create the records
