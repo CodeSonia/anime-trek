@@ -1,0 +1,20 @@
+<div data-search-animes-target="list">
+  <p class="h3">
+    <% if params[:query].blank? %>
+      <%= pluralize animes.count, "anime" %> available
+    <% else %>
+      <%= pluralize animes.count, "result" %> for <code><%= params[:query] %></code>
+    <% end %>
+  </p>
+  <div class="animes">
+    <% animes.each do |anime| %>
+      <div class="anime-card">
+        <%= image_tag anime.image %>
+
+        <div class="anime-infos" data-edit-anime-target="infos">
+          <h2><%= anime.title %><small> (<%= anime.date_start %>)</small></h2>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

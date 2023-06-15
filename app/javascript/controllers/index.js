@@ -3,9 +3,14 @@
 // ./bin/rails generate stimulus controllerName
 
 import { application } from "./application"
-
-
 import ReadMore from 'stimulus-read-more'
 import HelloController from "./hello_controller"
+
+import SearchAnimesController from "./search_animes_controller"
+
 application.register("hello", HelloController)
+
+application.register("search-animes", SearchAnimesController)
+
 application.register('read-more', ReadMore)
+
