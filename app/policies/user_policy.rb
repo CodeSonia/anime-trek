@@ -1,4 +1,4 @@
-class UserProfilePolicy < ApplicationPolicy
+class UserPolicy < ApplicationPolicy
   class Scope < Scope
     # NOTE: Be explicit about which records you allow access to!
     def resolve
@@ -10,7 +10,7 @@ class UserProfilePolicy < ApplicationPolicy
   end
 
   def update?
-    record.user == user
+    record == user
   end
 
   #def destroy?
