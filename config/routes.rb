@@ -2,6 +2,8 @@ Rails.application.routes.draw do
   get '/search', to: 'search#index', as: 'search'
   devise_for :users
 
+  resources :users
+
     get '/users/:id', to: 'users#show'
 
   root to: "pages#home"
