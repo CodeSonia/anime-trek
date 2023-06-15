@@ -1,14 +1,14 @@
 <div data-search-animes-target="list">
   <p class="h3">
     <% if params[:query].blank? %>
-      <%= pluralize animes.count, "anime" %> available
+      <%= pluralize animes.count, "anime" %>
     <% else %>
-      <%= pluralize animes.count, "result" %> for <code><%= params[:query] %></code>
+      Top <%= pluralize animes.count, "result" %> for <code><%= params[:query] %></code>
     <% end %>
   </p>
   <div class="animes">
     <% animes.each do |anime| %>
-      <div class="anime-card">
+      <div class="anime-card img">
         <%= image_tag anime.image %>
 
         <div class="anime-infos" data-edit-anime-target="infos">
