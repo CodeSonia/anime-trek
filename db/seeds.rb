@@ -33,6 +33,7 @@ puts "Deleting all animes..."
 Anime.delete_all
 puts "Deleting all users..."
 User.delete_all
+
 # # 1. get the data from the api
 # # 2. parse the data
 # # 3. create the records
