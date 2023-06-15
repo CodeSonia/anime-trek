@@ -1,0 +1,56 @@
+.animes-container {
+  overflow-x: auto;
+  padding-bottom: 16px;
+
+  .animesCd {
+    display: grid;
+    grid-template-columns: repeat(14, 500px);
+    gap: 24px;
+  }
+
+  .card-anime {
+    display: flex;
+    align-items: center;
+    background-color: white;
+    border-radius: 5px;
+    margin-bottom: 16px;
+
+    .image-card {
+      flex: 0 0 auto;
+      padding: 16px 8px 16px 16px;
+
+      img {
+        width: 140px;
+        height: 180px;
+        object-fit: cover;
+        border-radius: 5px;
+      }
+    }
+
+    .info-anime {
+      flex: 1;
+      padding: 16px 8px;
+      width: 200px; /* Adjust the width as needed */
+      display: flex;
+      flex-direction: column;
+      word-wrap: break-word;
+
+      h2 {
+        font-size: 16px;
+        font-weight: bold;
+
+        small {
+          font-size: 12px;
+          line-height: 1.4;
+          opacity: 0.7;
+          margin-top: 6px;
+        }
+      }
+
+      p {
+        margin-top: 6px;
+        margin-bottom: 0;
+      }
+    }
+  }
+}
