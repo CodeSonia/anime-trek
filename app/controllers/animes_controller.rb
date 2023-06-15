@@ -7,13 +7,8 @@ class AnimesController < ApplicationController
   def show
     @anime = Anime.includes(:episodes, :reviews, :users).find(params[:id])
     @avg = @anime.reviews.average(:rating)
+    @review = Review.new
     authorize @anime
     redirect_to animes_path, alert: 'Anime not found' if @anime.nil?
-  end
-
-  private
-
-  def anime_params
-    params.require(:anime).permit(:id, :title, :synopsis, :date_start, :date_finish, :genre, :rating, :image)
   end
 end
