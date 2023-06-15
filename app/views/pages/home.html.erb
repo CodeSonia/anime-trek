@@ -9,25 +9,18 @@
       <p class="support-text text-muted">
       Introducing AnimeTrek: Your Ultimate Anime Exploration Companion. Embark on a journey to discover new anime series, explore a myriad of genres, and immerse yourself in captivating storylines that will transport you to extraordinary worlds.
       </p>
-      <div>
-      <%= form_with url: search_path, method: :get, html: { class: "d-flex mb-4 search-container" } do |f| %>
-      <%= f.text_field :query,
-                     class: "form-control search-text-field",
-                     placeholder: "Type an anime title",
-                     value: params[:query] %>
-      <%= f.submit "Search", class: "button btn-search" %>
+      <div class="form-inline">
+        <%= form_with url: search_path, method: :get, html: { class: "d-flex mb-4 search-container" } do |f| %>
+        <div class="form-group icon-parent">
+          <span class="mag-icon"><i class="fas fa-thin fa-magnifying-glass"></i></span>
+          <%= f.text_field :query,
+                        class: "form-control search-text-field input-form",
+                        placeholder: "Search for an anime...",
+                        value: params[:query] %>
+        </div>
+        <%= f.submit "Search", class: "button btn-search" %>
       <% end %>
     </div>
-      <div class="mt-4 mb-4 form-inline">
-        <%= form_with url: search_path, method: :get, html: { class: "d-flex" } do |f| %>
-          <div class="form-group icon-parent">
-          <span class="mag-icon"><i class="fas fa-thin fa-magnifying-glass"></i></span>
-            <%= f.text_field :query, class: "form-control input-form", placeholder: "Search for an anime...", value: params[:query] %>
-
-          </div>
-            <%= f.button "Search", class: "btn primary-button" %>
-        <% end %>
-      </div>
     </div>
 
     <div class="col-4">
