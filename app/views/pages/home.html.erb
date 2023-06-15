@@ -1,5 +1,5 @@
 <div class="container">
-  <div class="row">
+  <div class="row mt-5">
     <div class="col-8">
       <p>Discover, Explore, Simplify:</p>
       <h1>Unleash The Anime Universe</h1>
@@ -8,19 +8,18 @@
         You can discover new anime series, explore genres, and deep dive into captivating story lines.
       </p>
       <div>
-      <%= form_with url: search_path, method: :get, html: { class: "mb-4" } do |f| %>
-      <%= f.text_field :query,
-                     class: "form-control",
-                     placeholder: "Type an anime title",
-                     value: params[:query] %>
-      <%= f.submit "Search", class: "btn btn-primary" %>
-      <% end %>
+        <%= form_with url: search_path, method: :get, html: { class: "mb-4" } do |f| %>
+          <%= f.text_field :query, class: "form-control", placeholder: "Type an anime title", value: params[:query] %>
+          <%= f.submit "Search", class: "btn btn-primary" %>
+        <% end %>
+      </div>
     </div>
 
-    <div class="col4">
-      <%# Place holder for image %>
+    <div class="col-4">
+      <%= cl_image_tag("https://res.cloudinary.com/dtjuz4kkr/image/upload/v1686823182/anime_girl_tutzus.png", height: 300, crop: :fill) %>
     </div>
   </div>
+
 
   <section class="mt-5">
   <div class="container">
