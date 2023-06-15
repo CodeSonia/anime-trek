@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_06_15_072641) do
+ActiveRecord::Schema[7.0].define(version: 2023_06_15_100216) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -100,16 +100,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_15_072641) do
     t.index ["user_id"], name: "index_user_achievements_on_user_id"
   end
 
-  create_table "user_profiles", force: :cascade do |t|
-    t.string "photo"
-    t.string "bio"
-    t.bigint "user_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.integer "points"
-    t.index ["user_id"], name: "index_user_profiles_on_user_id"
-  end
-
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -118,6 +108,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_15_072641) do
     t.datetime "remember_created_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "photo"
+    t.string "bio"
+    t.integer "points"
     t.string "username"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
@@ -143,7 +136,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_15_072641) do
   add_foreign_key "seasons", "animes"
   add_foreign_key "user_achievements", "achievements"
   add_foreign_key "user_achievements", "users"
-  add_foreign_key "user_profiles", "users"
   add_foreign_key "watchlists", "animes"
   add_foreign_key "watchlists", "users"
 end

@@ -2,7 +2,7 @@ class SearchController < ApplicationController
   def index
     @animes = policy_scope(Anime).all
     if params[:query].present?
-      @animes = @animes.where("title ILIKE ?", "%#{params[:query]}%")
+      @animes = @animes.where("title ILIKE :query OR genre ILIKE :query", query: "%#{params[:query]}%")
     end
     respond_to do |format|
       format.html # when you push the enter button or refresh
@@ -14,6 +14,6 @@ class SearchController < ApplicationController
   private
 
   def perform_search(query)
-    Anime.where("title LIKE ?", "%#{query}%")
+    Anime.where("title ILIKE :query OR genre ILIKE :query", query: "%#{query}%")
   end
 end

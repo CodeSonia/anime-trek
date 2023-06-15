@@ -6,6 +6,14 @@ class AnimePolicy < ApplicationPolicy
    end
   end
 
+  def add_to_watchlist?
+    user.present?
+  end
+
+  def current_user
+    user
+  end
+
   def index?
     true
   end
