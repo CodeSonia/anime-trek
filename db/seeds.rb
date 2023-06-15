@@ -11,13 +11,13 @@
 
 require "json"
 require "open-uri"
-puts "Are you sure you want to delete all the data?"
-puts "Type 'yes' to continue"
-answer = gets.chomp
-if answer != "yes"
-  puts "Aborting..."
-  exit
-end
+# puts "Are you sure you want to delete all the data?"
+# puts "Type 'yes' to continue"
+# answer = gets.chomp
+# if answer != "yes"
+#   puts "Aborting..."
+#   exit
+# end
 
 puts "Deleting all comments..."
 Comment.destroy_all
@@ -74,16 +74,28 @@ end
 anime3["data"].each do |anime|
   ids << anime["mal_id"]
 end
-
 puts "Created #{ids.count} ids"
+
+# ids.map do |id|
+#   puts "Getting data for #{id}"
+#   sleep(1)
+#   url = "https://api.jikan.moe/v4/anime/#{id}"
+#   anime_serialized = URI.open(url).read
+#   anime = JSON.parse(anime_serialized)
+
+# end
+
+
 ids.each do |id|
   begin
 
+    producers = []
+    themes = []
+    image_urls = []
     sleep(1)
     url = "https://api.jikan.moe/v4/anime/#{id}"
     anime_serialized = URI.open(url).read
     anime = JSON.parse(anime_serialized)
-
     sleep(1)
     url_vidoes = "https://api.jikan.moe/v4/anime/#{id}/videos"
     url_vidoes_serialized = URI.open(url_vidoes).read
@@ -95,23 +107,29 @@ ids.each do |id|
 
     puts "Creating #{anime["data"]["title_english"]}, left: #{ids.count - Anime.count}"
     if anime["data"].present?
-    Anime.create!(
-      title: anime["data"]["title_english"],
-      synopsis: anime["data"]["synopsis"],
-      date_start: anime["data"]["aired"]["from"],
-      date_finish: anime["data"]["aired"]["to"],
-      genre: anime["data"]["genres"][0]["name"],
-      rating: anime["data"]["score"] / 2,
-      episodecount: anime["data"]["episodes"],
-      api_id: anime["data"]["mal_id"],
-      image: anime["data"]["images"]["jpg"]["image_url"],
-      rank: anime["data"]["rank"],
-      embed_url: videos_parse["data"]["promo"][0]["trailer"]["embed_url"],
-      image_urls: [videos_parse["data"]["promo"][0]["trailer"]["images"]["maximum_image_url"],videos_parse["data"]["promo"][1]["trailer"]["images"]["maximum_image_url"] ]
-    )
-  end
-  rescue
-    p "Broken"
+      anime["data"]["producers"].map { |pr| producers << pr["name"]}
+      anime["data"]["themes"].map { |pr| themes << pr["name"]}
+      videos_parse["data"]["promo"].map { |vid| image_urls << vid["trailer"]["images"]["maximum_image_url"]}
+      Anime.create!(
+        title: anime["data"]["title_english"],
+        synopsis: anime["data"]["synopsis"],
+        date_start: anime["data"]["aired"]["from"],
+        date_finish: anime["data"]["aired"]["to"],
+        genre: anime["data"]["genres"][0]["name"],
+        rating: anime["data"]["score"] / 2,
+        episodecount: anime["data"]["episodes"],
+        api_id: anime["data"]["mal_id"],
+        image: anime["data"]["images"]["jpg"]["image_url"],
+        rank: anime["data"]["rank"],
+        embed_url: videos_parse["data"]["promo"][0]["trailer"]["embed_url"][0...-11],
+        image_urls: image_urls ,
+        status: anime["data"]["status"],
+        producers: producers,
+        themes: themes
+      )
+    end
+  rescue Exception => e
+    p "Broken #{e}"
   end
 end
 
