@@ -1,0 +1,20 @@
+<div>
+  <% all_animes = policy_scope(Anime).all %>
+  <% animes_by_genre = all_animes.group_by(&:genre) %>
+
+  <% animes_by_genre.each do |genre, animes| %>
+    <h4 class="genre-title mt-5 mb-2"><%= genre %> - <%= pluralize animes.size, "result" %></h4>
+
+    <div class="animes">
+      <% animes.each do |anime| %>
+        <div class="anime-card img">
+          <%= image_tag anime.image %>
+
+          <div class="anime-infos" data-edit-anime-target="infos">
+            <h2><%= anime.title %><small> (<%= anime.date_start %>)</small></h2>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+</div>
