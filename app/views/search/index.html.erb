@@ -1,7 +1,6 @@
 <h1>Search#index</h1>
 <p>Find me in app/views/search/index.html.erb</p>
 <div class="container">
-
   <div data-controller="search-animes">
     <%= form_with url: search_path, method: :get, html: { class: "mb-4", data: { search_animes_target: "form" } } do |f| %>
       <%= f.text_field :query,
@@ -11,7 +10,6 @@
                      data: { search_animes_target: "input", action: "keyup->search-animes#updateList" } %>
       <%= f.button "Search", class: "btn btn-primary", data: { search_animes_target: "button" } %>
     <% end %>
-
     <div data-search-animes-target="list">
       <%= render "shared/list", animes: @animes %>
     </div>
