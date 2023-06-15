@@ -39,6 +39,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_15_100216) do
     t.integer "rank"
     t.text "image_urls", default: [], array: true
     t.string "embed_url"
+    t.string "status"
+    t.text "producers", default: [], array: true
+    t.text "themes", default: [], array: true
   end
 
   create_table "comments", force: :cascade do |t|

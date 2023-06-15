@@ -9,9 +9,11 @@ class UserPolicy < ApplicationPolicy
     true # or any other condition to determine if the user can view the profile
   end
 
-  def update?
-    record == user
-  end
+
+  #def update?
+  #  record.user == user
+  #end
+
 
   #def destroy?
     #record.user == user

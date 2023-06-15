@@ -1,0 +1,29 @@
+<h1>Index page</h1>
+<p>results search</p>
+<div class="container">
+  <!-- Existing content -->
+
+  <div class="input-group">
+    <%= form_tag(animes_path, method: :get, class: "form-inline") do %>
+      <%= text_field_tag(:query, params[:query], placeholder: "Search...", class: "form-control") %>
+      <%= submit_tag("Search", class: "btn btn-primary") %>
+    <% end %>
+  </div>
+
+  <% if @results.present? %>
+    <h1>Search Results:</h1>
+    <% @results.each do |result| %>
+      <!-- Display search result content -->
+    <% end %>
+  <% else %>
+    <h1>All Animes:</h1>
+    <ul>
+      <% @animes.each do |anime| %>
+        <li>
+          <%= link_to anime.title, anime_path(anime) %>
+        </li>
+        <!-- Display anime details -->
+      <% end %>
+    </ul>
+  <% end %>
+</div>
