@@ -7,8 +7,10 @@ class EpisodesController < ApplicationController
 
   def show
     @anime = Anime.find(params[:anime_id])
-    @season = @anime.seasons.find(params[:season_id])
-    @episode = @season.episode.find(params[:id])
+    @episode = @anime.episodes.includes(:comments).find(params[:id])
+    @commentsall = @episode.comments.includes(:user)
+    @comment = Comment.new
+    authorize @episode
     redirect_to root_path, alert: 'Episode not found' if @episode.nil?
   end
 

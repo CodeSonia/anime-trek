@@ -1,9 +1,8 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:show, :edit, :update, :destroy]
-
 
   def show
-    @user = current_user
+    @user = User.find(params[:id])
+
     authorize @user, policy_class: UserPolicy
   end
 
@@ -30,21 +29,4 @@ class UsersController < ApplicationController
 
   private
 
-  def current_user
-    if session[:user_id]
-      User.find(session[:user_id])
-    else
-      nil
-    end
-  end
-
-
-  def set_user
-    @user = current_user || UserProfile.new(user: current_user)
-    @user = current_user
-  end
-
-  def user_params
-    params.require(:user_profile).permit(:photo, :bio, :points)
-  end
 end

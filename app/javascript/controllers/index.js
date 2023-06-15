@@ -13,4 +13,5 @@ application.register("hello", HelloController)
 application.register("search-animes", SearchAnimesController)
 
 application.register('read-more', ReadMore)
-
+import Reveal from 'stimulus-reveal-controller'
+application.register("reveal", Reveal)

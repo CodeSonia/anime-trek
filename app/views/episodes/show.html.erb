@@ -1,7 +1,99 @@
-<h1><%= @episode.title %></h1>
-<p><%= @episode.description %></p>
-<p>Date aired: <%= @episode.date_aired %></p>
-<p>Rating: <%= @episode.rating %></p>
-<%= image_tag @episode.image %>
+<div class="container">
 
-<%= link_to 'Back to Episode List', anime_season_episodes_path(@anime, @season) %>
+<div class="d-flex justify-content-between">
+  <div>
+    <% unless Episode.where(anime: @episode.anime,episodenumber: @episode.episodenumber - 1).first.nil? %>
+      <%= link_to anime_episode_path(@episode.anime, @episode.id - 1) do %>
+      <p class="btn btn-primary my-2"> <i class="fa-solid fa-chevron-left"></i> Previous episode</p>
+
+      <% end %>
+    <% end %>
+  </div>
+  <div>
+
+  <% unless Episode.where(anime: @episode.anime,episodenumber: @episode.episodenumber + 1).first.nil? %>
+    <%= link_to anime_episode_path(@episode.anime, @episode.id + 1) do %>
+      <p class="btn btn-primary my-2">Next episode <i class="fa-solid fa-chevron-right"></i></p>
+    <% end %>
+  <% end %>
+  </div>
+
+</div>
+  <div id="carouselExampleControls" class="carousel slide mb-3" data-bs-ride="carousel">
+    <div class="carousel-inner">
+      <% @episode.anime.image_urls.each_with_index do |image, index| %>
+        <div class="carousel-item <%= 'active' if index == 0 %>">
+          <img src="<%= image %>" class="d-block w-100" alt="<%= @episode %>">
+        </div>
+      <% end %>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
+  <small class="p-1 bg-secondary text-white rounded-3 mt-2">Episode: <%= @episode.episodenumber %></small>
+  <h1><%= @episode.title %></h1>
+  <h3>Description: </h3>
+<p><%= @episode.description %></p>
+<p>Date aired: <%= @episode.date_aired.strftime("%d %b %Y") %></p>
+<p>Rating: <% @episode.rating.times do %> <i class="fa-solid fa-star"></i> <% end %> <% (5 - @episode.rating).times do %> <i class="fa-regular fa-star"></i> <% end %> (<%= @episode.rating %>) </p>
+
+<div class="reviews-container container mt-5" data-controller="reveal" data-reveal-hidden-class="d-none">
+  <div class="reviews-header">
+    <h3 class="display-5 fw-bold mb-2">Comments</h3>
+  </div>
+  <div class="reviews-info d-flex justify-content-between align-items-center">
+      <p><%= @commentsall.count %> Comments</p>
+    <% unless user_signed_in? %>
+  </div>
+      <div class="account-required text-center py-3" style="background-color: #eaeaea;">
+        <strong>Account Required</strong>
+        <p>Please <strong><%= link_to "Log in", new_user_session_url %></strong> or a <strong><%= link_to "Create an Account", new_user_registration_path %></strong> to add a comment</p>
+      </div>
+      <% else %>
+        <div>
+          <button data-action="click->reveal#toggle" type="button" class="btn btn-primary"><i class="fa-solid fa-pen-to-square"></i> Add a comment</button>
+        </div>
+  </div>
+    <% end %>
+    <div data-reveal-target="item" class="d-none mt-4 review-form bg-white p-3 rounded-3 review-container w-100">
+      <%= render partial: "comments/form", locals: { anime: @episode.anime, episode: @episode, comment: @comment} %>
+    </div>
+  </div>
+
+</div>
+
+  <div class="reviews-list container mx-auto mt-4 ">
+    <% @commentsall.each do |comment| %>
+      <div class="review-container mb-4 d-inline-block bg-white p-3 rounded-3 w-100">
+        <div class="review">
+          <div class="mb-3 d-flex justify-content-start review-info">
+            <img src="https://www.gravatar.com/avatar/94d093eda664addd6e450d7e9881bcad?s=32&d=identicon&r=PG" alt="User Photo" class="mr-5 rounded-circle " width="35" height="35">
+            <div class="mx-2 text-left">
+              <p class="mb-0"> <strong> <%= comment.user.username %></strong></p>
+              <small class="mb-0 ml-0"><%= comment.created_at.strftime('%d %b %Y') %></small>
+            </div>
+          </div>
+          <div data-controller="read-more" data-read-more-more-text-value="Read more ↓" data-read-more-less-text-value="Read less ↑">
+            <p class="my-content" data-read-more-target="content">
+              <%= comment.content %>
+            </p>
+              <% if policy(comment).destroy? %>
+                <%= link_to "Delete", anime_episode_comment_path(@episode.anime, @episode, comment), data: {turbo_method: :delete, turbo_confirm: "you sure?" }, method: :delete, class: "btn btn-danger text-white" %>
+              <% end %>
+            <% if comment.content.chars.length > 291 %>
+            <button data-action="read-more#toggle" style="border-radius: 20px;" class="btn-readmore">Read more ↓</button>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+</div>
