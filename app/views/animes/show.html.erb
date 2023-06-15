@@ -1,20 +1,26 @@
-<div class="py-5" style="background:linear-gradient(rgba(0, 0, 0, .7), rgba(0, 0, 0, .7)), url('<%= @anime.image_urls[0] %>');
+<div class="py-5" style="background:linear-gradient(rgba(0, 0, 0, .7), rgba(0, 0, 0, .7)), url('<%= @anime.image_urls.sample %>');
                         background-position: center;
-                        background-size: cover">
-  <%# can u help me make a flex with two columns please %>
+                        background-size: cover;">
 
-<div class="container text-white ">
+<div class="container text-white" style="padding:100px 0 100px 0;">
   <div class="row  align-items-end">
   <div class="col">
-    <%= link_to "Back to homepage", root_path, class:"btn btn-primary mb-3" %>
     <p class="fs-3">#<%= @anime.rank %> Most populair</p>
     <h1 class="display-1 fw-bold"><%= @anime.title %></h1>
     <p class="fs-6"> <%= truncate(@anime.synopsis, :length => 200) %></p>
-    <a href="#" class="btn watchlist-button"> <i class="fa-solid fa-plus"></i> Add to watchlist</a>
+    <p class="display-6">
+      <% @avg.to_i.times do %>
+     <i class="fa-solid fa-star"></i>
+     <% end %>
+     <% (5 - @avg.to_i).times do %>
+     <i class="fa-regular fa-star"></i>
+     <% end %> <span class="fs-6">(<%= @avg %>)</span> <br>
+     </p>
+    <a href="#" class="btn watchlist-button mt-5"> <i class="fa-solid fa-plus"></i> Add to watchlist</a>
     </div>
   <div class="col-4">
     <div class="bg-secondary p-3 rounded-3 d-inline-flex">
-    <% @anime.image_urls.each do |image| %>
+    <% @anime.image_urls.first(2).each do |image| %>
       <img src="<%= image %>" class="rounded-3 mx-2" alt="" width=250 >
     <% end %>
     </div>
@@ -29,52 +35,66 @@
     <div class="col-6">
       <h3 class="display-5 fw-bold mb-2">Details</h3>
       <p><%= @anime.synopsis %></p>
+      <% unless @anime.producers.empty? %>
+      <div class="characters">
+        <div class="text-left">Publishers:</div> <div class="text-right"> <% @anime.producers.each do |prod| %> <%= prod %>,  <% end %> </div>
+      </div>
+      <hr>
+      <% end %>
+      <% unless @anime.themes.empty? %>
+      <div class="characters">
+        <div class="text-left">Themes:</div> <div class="text-right"> <% @anime.themes.each do |prod| %> <%= prod %>,  <% end %> </div>
+      </div>
+      <hr>
+      <% end %>
+      <% unless @anime.status.nil? %>
+      <div class="characters">
+        <div class="text-left">Status:</div> <div class="text-right"> <%= @anime.status %> </div>
+      </div>
+      <% end %>
+
+
     </div>
     <div class="col-6">
-      <h3 class="display-5 fw-bold mb-2">Trailer</h3>
+      <h3 class="display-5 fw-bold mb-2 pl-5">Trailer</h3>
       <iframe width="560" height="315" src="<%= @anime.embed_url %>" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
     </div>
   </div>
 
   <div class="row mt-3">
       <h3 class="display-5 fw-bold mb-2">Episodes</h3>
-  <div class="row row-cols-1 row-cols-md-3 g-4">
+  <div class="row row-cols-1 row-cols-md-5 g-4">
     <% @anime.episodes.each do |episode| %>
-
-  <div class="col">
-    <div class="card h-100">
-      <img src="<%= episode.image %>" class="" alt="<%= episode.title %>">
-      <div class="card-body">
-        <h5 class="card-title"><%= episode.title %></h5>
-        <p class="card-text"><%= episode.description %></p>
+    <div class="card-group">
+      <div class="card">
+        <img src="<%= episode.image %>" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title"><%= episode.title %></h5>
+          <p class="card-text"><%= truncate(episode.description, :length => 100) %></p>
+        </div>
       </div>
+
     </div>
-  </div>
+
     <% end %>
 
 </div>
 </div>
 
 </div>
-<h1> <%= @anime.title %></h1>
-<p> <%= @anime.synopsis %></p>
-<p>Genre: <%= @anime.genre %></p>
-<p>Rating: <%= @anime.rating %></p>
-<p>Release Date: <%= @anime.date_start %></p>
-<p>End Date: <%= @anime.date_finish %></p>
-<p>End Date: <%= @anime.api_id %></p>
-<%= image_tag @anime.image %>
-
-<%= link_to 'Back to Anime List', root_path %>
-
-
-
-<div class="reviews-container">
+<div class="reviews-container container mt-5">
   <div class="reviews-header">
-    <h2 class="mt-4">Reviews</h2>
+    <h3 class="display-5 fw-bold mb-2">Reviews</h3>
   </div>
   <div class="reviews-info">
-    <p><%= @anime.reviews.count %> Reviews | <%= @anime.rating %> <i class="fas fa-star"></i></p>
+    <p><%= @anime.reviews.count %> Reviews | <%= @avg %>
+    <% @avg.to_i.times do %>
+     <i class="fa-solid fa-star"></i>
+     <% end %>
+     <% (5 - @avg.to_i).times do %>
+     <i class="fa-regular fa-star"></i>
+     <% end %>
+     </p>
   </div>
   <div class="account-required text-center py-3" style="background-color: #eaeaea;">
     <strong>Account Required</strong>

@@ -1,7 +1,9 @@
 class Anime < ApplicationRecord
   has_many :episodes, dependent: :delete_all
   has_many :reviews, dependent: :delete_all
-
+  has_many :users, through: :reviews, dependent: :destroy
+  has_many :watchlists, dependent: :destroy
+  has_many :comments, through: :episodes, dependent: :delete_all
   validates :title, presence: true
   validates :synopsis, presence: true
   validates :date_start, presence: true

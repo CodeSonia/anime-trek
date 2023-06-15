@@ -20,19 +20,19 @@ require "open-uri"
 # end
 
 puts "Deleting all comments..."
-Comment.destroy_all
+Comment.delete_all
 puts "Deleting all reviews..."
-Review.destroy_all
+Review.delete_all
 puts "Deleting all achievements..."
-Achievement.destroy_all
+Achievement.delete_all
 puts "Deleting all watchlists..."
-Watchlist.destroy_all
+Watchlist.delete_all
 puts "Deleting all episodes..."
-Episode.destroy_all
+Episode.delete_all
 puts "Deleting all animes..."
-Anime.destroy_all
+Anime.delete_all
 puts "Deleting all users..."
-User.destroy_all
+User.delete_all
 # # 1. get the data from the api
 # # 2. parse the data
 # # 3. create the records
@@ -205,114 +205,100 @@ puts "Created #{Review.count} reviews"
 
 puts "Creating achievements..."
 
-# # Let's make some achievements
-# Achievement.create!(
-#   name: "First Review",
-#   description: "You wrote your first review!",
-#   image: "https://i.imgur.com/6Z2ZQ0M.png",
-#   points: 10
-# )
+# Let's make some achievements
+Achievement.create!(
+  name: "First Review",
+  description: "You wrote your first review!",
+  image: "https://i.imgur.com/6Z2ZQ0M.png",
+  points: 10
+)
 
-# Achievement.create!(
-#   name: "First Episode",
-#   description: "You watched your first episode!",
-#   image: "https://i.imgur.com/6Z2ZQ0M.png",
-#   points: 10
-# )
+Achievement.create!(
+  name: "First Episode",
+  description: "You watched your first episode!",
+  image: "https://i.imgur.com/6Z2ZQ0M.png",
+  points: 10
+)
 
-# Achievement.create!(
-#   name: "First Anime",
-#   description: "You watched your first anime!",
-#   image: "https://i.imgur.com/6Z2ZQ0M.png",
-#   points: 10
-# )
+Achievement.create!(
+  name: "First Anime",
+  description: "You watched your first anime!",
+  image: "https://i.imgur.com/6Z2ZQ0M.png",
+  points: 10
+)
 
-# Achievement.create!(
-#   name: "Anime Master",
-#   description: "You watched 100 episodes!",
-#   image: "https://i.imgur.com/6Z2ZQ0M.png",
-#   points: 100
-# )
+Achievement.create!(
+  name: "Anime Master",
+  description: "You watched 100 episodes!",
+  image: "https://i.imgur.com/6Z2ZQ0M.png",
+  points: 100
+)
 
-# Achievement.create!(
-#   name: "Anime God",
-#   description: "You watched 1000 episodes!",
-#   image: "https://i.imgur.com/6Z2ZQ0M.png",
-#   points: 1000
-# )
+Achievement.create!(
+  name: "Anime God",
+  description: "You watched 1000 episodes!",
+  image: "https://i.imgur.com/6Z2ZQ0M.png",
+  points: 1000
+)
 
-# Achievement.create!(
-#   name: "Anime King",
-#   description: "You watched 10000 episodes!",
-#   image: "https://i.imgur.com/6Z2ZQ0M.png",
-#   points: 10000
-# )
+Achievement.create!(
+  name: "Anime King",
+  description: "You watched 10000 episodes!",
+  image: "https://i.imgur.com/6Z2ZQ0M.png",
+  points: 10000
+)
 
-# Achievement.create!(
-#   name: "Super Reviewer",
-#   description: "You wrote 100 reviews!",
-#   image: "https://i.imgur.com/6Z2ZQ0M.png",
-#   points: 100
-# )
+Achievement.create!(
+  name: "Super Reviewer",
+  description: "You wrote 100 reviews!",
+  image: "https://i.imgur.com/6Z2ZQ0M.png",
+  points: 100
+)
 
-# Achievement.create!(
-#   name: "Review Master",
-#   description: "You wrote 1000 reviews!",
-#   image: "https://i.imgur.com/6Z2ZQ0M.png",
-#   points: 1000
-# )
+Achievement.create!(
+  name: "Review Master",
+  description: "You wrote 1000 reviews!",
+  image: "https://i.imgur.com/6Z2ZQ0M.png",
+  points: 1000
+)
 
-# Achievement.create!(
-#   name: "Review God",
-#   description: "You wrote 10000 reviews!",
-#   image: "https://i.imgur.com/6Z2ZQ0M.png",
-#   points: 10000
-# )
+Achievement.create!(
+  name: "Review God",
+  description: "You wrote 10000 reviews!",
+  image: "https://i.imgur.com/6Z2ZQ0M.png",
+  points: 10000
+)
 
-# Achievement.create!(
-#   name: "Anime Addict",
-#   description: "You watched 100 animes!",
-#   image: "https://i.imgur.com/6Z2ZQ0M.png",
-#   points: 100
-# )
+Achievement.create!(
+  name: "Anime Addict",
+  description: "You watched 100 animes!",
+  image: "https://i.imgur.com/6Z2ZQ0M.png",
+  points: 100
+)
 
-# Achievement.create!(
-#   name: "Anime Maniac",
-#   description: "You watched 1000 animes!",
-#   image: "https://i.imgur.com/6Z2ZQ0M.png",
-#   points: 1000
-# )
+Achievement.create!(
+  name: "Anime Maniac",
+  description: "You watched 1000 animes!",
+  image: "https://i.imgur.com/6Z2ZQ0M.png",
+  points: 1000
+)
 
-# Achievement.create!(
-#   name: "Anime God",
-#   description: "You watched 10000 animes!",
-#   image: "https://i.imgur.com/6Z2ZQ0M.png",
-#   points: 10000
-# )
-
-# User.all.each do |user|
-#   Achievement.create!(
-#     name: "First Review",
-#     description: "You wrote your first review!",
-#     points: 10,
-#     user: user
-#   )
-# end
-# puts "Created #{Achievement.count} achievements"
-
-puts "Creating user profiles..."
+Achievement.create!(
+  name: "Anime God",
+  description: "You watched 10000 animes!",
+  image: "https://i.imgur.com/6Z2ZQ0M.png",
+  points: 10000
+)
 
 User.all.each do |user|
-  UserProfile.create!(
-    user: user,
-    bio: Faker::Lorem.paragraph(sentence_count: 2),
-    photo: "https://i.imgur.com/6Z2ZQ0M.png",
-    # to add
-    # points: 0
+  Achievement.create!(
+    name: "First Review",
+    description: "You wrote your first review!",
+    points: 10,
+    user: user
   )
 end
-
-puts "Created #{UserProfile.count} user profiles"
+puts "Created #{Achievement.count} achievements"
 
 puts "Creating user watchlists..."
 

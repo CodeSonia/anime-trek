@@ -1,6 +1,6 @@
 class Review < ApplicationRecord
-  belongs_to :user, dependent: :destroy
-  belongs_to :anime, dependent: :destroy
+  belongs_to :user
+  belongs_to :anime
 
   validates :content, presence: true
   validates :rating, presence: true, numericality: { only_integer: true,
