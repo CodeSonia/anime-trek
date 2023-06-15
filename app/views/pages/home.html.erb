@@ -1,22 +1,28 @@
-<div class="container">
-  <div class="row mt-5">
-    <div class="col-8">
-      <p>Discover, Explore, Simplify:</p>
-      <h1>Unleash The Anime Universe</h1>
-      <p>
-        Introducing AnimeTrek: Your Ultimate Anime Exploration Companion.
-        You can discover new anime series, explore genres, and deep dive into captivating story lines.
+<div class="container container-parent">
+  <div class="blurr-img">
+    <%= cl_image_tag("https://res.cloudinary.com/dtjuz4kkr/image/upload/v1686840960/blurr_azumrg.png", height: 500) %>
+  </div>
+  <div class="row mt-8">
+    <div class="col-8 mt-5">
+      <p class="slogan">Discover, Explore, Simplify:</p>
+      <h1 class="text-uppercase landing-header">Unleash The Anime Universe</h1>
+      <p class="support-text text-muted">
+      Introducing AnimeTrek: Your Ultimate Anime Exploration Companion. Embark on a journey to discover new anime series, explore a myriad of genres, and immerse yourself in captivating storylines that will transport you to extraordinary worlds.
       </p>
-      <div>
-        <%= form_with url: search_path, method: :get, html: { class: "mb-4" } do |f| %>
-          <%= f.text_field :query, class: "form-control", placeholder: "Type an anime title", value: params[:query] %>
-          <%= f.submit "Search", class: "btn btn-primary" %>
+      <div class="mt-4 mb-4 form-inline">
+        <%= form_with url: search_path, method: :get, html: { class: "d-flex" } do |f| %>
+          <div class="form-group icon-parent">
+          <span class="mag-icon"><i class="fas fa-thin fa-magnifying-glass"></i></span>
+            <%= f.text_field :query, class: "form-control input-form", placeholder: "Search for an anime...", value: params[:query] %>
+
+          </div>
+            <%= f.button "Search", class: "btn primary-button" %>
         <% end %>
       </div>
     </div>
 
     <div class="col-4">
-      <%= cl_image_tag("https://res.cloudinary.com/dtjuz4kkr/image/upload/v1686823182/anime_girl_tutzus.png", height: 300, crop: :fill) %>
+      <%= cl_image_tag("https://res.cloudinary.com/dtjuz4kkr/image/upload/v1686823182/anime_girl_tutzus.png", height: 500, crop: :fill) %>
     </div>
   </div>
 
