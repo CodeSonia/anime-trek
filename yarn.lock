@@ -697,6 +697,7 @@ source-map@^0.6.0:
   resolved "https://registry.yarnpkg.com/source-map/-/source-map-0.6.1.tgz#74722af32e9614e9c287a8d0bbde48b5e2f1a263"
   integrity sha512-UjgapumWlbMhkBgzT7Ykc5YXUT46F0iKu8SGXq0bcwP5dz/h0Plj6enJqjz1Zbq2l5WaqYnrVbwWOWMyF3F47g==
 
+
 stimulus@^3.2.1:
   version "3.2.1"
   resolved "https://registry.yarnpkg.com/stimulus/-/stimulus-3.2.1.tgz#bf049a4379ed4ff7475515acce1f0b6fa15a0187"
@@ -704,6 +705,12 @@ stimulus@^3.2.1:
   dependencies:
     "@hotwired/stimulus" "^3.2.1"
     "@hotwired/stimulus-webpack-helpers" "^1.0.0"
+
+stimulus-read-more@^4.1.0:
+  version "4.1.0"
+  resolved "https://registry.yarnpkg.com/stimulus-read-more/-/stimulus-read-more-4.1.0.tgz#f34efb2dcb33fd091936d84c569937bc100506c8"
+  integrity sha512-SJyCJqZrhDSKpfrepnhStBaxtyv6Jnvr+b84GDg3l+/BzL5HaFLYmc6QkSNCeR6y0x+Zw7lwKuzv+XzyAm1KzQ==
+
 
 supports-color@^8.0.0:
   version "8.1.1"
