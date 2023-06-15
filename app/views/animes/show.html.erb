@@ -1,3 +1,10 @@
+
+<div id="notification" class="alert alert-success alert-dismissible fade notification" role="alert">
+  Anime ajouté à la watchlist !
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+
+
 <div class="py-5" style="background:linear-gradient(rgba(0, 0, 0, .7), rgba(0, 0, 0, .7)), url('<%= @anime.image_urls.sample %>');
                         background-position: center;
                         background-size: cover;">
@@ -5,7 +12,7 @@
 <div class="container text-white" style="padding:100px 0 100px 0;">
   <div class="row  align-items-end">
   <div class="col">
-    <p class="fs-3">#<%= @anime.rank %> Most populair</p>
+    <p class="fs-3"> <strong>#<%= @anime.rank %></strong> Most populair</p>
     <h1 class="display-1 fw-bold"><%= @anime.title %></h1>
     <p class="fs-6"> <%= truncate(@anime.synopsis, :length => 200) %></p>
     <p class="display-6">
@@ -14,7 +21,7 @@
      <% end %>
      <% (5 - @avg.to_i).times do %>
      <i class="fa-regular fa-star"></i>
-     <% end %> <span class="fs-6">(<%= @avg %>)</span> <br>
+     <% end %> <span class="fs-6">(<%= @avg.round(2) %>)</span> <br>
      </p>
     <a href="#" class="btn watchlist-button mt-5"> <i class="fa-solid fa-plus"></i> Add to watchlist</a>
     </div>
@@ -37,13 +44,13 @@
       <p><%= @anime.synopsis %></p>
       <% unless @anime.producers.empty? %>
       <div class="characters">
-        <div class="text-left">Publishers:</div> <div class="text-right"> <% @anime.producers.each do |prod| %> <%= prod %>,  <% end %> </div>
+        <div class="text-left">Publishers:</div> <div class="text-right"> <%= @anime.producers.join(", ") %> </div>
       </div>
       <hr>
       <% end %>
       <% unless @anime.themes.empty? %>
       <div class="characters">
-        <div class="text-left">Themes:</div> <div class="text-right"> <% @anime.themes.each do |prod| %> <%= prod %>,  <% end %> </div>
+        <div class="text-left">Themes:</div> <div class="text-right"> <%= @anime.themes.join(", ") %></div>
       </div>
       <hr>
       <% end %>
@@ -65,16 +72,17 @@
       <h3 class="display-5 fw-bold mb-2">Episodes</h3>
   <div class="row row-cols-1 row-cols-md-5 g-4">
     <% @anime.episodes.each do |episode| %>
-    <div class="card-group">
-      <div class="card">
-        <img src="<%= episode.image %>" class="card-img-top" alt="...">
-        <div class="card-body">
-          <h5 class="card-title"><%= episode.title %></h5>
-          <p class="card-text"><%= truncate(episode.description, :length => 100) %></p>
+      <%= link_to anime_episode_path(@anime, episode), class: "text-decoration-none" do %>
+        <div class="card-group" style="height:540px;">
+          <div class="card bg-white shadow-card ">
+            <img src="<%= episode.image %>" class="card-img-top" alt="...">
+            <div class="card-body">
+              <h5 class="card-title"><%= truncate(episode.title, :length => 30) %></h5>
+              <p class="card-text"> <small><%= truncate(episode.description, :length => 100) %></small> </p>
+            </div>
+          </div>
         </div>
-      </div>
-
-    </div>
+      <% end %>
 
     <% end %>
 
@@ -82,41 +90,59 @@
 </div>
 
 </div>
-<div class="reviews-container container mt-5">
+<div class="reviews-container container mt-5" data-controller="reveal" data-reveal-hidden-class="d-none">
   <div class="reviews-header">
     <h3 class="display-5 fw-bold mb-2">Reviews</h3>
   </div>
-  <div class="reviews-info">
-    <p><%= @anime.reviews.count %> Reviews | <%= @avg %>
-    <% @avg.to_i.times do %>
-     <i class="fa-solid fa-star"></i>
-     <% end %>
-     <% (5 - @avg.to_i).times do %>
-     <i class="fa-regular fa-star"></i>
-     <% end %>
-     </p>
+  <div class="reviews-info d-flex justify-content-between align-items-center">
+      <p><%= @anime.reviews.count %> Reviews | <%= @avg.round(2) %>
+      <% @avg.to_i.times do %>
+      <i class="fa-solid fa-star"></i>
+      <% end %>
+      <% (5 - @avg.to_i).times do %>
+      <i class="fa-regular fa-star"></i>
+      <% end %>
+      </p>
+    <% unless user_signed_in? %>
   </div>
-  <div class="account-required text-center py-3" style="background-color: #eaeaea;">
-    <strong>Account Required</strong>
-    <p><strong>Please</strong> Log in or Create an Account to <strong>add a review</strong></p>
+      <div class="account-required text-center py-3" style="background-color: #eaeaea;">
+        <strong>Account Required</strong>
+        <p>Please <strong><%= link_to "Log in", new_user_session_url %></strong> or a <strong><%= link_to "Create an Account", new_user_registration_path %></strong> to dd a review</p>
+      </div>
+      <% else %>
+        <div>
+          <button data-action="click->reveal#toggle" type="button" class="btn btn-primary"><i class="fa-solid fa-pen-to-square"></i> Add a review</button>
+        </div>
   </div>
-  <div class="reviews-list text-center mt-4 ">
+    <% end %>
+    <div data-reveal-target="item" class="d-none mt-4 review-form bg-white p-3 rounded-3 shadow-card ">
+      <%= render partial: "reviews/form", locals: { anime: @anime, review: @review } %>
+    </div>
+  </div>
+
+</div>
+
+  <div class="reviews-list container mx-auto mt-4 ">
     <% @anime.reviews.each do |review| %>
-      <div class="review-container mb-4 d-inline-block">
+      <div class="review-container mb-4 d-inline-block bg-white p-3 rounded-3 w-100">
         <div class="review">
           <div class="mb-3 d-flex justify-content-start review-info">
-            <img src="" alt="User Photo" class="mr-2 rounded-circle" width="50" height="50">
-            <div>
-              <p class="mb-0 username"><%= review.user.username %></p>
-              <p class="mb-0 rating">Rating: <%= review.rating %></p>
-              <p class="mb-0 date"><%= review.created_at.strftime('%d %b %Y') %></p>
+            <img src="https://www.gravatar.com/avatar/94d093eda664addd6e450d7e9881bcad?s=32&d=identicon&r=PG" alt="User Photo" class="mr-5 rounded-circle " width="35" height="35">
+            <div class="mx-2 text-left">
+              <p class="mb-0"> <strong> <%= review.user.username %></strong> | <%= review.rating %>  <i class="fa-solid fa-star"></i></p>
+              <small class="mb-0 ml-0"><%= review.created_at.strftime('%d %b %Y') %></small>
             </div>
           </div>
-          <div data-controller="read-more" data-read-more-more-text-value="Read more" data-read-more-less-text-value="Read less">
+          <div data-controller="read-more" data-read-more-more-text-value="Read more ↓" data-read-more-less-text-value="Read less ↑">
             <p class="my-content" data-read-more-target="content">
               <%= review.content %>
             </p>
-            <button data-action="read-more#toggle" style="border-radius: 20px;">Read more</button>
+            <% if review.content.chars.length > 291 %>
+            <button data-action="read-more#toggle" style="border-radius: 20px;" class="btn-readmore">Read more ↓</button>
+            <% end %>
+              <% if policy(review).destroy? %>
+                <%= link_to "Delete", anime_review_path(@anime, review), data: {turbo_method: :delete, turbo_confirm: "you sure?" }, method: :delete, class: "btn btn-danger text-white" %>
+              <% end %>
           </div>
         </div>
       </div>
@@ -134,14 +160,89 @@
   .username,
   .rating,
   .date {
-    display: inline-block;
     margin-right: 10px;
   }
     .reviews-list {
     margin-left: 100px;
     margin-right: 100px;
   }
+  .notification {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  height: 50px;
+  background-color: #fff;
+  color: #000;
+  padding: 10px 20px;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  display: none;
+}
+
+.notification.show {
+  display: block;
+  animation: fadeOut 3s;
+}
+
+@keyframes fadeOut {
+  0% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
 </style>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+$(document).ready(function() {
+  $('.btn.watchlist-button').click(function(event) {
+    // Effectuez ici les opérations d'ajout à la watchlist et affichage de la notification
+    event.preventDefault();
+    addToWatchlist();
+  });
+});
+
+function addToWatchlist() {
+  const animeId = <%= @anime.id%>
+
+  const data = {
+    anime_id: animeId,
+    watchlist: {
+      status: true
+    },
+    authenticity_token: $('meta[name="csrf-token"]').attr('content')
+  };
+
+  $.ajax({
+    url: '/animes/<%= @anime.id %>/watchlists',
+    type: 'POST',
+    data: data,
+    success: function(response) {
+      showNotification('Anime added to your watchlist!');
+    },
+    error: function(xhr, status, error) {
+      showNotification('Error adding anime to your watchlist.')
+    }
+  });
+}
+
+function showNotification() {
+  const notification = $('#notification');
+  notification.text("Anime sucessfully added to your Watchlist!");
+  notification.addClass('show');
+
+  setTimeout(function() {
+    notification.fadeOut();
+  }, 3000);
+}
+</script>
+
 
 <!--<h2>Reviews</h2>
 
