@@ -79,10 +79,6 @@ GEM
     autoprefixer-rails (10.4.13.0)
       execjs (~> 2)
     bcrypt (3.1.18)
-    better_errors (2.10.0)
-      erubi (>= 1.0.0)
-      rack (>= 0.9.0)
-      rouge (>= 1.0.0)
     bindex (0.8.1)
     bootsnap (1.16.0)
       msgpack (~> 1.2)
@@ -229,7 +225,6 @@ GEM
       mime-types (>= 1.16, < 4.0)
       netrc (~> 0.8)
     rexml (3.2.5)
-    rouge (4.1.2)
     rubyzip (2.3.2)
     sassc (2.4.0)
       ffi (~> 1.9)
@@ -290,7 +285,6 @@ PLATFORMS
 
 DEPENDENCIES
   autoprefixer-rails
-  better_errors
   bootsnap
   capybara
   debug

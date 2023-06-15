@@ -1,3 +1,10 @@
+
+<div id="notification" class="alert alert-success alert-dismissible fade notification" role="alert">
+  Anime ajouté à la watchlist !
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+
+
 <div class="py-5" style="background:linear-gradient(rgba(0, 0, 0, .7), rgba(0, 0, 0, .7)), url('<%= @anime.image_urls.sample %>');
                         background-position: center;
                         background-size: cover;">
@@ -159,7 +166,83 @@
     margin-left: 100px;
     margin-right: 100px;
   }
+  .notification {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  height: 50px;
+  background-color: #fff;
+  color: #000;
+  padding: 10px 20px;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  display: none;
+}
+
+.notification.show {
+  display: block;
+  animation: fadeOut 3s;
+}
+
+@keyframes fadeOut {
+  0% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
 </style>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+$(document).ready(function() {
+  $('.btn.watchlist-button').click(function(event) {
+    // Effectuez ici les opérations d'ajout à la watchlist et affichage de la notification
+    event.preventDefault();
+    addToWatchlist();
+  });
+});
+
+function addToWatchlist() {
+  const animeId = <%= @anime.id%>
+
+  const data = {
+    anime_id: animeId,
+    watchlist: {
+      status: true
+    },
+    authenticity_token: $('meta[name="csrf-token"]').attr('content')
+  };
+
+  $.ajax({
+    url: '/animes/<%= @anime.id %>/watchlists',
+    type: 'POST',
+    data: data,
+    success: function(response) {
+      showNotification('Anime added to your watchlist!');
+    },
+    error: function(xhr, status, error) {
+      showNotification('Error adding anime to your watchlist.')
+    }
+  });
+}
+
+function showNotification() {
+  const notification = $('#notification');
+  notification.text("Anime sucessfully added to your Watchlist!");
+  notification.addClass('show');
+
+  setTimeout(function() {
+    notification.fadeOut();
+  }, 3000);
+}
+</script>
+
 
 <!--<h2>Reviews</h2>
 

@@ -1,0 +1,18 @@
+
+<div class="container">
+  <div data-controller="search-animes">
+    <%= form_with url: search_path, method: :get, html: { class: "mb-4 mt-5 search-container", data: { search_animes_target: "form" } } do |f| %>
+      <%= f.text_field :query,
+                     class: "form-control search-text-field",
+                     placeholder: "Type an anime title",
+                     value: params[:query],
+                     data: { search_animes_target: "input", action: "keyup->search-animes#updateList" } %>
+      <%= f.button "Search", class: "button btn-search", data: { search_animes_target: "button" } %>
+    <% end %>
+    <div data-search-animes-target="list">
+      <%= render "shared/list", animes: @animes %>
+    </div>
+    <div>
+    <%= render "shared/categories_cards" %></div>
+  </div>
+</div>

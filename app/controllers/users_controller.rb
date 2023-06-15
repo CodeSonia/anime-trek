@@ -1,11 +1,10 @@
-class UserProfilesController < ApplicationController
-  before_action :set_user_profile, only: [:show, :edit, :update, :destroy]
+class UsersController < ApplicationController
+  before_action :set_user, only: [:show, :edit, :update, :destroy]
 
 
   def show
-
-    @user_profile = current_user.user_profile
-    authorize @user_profile, policy_class: UserProfilePolicy
+    @user = current_user
+    authorize @user, policy_class: UserPolicy
   end
 
   #def edit
@@ -31,12 +30,21 @@ class UserProfilesController < ApplicationController
 
   private
 
-  def set_user_profile
-    @user_profile = current_user.user_profile || UserProfile.new(user: current_user)
+  def current_user
+    if session[:user_id]
+      User.find(session[:user_id])
+    else
+      nil
+    end
+  end
+
+
+  def set_user
+    @user = current_user || UserProfile.new(user: current_user)
     @user = current_user
   end
 
-  def user_profile_params
-    params.require(:user_profile).permit(:photo, :bio)
+  def user_params
+    params.require(:user_profile).permit(:photo, :bio, :points)
   end
 end
