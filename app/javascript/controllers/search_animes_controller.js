@@ -1,20 +1,43 @@
 import { Controller } from "@hotwired/stimulus"
 
-// Connects to data-controller="search-animes"
 export default class extends Controller {
-  static targets = ["form", "input", "list"]
+  static targets = ["form", "input", "list", "button"]
   connect() {
-    console.log(this.formTarget);
-    console.log(this.inputTarget);
-    console.log(this.listTarget);
+    console.log("connect")
+    this.buttonTarget.addEventListener('click', (event) => {
+      event.preventDefault();
+      console.log("click", event);
+
+      if (this.inputTarget.value === "") {
+        this.listTarget.innerHTML = "We couldn't find any anime matching your search criteria. Could you please provide the name of the anime again?";
+      } else {
+        console.log(event)
+        this.updateList();
+        this.inputTarget.value = "";
+      }
+    });
   }
 
-  update() {
-    const url = `${this.formTarget.action}?query=${this.inputTarget.value}`
-    fetch(url, {headers: {"Accept": "text/plain"}})
+  update(event) {
+    event.preventDefault();
+    console.log("test", event);
+    console.log("list", this.formTarget.value);
+    this.updateList();
+  }
+
+  updateList(event) {
+    console.log("list", this.inputTarget.value);
+    const url = `${this.formTarget.action}?query=${this.inputTarget.value}`;
+    if(event.keyCode !== 13) {
+      fetch(url, { method: "get", headers: { "Accept": "text/plain" } })
       .then(response => response.text())
       .then((data) => {
-        this.listTarget.outerHTML = data
-      })
+        console.log("data");
+        this.listTarget.outerHTML = data;
+      });
+    } else {
+      this.inputTarget.value = "";
+    }
+
   }
 }
