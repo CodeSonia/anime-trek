@@ -1,14 +1,19 @@
 class WatchlistsController < ApplicationController
-  # before_action :authenticate_user!
+  before_action :authenticate_user!
+
+  def add_to_watchlist?
+    true
+  end
 
   def create
     @anime = Anime.find(params[:anime_id])
+    authorize @anime, :add_to_watchlist?
     @watchlist = current_user.watchlists.build(anime: @anime, status: true)
 
     if @watchlist.save
-      redirect_to @anime, notice: "Anime was successfully added to your watchlist."
+      redirect_to anime_path(@anime), notice: "Anime was successfully added to your watchlist."
     else
-      render :new, status: :unprocessable_entity, alert: "Anime was not added to your watchlist."
+      redirect_to anime_path(@anime), status: :unprocessable_entity, alert: "Anime was not added to your watchlist."
     end
   end
 

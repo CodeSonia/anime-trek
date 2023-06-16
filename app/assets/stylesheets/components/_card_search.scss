@@ -1,0 +1,51 @@
+h3 {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 24px;
+  margin-top: 32px;
+}
+
+.animes {
+  display: flex;
+  overflow-x: scroll;
+  scroll-snap-type: x mandatory;
+}
+
+.animes::-webkit-scrollbar {
+  display: none;
+}
+
+.anime-card {
+  width: 326px;
+  height: 418px;
+  background-color: white;
+  border-radius: 5px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+  scroll-snap-align: start;
+  flex-shrink: 0;
+  width: 300px; /* Adjust the width as needed */
+  margin-right: 25px; /* Add some spacing between cards */
+  background-color: #E6EBF0;
+
+  img {
+    width: 326px;
+    height: 332px;
+    object-fit: cover;
+  }
+
+  .anime-infos {
+    padding: 16px;
+
+    h2 {
+      font-size: 18px;
+      font-weight: bold;
+      margin-bottom: 8px;
+    }
+
+    small {
+      font-size: 14px;
+      color: #555;
+    }
+  }
+}
