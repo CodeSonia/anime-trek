@@ -43,8 +43,8 @@ puts "Deleting all users achievements..."
 UserAchievement.delete_all
 puts "Deleting all achievements..."
 Achievement.delete_all
-puts "Deleting all reviews..."
-Review.delete_all
+# puts "Deleting all reviews..."
+# Review.delete_all
 # puts "Deleting all watchlists..."
 # Watchlist.delete_all
 # puts "Deleting all episodes..."
@@ -199,30 +199,30 @@ Review.delete_all
 
 # puts "Created #{Episode.count} episodes"
 
-puts "Creating reviews..."
-# Let's make some reviews
-Anime.all.each do |anime|
-  sleep(1)
-  begin
-    reviews_serialized = URI.open("https://api.jikan.moe/v4/anime/#{anime.api_id}/reviews").read
-    reviews = JSON.parse(reviews_serialized)
-    reviews["data"].first(5).each do |review|
-      puts "Creating reviews for #{anime.title}"
-      if review.present?
-        Review.create!(
-          content: review["review"],
-          rating: review["score"].to_i / 2,
-          user: User.all.sample,
-          anime: anime,
-        )
-      end
-    end
-  rescue
-    puts "Broken..."
-  end
-end
+# puts "Creating reviews..."
+# # Let's make some reviews
+# Anime.all.each do |anime|
+#   sleep(1)
+#   begin
+#     reviews_serialized = URI.open("https://api.jikan.moe/v4/anime/#{anime.api_id}/reviews").read
+#     reviews = JSON.parse(reviews_serialized)
+#     reviews["data"].first(5).each do |review|
+#       puts "Creating reviews for #{anime.title}"
+#       if review.present?
+#         Review.create!(
+#           content: review["review"],
+#           rating: review["score"].to_i / 2,
+#           user: User.all.sample,
+#           anime: anime,
+#         )
+#       end
+#     end
+#   rescue
+#     puts "Broken..."
+#   end
+# end
 
-puts "Created #{Review.count} reviews"
+# puts "Created #{Review.count} reviews"
 
 puts "Creating achievements..."
 
