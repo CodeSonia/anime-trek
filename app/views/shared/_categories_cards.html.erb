@@ -8,6 +8,7 @@
     </div>
       <div class="animesCd">
         <% animes.each do |anime| %>
+          <%= link_to anime_path(anime), class: "text-decoration-none" do %>
           <div class="card-anime">
             <div class="image-card">
               <%= image_tag anime.image %>
@@ -17,9 +18,9 @@
               <small> (<%= anime.date_start %>)</small>
               <p><%= anime.themes.join(", ") %></p>
               <p><%= truncate(anime.synopsis, length: 120, omission: '...') %></p>
-              <p><%= link_to "Read More ...", anime_path(anime), class: "text-decoration-none" %></p>
             </div>
           </div>
+          <% end %>
         <% end %>
       </div>
   <% end %>

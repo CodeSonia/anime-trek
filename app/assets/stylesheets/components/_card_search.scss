@@ -5,14 +5,11 @@ h3 {
   margin-top: 32px;
 }
 
-*, *::before, *::after {
-  box-sizing: content-box !important;
-}
-
 .animes {
   display: flex;
   overflow-x: scroll;
   scroll-snap-type: x mandatory;
+  margin-bottom: content-box !important;
 }
 
 .animes::-webkit-scrollbar {

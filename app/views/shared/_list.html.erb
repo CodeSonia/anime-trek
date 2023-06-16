@@ -8,13 +8,14 @@
   </p>
   <div class="animes">
     <% animes.each do |anime| %>
+      <%= link_to anime_path(anime), style: 'text-decoration: none;' do %>
       <div class="anime-card img">
         <%= image_tag anime.image %>
         <div class="anime-infos" data-edit-anime-target="infos">
           <h2><%= anime.title %><small> (<%= anime.date_start %>)</small></h2>
-          <p><%= link_to "Read More ...", anime_path(anime), class: "text-decoration-none"%></p>
         </div>
       </div>
+      <% end %>
     <% end %>
   </div>
 </div>
