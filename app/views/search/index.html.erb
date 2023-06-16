@@ -1,12 +1,15 @@
 
 <div class="container">
-  <div data-controller="search-animes">
-    <%= form_with url: search_path, method: :get, html: { class: "mb-4 mt-5 search-container", data: { search_animes_target: "form" } } do |f| %>
+  <div class="form-inline" data-controller="search-animes">
+    <%= form_with url: search_path, method: :get, html: { class: "d-flex search-container", data: { search_animes_target: "form" } } do |f| %>
+    <div class="form-group mt-5 mb-5 icon-parent">
+      <span class="mag-icon"><i class="fas fa-thin fa-magnifying-glass"></i></span>
       <%= f.text_field :query,
-                     class: "form-control search-text-field",
-                     placeholder: "Type an anime title",
+                     class: "form-control search-text-field input-form",
+                     placeholder: "Search for an anime...",
                      value: params[:query],
                      data: { search_animes_target: "input", action: "keyup->search-animes#updateList" } %>
+    </div>
       <%= f.button "Search", class: "button btn-search", data: { search_animes_target: "button" } %>
     <% end %>
     <div data-search-animes-target="list">

@@ -20,12 +20,13 @@ h3 {
   height: 418px;
   background-color: white;
   border-radius: 5px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   overflow: hidden;
   scroll-snap-align: start;
   flex-shrink: 0;
   width: 300px; /* Adjust the width as needed */
   margin-right: 25px; /* Add some spacing between cards */
+  background-color: #E6EBF0;
 
   img {
     width: 326px;
