@@ -1,9 +1,11 @@
 class UsersController < ApplicationController
-
   def show
-    @user = User.find(params[:id])
-
-    authorize @user, policy_class: UserPolicy
+    if params[:id] == 'log_out'
+      log_out
+    else
+      @user = User.find(params[:id])
+      authorize @user, policy_class: UserPolicy
+    end
   end
 
   #def edit

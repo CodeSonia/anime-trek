@@ -6,6 +6,7 @@ Rails.application.routes.draw do
 
     get '/users/:id', to: 'users#show'
 
+
   root to: "pages#home"
 
   resources :animes do
