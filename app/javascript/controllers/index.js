@@ -15,3 +15,7 @@ application.register("search-animes", SearchAnimesController)
 application.register('read-more', ReadMore)
 import Reveal from 'stimulus-reveal-controller'
 application.register("reveal", Reveal)
+import CharacterCounter from 'stimulus-character-counter'
+application.register("character-counter", CharacterCounter)
+import TextareaAutogrow from 'stimulus-textarea-autogrow'
+application.register("textarea-autogrow", TextareaAutogrow)

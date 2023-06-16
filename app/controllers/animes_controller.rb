@@ -8,6 +8,8 @@ class AnimesController < ApplicationController
     @anime = Anime.includes(:episodes, :reviews, :users).find(params[:id])
     @avg = @anime.reviews.average(:rating)
     @review = Review.new
+    @watchlist = Watchlist.new
+    @watchlistadded = current_user.watchlists.find_by(anime_id: @anime.id) if user_signed_in?
     authorize @anime
     redirect_to animes_path, alert: 'Anime not found' if @anime.nil?
   end
