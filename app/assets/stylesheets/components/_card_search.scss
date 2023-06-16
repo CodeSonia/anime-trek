@@ -5,6 +5,10 @@ h3 {
   margin-top: 32px;
 }
 
+*, *::before, *::after {
+  box-sizing: content-box !important;
+}
+
 .animes {
   display: flex;
   overflow-x: scroll;
@@ -13,6 +17,7 @@ h3 {
 
 .animes::-webkit-scrollbar {
   display: none;
+
 }
 
 .anime-card {
@@ -27,6 +32,8 @@ h3 {
   width: 300px; /* Adjust the width as needed */
   margin-right: 25px; /* Add some spacing between cards */
   background-color: #E6EBF0;
+  padding-bottom: 16px;
+
 
   img {
     width: 326px;
@@ -36,6 +43,7 @@ h3 {
 
   .anime-infos {
     padding: 16px;
+    margin-bottom: 24px;
 
     h2 {
       font-size: 18px;
@@ -46,6 +54,11 @@ h3 {
     small {
       font-size: 14px;
       color: #555;
+    }
+
+    p {
+      padding-bottom: 16px;
+      cursor: pointer;
     }
   }
 }
