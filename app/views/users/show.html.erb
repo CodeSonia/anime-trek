@@ -1,11 +1,13 @@
-<div class="big-container" style="background-image: url(<%= cl_image_path('https://res.cloudinary.com/dtjuz4kkr/image/upload/v1686840960/blurr_azumrg.png') %>);">
-  <div class="inner-container1 bg-white shadow d-flex flex-column align-items-center">
+
+<div class="big-container" style="bg-white;">
+  <div class="inner-container1 bg-gray-100 shadow d-flex flex-column align-items-center">
     <!-- Contenu du premier conteneur -->
     <%= cl_image_tag('https://res.cloudinary.com/dtjuz4kkr/image/upload/v1686851125/animetrek_logo_fnexfu.png', class: 'logo-image') %>
     <img src="<%= @user.photo %>" alt="User Photo" class="mt-5 mb-5 rounded-circle" width="50" height="50">
     <nav class="nav flex-column mt-2">
-      <%= link_to "Home", root_path, class: "nav-link active mt-2 mb-2 rounded-pill border text-center", style: "color: black;" %>
-      <%= link_to "Categories", search_path, class: "nav-link mb-2 mt-2 rounded-pill border", style: "color: black;" %>
+      <%= link_to "Home", root_path, class: "nav-link active mt-2 mb-3 rounded-pill border text-center", style: " border: 1px solid #8A5082; color: white; border-radius: 32px; padding: 5px; padding-left: 24px; padding-right: 24px; font-weight: 400; font-size: 16px; line-height: 24px; transition: 0.3s;" %>
+      <%= link_to "Categories", search_path, class: "nav-link mb-3 mt-2 rounded-pill border text-center", style: "border: 1px solid #8A5082; color: white; border-radius: 32px; padding: 5px; padding-left: 24px; padding-right: 24px; font-weight: 400; font-size: 16px; line-height: 24px; transition: 0.3s;" %>
+      <%= link_to "Edit Profile", edit_user_registration_path, class: "nav-link mb-2 mt-2 rounded-pill border text-center", style:  "border: 1px solid #8A5082; color: white; border-radius: 32px; padding: 5px; padding-left: 24px; padding-right: 24px; font-weight: 400; font-size: 16px; line-height: 24px; transition: 0.3s;" %>
     </nav>
     <%= image_tag('character.png', alt: 'Character Image', class: 'mt-auto', width: 200) %>
   </div>
@@ -26,10 +28,10 @@
             <div class="inner-container" style="display: flex; flex-direction: column;">
               <ul class="nav nav-tabs justify-content-start" id="myTab" role="tablist">
                 <li class="nav-item" role="presentation">
-                  <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true" style="color: black;">Watchlist</button>
+                  <button class="nav-link2 active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true" style="color: black;">Watchlist</button>
                 </li>
                 <li class="nav-item" role="presentation">
-                  <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="false" style="color: black;">Profile</button>
+                  <button class="nav-link2" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="false" style="color: black;">Profile</button>
                 </li>
                 <!--<li class="nav-item" role="presentation">
                   <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact" type="button" role="tab" aria-controls="contact" aria-selected="false">Contact</button>
@@ -51,6 +53,10 @@
                             <h2 style="font-size: 18px; width: 100%; overflow: hidden; text-overflow: ellipsis;"><%= watchlist.anime.title %></h2>
                             <small style="font-size: 12px;"> (<%= watchlist.anime.date_start %>)</small>
                             <p style="font-size: 12px;"><%= watchlist.anime.themes.join(", ") %></p>
+                          </div>
+                          <div class="card-icons">
+                            <ion-icon name="heart-outline"></ion-icon>
+                            <ion-icon name="trash-outline"></ion-icon>
                           </div>
                         </div>
                       <% end %>
@@ -114,7 +120,7 @@
   .logo-image {
     width: 200px;
     height: 47px;
-    margin-top: 100px;
+    margin-top: 50px;
   }
 
   .custom-card-image {
@@ -126,4 +132,43 @@
     margin-right: 1px;
     margin-bottom: 10px;
   }
+  .card-icons {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+    justify-content: flex-end;
+    margin-bottom: 10px;
+  }
+
+  .card-icons ion-icon {
+    font-size: 24px;
+    color: black;
+    margin-right: 5px;
+  }
+  .nav-link {
+    background-color: black;
+    border: 1px solid #8A5082;
+    color: white;
+    border-radius: 32px;
+    padding: 5px;
+    padding-left: 24px;
+    padding-right: 24px;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    transition: 0.3s;
+  }
+
+  .nav-link:hover {
+    background-color: #8A5082;
+    color: white;
+  }
+  .nav-link2 {
+  background-color: white;
+  border: none;
+  outline: none;
+ }
+
 </style>
+<script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
