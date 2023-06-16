@@ -48,3 +48,27 @@
   top: 40px;
 }
 
+// --------------------------------------------------------------- About section
+
+.about-section {
+  background-color: #e6ebf0;
+  // background-color: #f9f9f9;
+  padding: 5rem;
+  position: relative;
+  padding-bottom: 10rem;
+}
+
+.about-image {
+  position: absolute;
+  bottom: 120px;
+}
+
+.section-title {
+  position: absolute;
+  top: -40px;
+  font-size: 4rem;
+  font-weight: 600;
+  width: 50px;
+  line-height: 3.8rem;
+  margin-bottom: 2rem;
+}

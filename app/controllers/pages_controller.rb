@@ -9,5 +9,6 @@ class PagesController < ApplicationController
 
   def home
     @animes = Anime.all
+    @user = current_user
   end
 end

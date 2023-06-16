@@ -1,85 +1,69 @@
-
-  <div class="big-container">
-    <div class="inner-container1 bg-white shadow d-flex flex-column align-items-center">
-      <!-- Contenu du premier conteneur -->
-      <h1 class="text-center mb-4">AnimeTrek logo</h1>
-      <img src="" alt="User Photo" class="mt-3 mb-5 rounded-circle" width="50" height="50">
-      <nav class="nav flex-column">
-        <a class="nav-link active mt-2 mb-2 rounded-pill border" href="#">Home</a>
-        <a class="nav-link mb-2 rounded-pill border" href="#">Categories</a>
-        <a class="nav-link mb-2 rounded-pill border" href="#">Profile</a>
-      </nav>
-    </div>
-   <div class="inner-container2 bg-white shadow">
-  <!-- Contenu du deuxième conteneur -->
-  <div class="cardfirst ml-5 mt-5">
-    <div class="card-body">
-      <h2>Hi, <%= @user.username %> 👋</h2>
-      <p>Amend your watch list etc etc lorem</p>
-    </div>
+<div class="big-container" style="background-image: url(<%= cl_image_path('https://res.cloudinary.com/dtjuz4kkr/image/upload/v1686840960/blurr_azumrg.png') %>);">
+  <div class="inner-container1 bg-white shadow d-flex flex-column align-items-center">
+    <!-- Contenu du premier conteneur -->
+    <%= cl_image_tag('https://res.cloudinary.com/dtjuz4kkr/image/upload/v1686851125/animetrek_logo_fnexfu.png', class: 'logo-image') %>
+    <img src="<%= @user.photo %>" alt="User Photo" class="mt-5 mb-5 rounded-circle" width="50" height="50">
+    <nav class="nav flex-column mt-2">
+      <%= link_to "Home", root_path, class: "nav-link active mt-2 mb-2 rounded-pill border text-center" %>
+      <%= link_to "Categories", search_path, class: "nav-link mb-2 mt-2 rounded-pill border" %>
+    </nav>
   </div>
-  <div class="d-flex justify-content-center">
-    <div class="cardsecond">
-      <div class="card-body">
-        <div class="container" style="height: 100vh;">
-        <div class="inner-container" style="display: flex; flex-direction: column; align-items: center;">
-          <ul class="nav nav-tabs" id="myTab" role="tablist">
-            <li class="nav-item" role="presentation">
-              <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true">Watchlist</button>
-            </li>
-            <li class="nav-item" role="presentation">
-              <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="false">Profile</button>
-            </li>
-            <li class="nav-item" role="presentation">
-              <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact" type="button" role="tab" aria-controls="contact" aria-selected="false">Contact</button>
-            </li>
-          </ul>
-          <div class="tab-content" id="myTabContent">
-            <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-              <div class="container">
-                <div class="card">
-                  <img src="image.jpg" class="card-img" alt="Image de la card">
-                  <div class="card-body">
-                    <h5 class="card-title custom-card-title">Deuxième Card</h5>
-                    <p class="card-text">Ce texte est spécifique à la deuxième card.</p>
-                  </div>
+  <div class="inner-container2 bg-white shadow ml-5">
+    <!-- Contenu du deuxième conteneur -->
+    <div class="cardfirst ml-5 mt-5">
+      <div class="card-body text-center">
+        <h2>Hi, <%= @user.username %> 👋</h2>
+        <p>Welcome to your Dashboard! Here you can view your watchlist and manage your anime collection.</p>
+      </div>
+    </div>
+
+    <div class="d-flex justify-content-center">
+      <div class="cardsecond">
+        <div class="card-body">
+          <div class="container" style="height: 100vh;">
+            <div class="inner-container" style="display: flex; flex-direction: column; align-items: center;">
+              <ul class="nav nav-tabs" id="myTab" role="tablist">
+                <li class="nav-item" role="presentation">
+                  <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true">Watchlist</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                  <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="false">Profile</button>
+                </li>
+                <!--<li class="nav-item" role="presentation">
+                  <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact" type="button" role="tab" aria-controls="contact" aria-selected="false">Contact</button>
+                </li>-->
+              </ul>
+              <div class="tab-content" id="myTabContent">
+                <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                 <div class="row mt-3">
+  <div class="row">
+  <% @user.watchlists.each do |watchlist| %>
+    <div class="col-6 col-md-4 col-lg-3 mb-4">
+      <div class="card bg-white shadow-card">
+        <img src="<%= watchlist.anime.image %>" class="card-img-top" alt="Image de la card">
+        <div class="card-body">
+          <h5 class="card-title"><%= watchlist.anime.title %></h5>
+          <p class="card-text"><small><%= truncate(watchlist.anime.synopsis, :length => 100) %></small></p>
+          <p class="card-text">Genre: <%= watchlist.anime.genre %></p>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
+
+
                 </div>
 
-                <div class="card">
-                  <img src="image.jpg" class="card-img" alt="Image de la card">
-                  <div class="card-body">
-                    <h5 class="card-title custom-card-title">Deuxième Card</h5>
-                    <p class="card-text">Ce texte est spécifique à la deuxième card.</p>
-                  </div>
-                </div>
-
-                <div class="card">
-                  <img src="image.jpg" class="card-img" alt="Image de la card">
-                  <div class="card-body">
-                    <h5 class="card-title custom-card-title">Deuxième Card</h5>
-                    <p class="card-text">Ce texte est spécifique à la deuxième card.</p>
-                  </div>
-                </div>
-                <div class="card">
-                  <img src="image.jpg" class="card-img" alt="Image de la card">
-                  <div class="card-body">
-                    <h5 class="card-title custom-card-title">Deuxième Card</h5>
-                    <p class="card-text">Ce texte est spécifique à la deuxième card.</p>
+                <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                  <div class="d-flex flex-column align-items-center mt-5">
+                    <img src="<%= @user.photo %>" alt="User Photo" class="mt-3 mb-5 rounded-circle" width="50" height="50">
+                    <h2>Username: <%= @user.username %></h2>
+                    <p>Email: <%= @user.email %></p>
+                    <p>Points: <%= @user.points %></p>
+                    <p>Bio: <%= @user.bio %></p>
                   </div>
                 </div>
               </div>
-            </div>
-
-            <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-              <h2>Nom d'utilisateur : <%= @user.username %></h2>
-              <p>Email : <%= @user.email %></p>
-              <p>Points : <%= @user.points %></p>
-              <p>Biographie : <%= @user.bio %></p>
-            </div>
-
-            <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
-              <h1>Contenu de l'onglet Contact</h1>
-              <p>Ce texte est spécifique à l'onglet Contact.</p>
             </div>
           </div>
         </div>
@@ -88,31 +72,44 @@
   </div>
 </div>
 
- <style>
-    .big-container {
-      display: flex;
-      height: 100vh;
-      justify-content: center;
-      background-color: white;
-    }
-    .container {
-      display: flex;
-      flex-direction: row;
-    }
-    .inner-container1 {
-      flex: 0 0 20%;
-      justify-content: flex-start; /* Espacement à droite */
-      margin-left: 70px;
-      margin-top: 100px;
-      margin-bottom: 100px;
-      border-radius: 8%;
-    }
-    .inner-container2 {
-      flex: 1;
-      width: 70%;
-      margin-left: 70px;
-      margin-top: 100px;
-      margin-bottom: 100px;
-      border-radius: 5%;
-    }
-  </style>
+
+<style>
+  .big-container {
+    display: flex;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+  }
+  .container {
+    display: flex;
+    flex-direction: row;
+  }
+  .inner-container1 {
+    flex: 0 0 20%;
+    justify-content: flex-start; /* Espacement à droite */
+    margin-left: 70px;
+    margin-top: 100px;
+    margin-bottom: 100px;
+    border-radius: 20px;
+    height: 800px;
+  }
+  .inner-container2 {
+    flex: 1;
+    width: 70%;
+    margin-left: 70px;
+    margin-top: 100px;
+    margin-bottom: 100px;
+    border-radius: 20px;
+    margin-right: 30px;
+    height: 800px;
+  }
+  .logo-image {
+    width: 200px;
+    height: 47px;
+    margin-top: 10px;
+  }
+  .custom-card-image {
+    width: 50px;
+    height: 50px;
+  }
+</style>
