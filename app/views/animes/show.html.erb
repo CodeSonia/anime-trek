@@ -139,7 +139,7 @@
       <div class="review-container mb-4 d-inline-block bg-white p-3 rounded-3 w-100">
         <div class="review">
           <div class="mb-3 d-flex justify-content-start review-info">
-            <img src="https://www.gravatar.com/avatar/94d093eda664addd6e450d7e9881bcad?s=32&d=identicon&r=PG" alt="User Photo" class="mr-5 rounded-circle " width="35" height="35">
+            <img src="<%= review.user.photo %>" alt="User Photo" class="mr-5 rounded-circle " width="35" height="35">
             <div class="mx-2 text-left">
               <p class="mb-0"> <strong> <%= review.user.username %></strong> | <%= review.rating %>  <i class="fa-solid fa-star"></i></p>
               <small class="mb-0 ml-0"><%= review.created_at.strftime('%d %b %Y') %></small>

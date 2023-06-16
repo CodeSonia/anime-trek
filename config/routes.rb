@@ -14,7 +14,7 @@ Rails.application.routes.draw do
     resources :episodes, only: [:show, :index] do
       resources :comments, only: [:new, :create, :destroy]
     end
-    resources :watchlists, only: [:create]
+    resources :watchlists, only: [:create, :destroy]
   end
 
 end

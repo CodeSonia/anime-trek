@@ -1,11 +1,15 @@
 <div class="container">
-
+  <div>
+    <%= link_to anime_path(@episode.anime) do %>
+      <p class="btn btn-success my-2"> <i class="fa-solid fa-chevron-left"></i> Go back to the anime</p>
+    <% end %>
+  </div>
 <div class="d-flex justify-content-between">
+
   <div>
     <% unless Episode.where(anime: @episode.anime,episodenumber: @episode.episodenumber - 1).first.nil? %>
       <%= link_to anime_episode_path(@episode.anime, @episode.id - 1) do %>
       <p class="btn btn-primary my-2"> <i class="fa-solid fa-chevron-left"></i> Previous episode</p>
-
       <% end %>
     <% end %>
   </div>
@@ -72,7 +76,7 @@
       <div class="review-container mb-4 d-inline-block bg-white p-3 rounded-3 w-100">
         <div class="review">
           <div class="mb-3 d-flex justify-content-start review-info">
-            <img src="https://www.gravatar.com/avatar/94d093eda664addd6e450d7e9881bcad?s=32&d=identicon&r=PG" alt="User Photo" class="mr-5 rounded-circle " width="35" height="35">
+            <img src="<%= comment.user.photo %>" alt="User Photo" class="mr-5 rounded-circle " width="35" height="35">
             <div class="mx-2 text-left">
               <p class="mb-0"> <strong> <%= comment.user.username %></strong></p>
               <small class="mb-0 ml-0"><%= comment.created_at.strftime('%d %b %Y') %></small>
