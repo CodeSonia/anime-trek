@@ -1,6 +1,6 @@
-<div class="container">
+<div class="container" data-controller="character-counter">
 <%= simple_form_for [@anime, @episode, @comment] do |f| %>
-  <%= f.input :content %>
-  <%= f.button :submit, class: 'btn btn-primary' %>
+  <%= f.input :content, input_html: { data: { character_counter_target: "input", controller:"textarea-autogrow", textarea_autogrow_resize_debounce_delay_value:"500" } } %>
+  <%= f.button :submit, "Post your comment", class: 'btn btn-primary' %>
 <% end %>
 </div>

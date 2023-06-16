@@ -11,9 +11,9 @@ class WatchlistsController < ApplicationController
     @watchlist = current_user.watchlists.build(anime: @anime, status: true)
 
     if @watchlist.save
-      redirect_to @anime, notice: "Anime was successfully added to your watchlist."
+      redirect_to anime_path(@anime), notice: "Anime was successfully added to your watchlist."
     else
-      render :new, status: :unprocessable_entity, alert: "Anime was not added to your watchlist."
+      redirect_to anime_path(@anime), status: :unprocessable_entity, alert: "Anime was not added to your watchlist."
     end
   end
 
