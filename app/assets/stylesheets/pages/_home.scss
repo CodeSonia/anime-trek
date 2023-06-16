@@ -72,3 +72,19 @@
   line-height: 3.8rem;
   margin-bottom: 2rem;
 }
+
+// --------------------------------------------------------------- Top 25 section
+.anime-image {
+  height: 200px; /* Adjust the height value as needed */
+  object-fit: cover;
+}
+
+.top-25-header {
+  font-size: 4rem;
+  font-weight: 600;
+  margin-bottom: 2rem;
+}
+
+.card-link {
+  text-decoration: none;
+}
