@@ -8,11 +8,12 @@ class Review < ApplicationRecord
   after_create :check_reviews_increase_points
 
   def check_reviews_increase_points
+    puts self.user.points
     if self.user.reviews.size == 1
       self.user.update(points: self.user.points + 10)
       UserAchievement.create!(
         user: self.user,
-        achievement: Achievement.where(name: "First Review")
+        achievement: Achievement.find_by(name: "First Review")
       )
     end
   end
