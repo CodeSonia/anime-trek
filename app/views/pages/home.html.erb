@@ -90,28 +90,31 @@
       <% counter = 1 %>
       <% @animes.limit(25).each do |anime| %>
         <div class="col-md-4 mb-4">
-          <div class="card shadow-sm h-100">
-            <%= image_tag anime.image, class: "card-img-top img-fluid anime-image" %>
-            <div class="card-body d-flex flex-column bg-white">
-              <h5 class="card-title">
-                <span class="card-number pr-2"><%= counter %></span>:
-                <%= link_to anime.title, anime_path(anime), class: "card-title-link text-decoration-none" %>
-              </h5>
-              <p class="card-text"><%= truncate(anime.synopsis, length: 30) %></p>
-              <div class="card-info mt-auto">
-                <p class="card-text"><strong>Start Date:</strong> <%= anime.date_start %></p>
-                <p class="card-text"><strong>End Date:</strong> <%= anime.date_finish %></p>
-                <p class="card-text"><strong>Genre:</strong> <%= anime.genre %></p>
-                <p class="card-text"><strong>Rating:</strong> <%= anime.rating %></p>
+          <a href="<%= anime_path(anime) %>" class="card-link">
+            <div class="card shadow-sm h-100">
+              <%= image_tag anime.image, class: "card-img-top img-fluid anime-image" %>
+              <div class="card-body d-flex flex-column bg-white">
+                <h5 class="card-title">
+                  <span class="card-number pr-2"><%= counter %></span>:
+                  <%= anime.title %>
+                </h5>
+                <p class="card-text"><%= truncate(anime.synopsis, length: 30) %></p>
+                <div class="card-info mt-auto">
+                  <p class="card-text"><strong>Start Date:</strong> <%= anime.date_start %></p>
+                  <p class="card-text"><strong>End Date:</strong> <%= anime.date_finish %></p>
+                  <p class="card-text"><strong>Genre:</strong> <%= anime.genre %></p>
+                  <p class="card-text"><strong>Rating:</strong> <%= anime.rating %></p>
+                </div>
               </div>
             </div>
-          </div>
+          </a>
         </div>
         <% counter += 1 %>
       <% end %>
     </div>
   </div>
 </section>
+
 
 
 </div>
