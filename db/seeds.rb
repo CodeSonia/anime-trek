@@ -231,57 +231,56 @@ puts "Creating achievements..."
 
 # Let's make some achievements
 Achievement.create!(
-  name: "First Review",
-  description: "You wrote your first review!",
+  name: "The Review Rookie",
+  description: "Unleashed your inner critic! You wrote your first review and shared your thoughts with the world.",
   points: 10
 )
 
 Achievement.create!(
-  name: "First Watchlist",
-  description: "You added your first watchlist!",
+  name: "Anime Adventurer",
+  description: "Your anime collection starts here! You added your first anime to your watchlist.",
   points: 10
 )
 
 Achievement.create!(
-  name: "First comment",
-  description: "You wrote your first comment!",
+  name: "The Commentator",
+  description: "Voiced your thoughts! You wrote your first comment and joined the discussion.",
   points: 10
 )
 
 Achievement.create!(
-  name: "Review Master",
-  description: "You wrote 20 reviews!",
+  name: "The Review Guru",
+  description: "Reviewing Prodigy! You've written 20 reviews and become a master of sharing your anime experiences.",
   points: 20
 )
 
 Achievement.create!(
-  name: "Anime Master",
-  description: "You added 20 animes to your watchlist!",
+  name: "Anime Collector",
+  description: "Anime Collector Extraordinaire! You've added 20 animes to your watchlist, building an epic collection.",
   points: 20
 )
 
 Achievement.create!(
-  name: "Comment Master",
-  description: "You wrote 20 comments!",
+  name: "The Chatterbox",
+  description: "Opinionator Supreme! You've written 20 comments, spreading your wisdom and sparking conversations.",
   points: 20
 )
 
 Achievement.create!(
-  name: "Anime God",
-  description: "You added 50 animes to your watchlist!",
+  name: "The Anime Connoisseur",
+  description: "Anime Enthusiast Overlord! You've added a whopping 50 animes to your watchlist. Your power level is off the charts!",
   points: 50
 )
 
 Achievement.create!(
-  name: "Super Reviewer",
-  description: "You wrote 50 reviews!",
+  name: "The Review Maestro",
+  description: "Review Maestro! You've written 50 reviews, captivating readers with your unparalleled anime analysis.",
   points: 50
 )
 
-
 Achievement.create!(
-  name: "Super Commenter",
-  description: "You wrote 50 comments!",
+  name: "The Socializer",
+  description: "Commenting Dynamo! You've written 50 comments, creating a tidal wave of discussion and camaraderie.",
   points: 50
 )
 
