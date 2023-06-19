@@ -1,14 +1,14 @@
 class EpisodesController < ApplicationController
   def index
     @anime = Anime.find(params[:anime_id])
-    @season = @anime.seasons.find(params[:season_id])
-    @episodes = @season.episodes
+    @episode = @episodes.includes(:comments).find(params[:id])
+
   end
 
   def show
-    @anime = Anime.find(params[:anime_id])
-    @episode = @anime.episodes.includes(:comments).find(params[:id])
-    @commentsall = @episode.comments.includes(:user)
+    @episode = Episode.find(params[:id])
+    @anime = @episode.anime
+    @pagy, @commentsall = pagy(@episode.comments.includes(:user), items: 2)
     @comment = Comment.new
     authorize @episode
     redirect_to root_path, alert: 'Episode not found' if @episode.nil?

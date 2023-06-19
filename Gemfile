@@ -30,6 +30,8 @@ gem "jbuilder"
 gem "rest-client"
 
 gem "faker"
+
+gem "pagy"
 # Use Redis adapter to run Action Cable in production
 # gem "redis", "~> 4.0"
 

@@ -3,19 +3,15 @@
 // ./bin/rails generate stimulus controllerName
 
 import { application } from "./application"
-import ReadMore from 'stimulus-read-more'
+
+import AutoclickController from "./autoclick_controller"
+application.register("autoclick", AutoclickController)
+
+import AutoclickreviewsController from "./autoclickreviews_controller"
+application.register("autoclickreviews", AutoclickreviewsController)
+
 import HelloController from "./hello_controller"
-
-import SearchAnimesController from "./search_animes_controller"
-
 application.register("hello", HelloController)
 
+import SearchAnimesController from "./search_animes_controller"
 application.register("search-animes", SearchAnimesController)
-
-application.register('read-more', ReadMore)
-import Reveal from 'stimulus-reveal-controller'
-application.register("reveal", Reveal)
-import CharacterCounter from 'stimulus-character-counter'
-application.register("character-counter", CharacterCounter)
-import TextareaAutogrow from 'stimulus-textarea-autogrow'
-application.register("textarea-autogrow", TextareaAutogrow)
