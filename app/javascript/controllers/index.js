@@ -18,3 +18,6 @@ application.register("search-animes", SearchAnimesController)
 
 import PasswordVisibility from 'stimulus-password-visibility'
 application.register('password-visibility', PasswordVisibility)
+
+import Reveal from 'stimulus-reveal-controller'
+application.register('reveal', Reveal)

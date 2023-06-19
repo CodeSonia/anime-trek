@@ -24,7 +24,5 @@ export default class extends Controller {
       .then(response => response.text())
       .then(data => this.moreCommentsTarget.insertAdjacentHTML('beforeend', data))
 
-
-    // this.element.click()
   }
 }

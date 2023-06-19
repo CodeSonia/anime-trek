@@ -1,9 +1,7 @@
-<%#
-<div id="notification" class="alert alert-success alert-dismissible fade notification" role="alert">
-  Anime ajouté à la watchlist !
-  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-</div> %>
 
+<% content_for :meta_title, "#{@anime.title}" %>
+<% content_for :meta_description, @anime.synopsis %>
+<% content_for :meta_image, @anime.image_urls.sample %>
 
 <div class="py-5" style="background:linear-gradient(rgba(0, 0, 0, .7), rgba(0, 0, 0, .7)), url('<%= @anime.image_urls.sample %>');
                         background-position: center;
