@@ -14,7 +14,6 @@ export default class extends Controller {
 
     connect() {
       useIntersection(this, this.options)
-      console.log("hello")
     }
 
     appear(entry) {
