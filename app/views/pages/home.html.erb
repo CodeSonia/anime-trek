@@ -83,22 +83,128 @@
       </div>
     </div>
     </section>
-<section class="mt-8">
+<section class="mt-5">
   <div class="container">
-    <h2 class="top-25-header">Top 25 <span>Animes</span></h2>
-    <div class="animes">
-    <% @animes.each do |anime| %>
-      <%= link_to anime_path(anime), style: 'text-decoration: none;' do %>
-        <div class="anime-card img">
-          <%= image_tag anime.image %>
-          <div class="anime-infos" data-edit-anime-target="infos">
-            <h2><%= anime.title %><small> (<%= anime.date_start %>)</small></h2>
-          </div>
-        </div>
+  <h2 class="top-25-header">Top 25 <span>Animes</span></h2>
+  <div class="row mb-5 justify-content-start">
+    <div class="col-4">
+      <% @animes.each do |anime| %>
+        <% if anime.id == 42 %>
+          <%= link_to anime_path(anime), style: 'text-decoration: none;' do %>
+            <div class="lg-card img">
+              <%= image_tag anime.image %>
+              <div class="lg-card-infos" data-edit-anime-target="infos">
+                <h2><%= anime.title %><small> (<%= anime.date_start %>)</small></h2>
+              </div>
+            </div>
+          <% end %>
+        <% end %>
       <% end %>
-    <% end %>
+    </div>
+    <div class="col-4">
+      <% @animes.each do |anime| %>
+        <% if anime.id == 27 %>
+          <%= link_to anime_path(anime), style: 'text-decoration: none;' do %>
+            <div class="lg-card img">
+              <%= image_tag anime.image %>
+              <div class="lg-card-infos" data-edit-anime-target="infos">
+                <h2><%= anime.title %><small> (<%= anime.date_start %>)</small></h2>
+              </div>
+            </div>
+          <% end %>
+        <% end %>
+      <% end %>
+    </div>
+    <div class="col-4">
+      <% @animes.each do |anime| %>
+        <% if anime.id == 79 %>
+          <%= link_to anime_path(anime), style: 'text-decoration: none;' do %>
+            <div class="lg-card img">
+              <%= image_tag anime.image %>
+              <div class="lg-card-infos" data-edit-anime-target="infos">
+                <h2><%= anime.title %><small> (<%= anime.date_start %>)</small></h2>
+              </div>
+            </div>
+          <% end %>
+        <% end %>
+      <% end %>
     </div>
   </div>
+  <div class="row mb-5 justify-content-center">
+    <div class="col-4">
+      <% @animes.each do |anime| %>
+        <% if anime.id == 82 %>
+          <%= link_to anime_path(anime), style: 'text-decoration: none;' do %>
+            <div class="lg-card img">
+              <%= image_tag anime.image %>
+              <div class="lg-card-infos" data-edit-anime-target="infos">
+                <h2><%= anime.title %><small> (<%= anime.date_start %>)</small></h2>
+              </div>
+            </div>
+          <% end %>
+        <% end %>
+      <% end %>
+    </div>
+    <div class="col-4">
+      <% @animes.each do |anime| %>
+        <% if anime.id == 30 %>
+          <%= link_to anime_path(anime), style: 'text-decoration: none;' do %>
+            <div class="lg-card img">
+              <%= image_tag anime.image %>
+              <div class="lg-card-infos" data-edit-anime-target="infos">
+                <h2><%= anime.title %><small> (<%= anime.date_start %>)</small></h2>
+              </div>
+            </div>
+          <% end %>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+  <div class="row mb-5 justify-content-end">
+    <div class="col-4">
+      <% @animes.each do |anime| %>
+        <% if anime.id == 33 %>
+          <%= link_to anime_path(anime), style: 'text-decoration: none;' do %>
+            <div class="lg-card img">
+              <%= image_tag anime.image %>
+              <div class="lg-card-infos" data-edit-anime-target="infos">
+                <h2><%= anime.title %><small> (<%= anime.date_start %>)</small></h2>
+              </div>
+            </div>
+          <% end %>
+        <% end %>
+      <% end %>
+    </div>
+    <div class="col-4">
+      <% @animes.each do |anime| %>
+        <% if anime.id == 46 %>
+          <%= link_to anime_path(anime), style: 'text-decoration: none;' do %>
+            <div class="lg-card img">
+              <%= image_tag anime.image %>
+              <div class="lg-card-infos" data-edit-anime-target="infos">
+                <h2><%= anime.title %><small> (<%= anime.date_start %>)</small></h2>
+              </div>
+            </div>
+          <% end %>
+        <% end %>
+      <% end %>
+    </div>
+    <div class="col-4">
+      <% @animes.each do |anime| %>
+        <% if anime.id == 43 %>
+          <%= link_to anime_path(anime), style: 'text-decoration: none;' do %>
+            <div class="lg-card img">
+              <%= image_tag anime.image %>
+              <div class="lg-card-infos" data-edit-anime-target="infos">
+                <h2><%= anime.title %><small> (<%= anime.date_start %>)</small></h2>
+              </div>
+            </div>
+          <% end %>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+</div>
 </section>
 
 </div>

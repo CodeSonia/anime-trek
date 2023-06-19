@@ -7,13 +7,14 @@
 
 <div class="py-5" style="background:linear-gradient(rgba(0, 0, 0, .7), rgba(0, 0, 0, .7)), url('<%= @anime.image_urls.sample %>');
                         background-position: center;
-                        background-size: cover;">
+                        background-size: cover;
+                        height:782px">
 
 <div class="container text-white" style="padding:100px 0 100px 0;">
   <div class="row  align-items-end">
   <div class="col">
     <p class="fs-3"> <strong>#<%= @anime.rank %></strong> Most popular</p>
-    <h1 class="display-1 fw-bold"><%= @anime.title %></h1>
+    <h1 class="display-1 fw-bold"><%= truncate(@anime.title, :length => 25) %></h1>
     <p class="fs-6"> <%= truncate(@anime.synopsis, :length => 200) %></p>
     <p class="display-6">
       <% @avg.to_i.times do %>
@@ -48,7 +49,6 @@
 
   </div>
 </div>
-
 <div class="container mt-5">
   <div class="row justify-content-between">
     <div class="col-6">
@@ -84,7 +84,7 @@
       <h3 class="display-5 fw-bold mb-2">Episodes</h3>
   <div class="row row-cols-1 row-cols-md-5 g-4">
     <% @anime.episodes.each do |episode| %>
-      <%= link_to anime_episode_path(@anime, episode), class: "text-decoration-none" do %>
+      <%= link_to episode_path(episode), class: "text-decoration-none" do %>
         <div class="card-group" style="height:540px;">
           <div class="card bg-white shadow-card ">
             <img src="<%= episode.image %>" class="card-img-top" alt="...">
@@ -134,14 +134,16 @@
 
 </div>
 
-  <div class="reviews-list container mx-auto mt-4 ">
-    <% @anime.reviews.each do |review| %>
+  <div class="reviews-list container mx-auto mt-4 " data-controller="autoclickreviews"
+          data-autoclickreviews-page-number-value="<%= @pagy.page %>"
+          data-autoclickreviews-anime-id-value="<%= @anime.id %>">
+    <% @reviews.each do |review| %>
       <div class="review-container mb-4 d-inline-block bg-white p-3 rounded-3 w-100">
         <div class="review">
           <div class="mb-3 d-flex justify-content-start review-info">
             <img src="<%= review.user.photo %>" alt="User Photo" class="mr-5 rounded-circle " width="35" height="35">
             <div class="mx-2 text-left">
-              <p class="mb-0"> <strong> <%= review.user.username %></strong> | <%= review.rating %>  <i class="fa-solid fa-star"></i></p>
+              <p class="mb-0"> <strong> <%= link_to user_path(review.user) do %> <%= review.user.username %> <% end %></strong> | <%= review.rating %>  <i class="fa-solid fa-star"></i></p>
               <small class="mb-0 ml-0"><%= review.created_at.strftime('%d %b %Y') %></small>
             </div>
           </div>
@@ -159,5 +161,9 @@
         </div>
       </div>
     <% end %>
+
+    <div data-autoclickreviews-target="moreComments"></div>
+
+    <div data-autoclickreviews-target="stopLoading"></div>
   </div>
 </div>

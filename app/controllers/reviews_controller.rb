@@ -1,7 +1,11 @@
 class ReviewsController < ApplicationController
-
   def index
-    @review = Review.all
+    @anime = Anime.find(params[:anime_id])
+    @pagy, @reviews = pagy(policy_scope(@anime.reviews), items: 2)
+    respond_to do |format|
+      format.html # Follow regular flow of Rails
+      format.text { render partial: "reviews/reviews", locals: { reviews: @reviews }, formats: [:html] }
+    end
   end
 
   def edit
@@ -19,6 +23,7 @@ class ReviewsController < ApplicationController
     # binding.pry
     authorize @review
     if @review.save
+
       redirect_to anime_path(@anime), notice: 'Review was successfully created.'
     else
       redirect_to anime_path(@anime), status: :unprocessable_entity, alert: 'Review was not created.'

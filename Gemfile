@@ -30,6 +30,8 @@ gem "jbuilder"
 gem "rest-client"
 
 gem "faker"
+
+gem "pagy"
 # Use Redis adapter to run Action Cable in production
 # gem "redis", "~> 4.0"
 
@@ -47,6 +49,8 @@ gem "bootsnap", require: false
 
 #gem pundit & auth
 gem "pundit"
+
+gem 'htmlbeautifier'
 
 #gem better_errors
 # gem 'better_errors'
