@@ -1,46 +1,48 @@
-.anime-card {
+
+.lg-card {
   width: 326px;
   height: 418px;
   background-color: white;
   border-radius: 5px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   overflow: hidden;
-  scroll-snap-align: start;
   flex-shrink: 0;
-  width: 300px;
-  margin-right: 25px;
   background-color: #E6EBF0;
   padding-bottom: 16px;
   position: relative;
-  border: $gray solid 0.5px;
+  border: 0.5px solid $gray;
   border-radius: 100px 28px 28px 28px;
   cursor: pointer;
+  transition: transform 0.2s ease;
+}
+.lg-card:hover {
+  transform: scale(1.05);
 }
 
-.anime-card img {
+.lg-card img {
   width: 326px;
   height: 418px;
   object-fit: cover;
 }
 
-.anime-card .anime-infos {
+.lg-card .lg-card-infos {
   position: absolute;
   top: 0;
   right: 0;
   height: 100%;
   width: 40px;
-  padding-top:  32px;
-  padding-bottom:  16px;
-  background-color: $violet;
+  padding-top: 32px;
+  padding-bottom: 16px;
+  background-color: $blue;
   color: $light-gray;
-  border-left: $gray solid 0.5px ;
+  border-left: 0.5px solid $gray;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
 }
 
-.anime-card .anime-infos h2 {
+.lg-card .lg-card-infos h2 {
   font-size: 18px;
   font-weight: bold;
   white-space: nowrap;
@@ -52,22 +54,9 @@
   text-shadow: 0 0 2px $gray;
 }
 
-.anime-card .anime-infos h2::before {
+.lg-card .lg-card-infos h2::before {
   content: "\2606 \2606";
   margin-bottom: 20px;
-  color: white; /* Set the text color to white */
+  color: white;
   text-shadow: 0 0 2px $gray;
-
-}
-
-.animes {
-  display: flex;
-  overflow-x: scroll;
-  scroll-snap-type: x mandatory;
-  margin-bottom: content-box !important;
-  padding: 24px;
-}
-
-.animes::-webkit-scrollbar {
-  display: none;
 }
