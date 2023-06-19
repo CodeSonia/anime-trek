@@ -2,27 +2,33 @@
   <div class="row">
     <div class="col-md-6 login-form">
       <div class="d-flex flex-column justify-content-center h-100 mx-auto">
-      <h1>Hello again!</h1>
-      <p>Welcome back, you've been missed </p>
+        <h1>Hello again!</h1>
+        <p>Welcome back, you've been missed </p>
         <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name), data: { turbo: :false }) do |f| %>
           <div class="form-inputs">
-          <%= f.input :login, input_html: { autocomplete: "login" } %>
-            <%= f.input :password,
-                        required: false,
-                        input_html: { autocomplete: "current-password" } %>
+            <%= f.input :login, input_html: { autocomplete: "login" },label: "Username OR Email" %>
+            <div data-controller="password-visibility" data-password-visibility-hidden-class="d-none">
+              <%= f.input :password,
+                        required: false do %>
+                <div class="input-group mb-3">
+                  <%= f.input_field :password, class: "form-control", autocomplete: "current-password" , "data-password-visibility-target": "input" %>
+                  <button type="button" class="btn btn-outline-secondary" data-action="password-visibility#toggle">
+                    <i class="fa-solid fa-eye" data-password-visibility-target="icon"></i>
+                    <i class="fa-solid fa-eye-slash d-none" data-password-visibility-target="icon"></i>
+                  </button>
+                </div>
+              <% end %>
+            </div>
             <%= f.input :remember_me, as: :boolean if devise_mapping.rememberable? %>
           </div>
-
           <div class="form-actions">
             <%= f.button :submit, "Log in", class: "btn btn-primary w-100" %>
           </div>
         <% end %>
-          <div class="mt-3 d-flex align-items-center">
-            <p class="mb-0">Don't have an account?</p>
-          </div>
-          <div class="ms-3">
-            <%= render "devise/shared/links" %>
-          </div>
+        <div class="mt-3 d-flex align-items-center">
+          <p class="mb-0">Don't have an account?</p>
+        </div>
+          <%= render "devise/shared/links" %>
       </div>
     </div>
     <div class="col-md-6">
