@@ -1,5 +1,5 @@
 
-<div class="big-container" style="bg-white;">
+<div class="big-container bg-image" style="">
   <div class="inner-container1 bg-gray-100 shadow d-flex flex-column align-items-center">
     <!-- Contenu du premier conteneur -->
     <%= cl_image_tag('https://res.cloudinary.com/dtjuz4kkr/image/upload/v1686851125/animetrek_logo_fnexfu.png', class: 'logo-image') %>
@@ -16,7 +16,7 @@
     <%= image_tag('character.png', alt: 'Character Image', class: 'mt-auto', width: 200) %>
   </div>
 
-  <div class="inner-container2 bg-white shadow ml-5">
+  <div class="inner-container2 shadow ml-5">
     <!-- Contenu du deuxième conteneur -->
     <div class="cardfirst ml-5 mt-5">
       <div class="card-body text-center">
@@ -34,6 +34,9 @@
         </li>
         <li class="nav-item" role="presentation">
           <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="false" style="color: black;">Profile</button>
+        </li>
+        <li class="nav-item" role="presentation">
+          <button class="nav-link" id="edit-profile-tab" data-bs-toggle="tab" data-bs-target="#edit-profile" type="button" role="tab" aria-controls="edit-profile" aria-selected="false" style="color: black;">Edit Profile</button>
         </li>
       </ul>
     <div class="d-flex justify-content-start mx-2">
@@ -62,8 +65,9 @@
                           <% if current_user == @user %>
                           <div class="card-icons">
                             <ion-icon name="heart-outline"></ion-icon>
-                            <%#= link_to "DELETE", anime_watchlist_path(watchlist.anime), data: {turbo_method: :delete, turbo_confirm: "you sure?" }, method: :delete, class: "btn btn-danger text-white"%>
-                            <ion-icon name="trash-outline"></ion-icon>
+                            <%= button_to anime_watchlist_path(watchlist.anime, watchlist), method: :delete, data: { turbo_confirm: 'Are you sure?' }, class: 'custom-button-delete' do %>
+                              <ion-icon name="trash-outline"></ion-icon>
+                            <% end %>
                           </div>
                           <% end %>
                         </div>
@@ -78,6 +82,48 @@
                     <p>Email: <%= @user.email %></p>
                     <p>Points: <%= @user.points %></p>
                     <p>Bio: <%= @user.bio %></p>
+                  </div>
+                </div>
+                <div class="tab-pane fade" id="edit-profile" role="tabpanel" aria-labelledby="edit-profile-tab">
+                  <div class="d-flex flex-column align-items-center mt-5 mx-auto">
+                    <div class="row">
+                      <div class="col-md-6">
+                        <div class="content-1">
+                          <!-- Affichage de la photo -->
+                          <div class="user-photo">
+                            <% if current_user.photo %>
+                              <%= image_tag(current_user.photo, alt: "User Photo") %>
+                            <% else %>
+                              <%= image_tag(asset_path("profile.png"), alt: "User Photo") %>
+                            <% end %>
+                          </div>
+
+                          <!-- Champ de téléchargement de la photo -->
+                          <%= simple_form_for(current_user, url: registration_path(current_user), method: :put) do |f| %>
+                            <%= f.input :photo, as: :file %>
+                            <%= f.button :submit, "Upload Photo" %>
+                          <% end %>
+
+                         <!-- <div class="confirmation">
+                            <label for="confirm">Confirm:</label>
+                            <input type="checkbox" id="confirm" name="confirm">
+                          </div> -->
+                        </div>
+                      </div>
+
+                      <div class="col-md-6">
+                        <div class="content-2">
+                          <h2>Edit Profile</h2>
+                          <%= simple_form_for(current_user, url: registration_path(current_user), method: :put) do |f| %>
+                            <%= f.input :username %>
+                            <%= f.input :email %>
+                            <%= f.input :bio, as: :text %>
+                            <%= f.button :submit, "Update Profile", class: "buttontype1" %>
+                            <%= button_tag "Cancel", type: :button, class: "buttontype2", onclick: "window.location.href='#{user_path(current_user)}'" %>
+                          <% end %>
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -95,6 +141,8 @@
     height: 100vh;
     justify-content: center;
     align-items: center;
+    background-image: url('/assets/1318301.png');
+    background-size: cover;
   }
 
   .container {
@@ -106,23 +154,25 @@
     flex: 0 0 15%;
     justify-content: flex-start; /* Espacement à droite */
     margin-left: 70px;
-    margin-top: 100px;
+    margin-top: 200px;
     margin-bottom: 100px;
     border-radius: 20px;
     height: 800px;
+    background-color: rgba(255, 255, 255, 0.8);
   }
 
   .inner-container2 {
     flex: 1;
     width: 70%;
     margin-left: 70px;
-    margin-top: 100px;
+    margin-top: 200px;
     margin-bottom: 100px;
     border-radius: 20px;
     margin-right: 70px;
     height: 800px;
     overflow-x: auto;
     white-space: nowrap;
+    background-color: rgba(255, 255, 255, 0.8);
   }
 
   .logo-image {
@@ -172,9 +222,32 @@
     background-color: #8A5082;
     color: white;
   }
+  .content-1 {
+    margin-left: 50px;
+    margin-right: 50px;
+  }
 
-
-
+  .content-2 {
+    margin-left: 180px;
+  }
+  .buttontype1 {
+    background-color: #8A5082;
+    color: white;
+    width: 150px;
+    height: 40px;
+    border-radius: 5px;
+  }
+  .buttontype2 {
+    background-color: white;
+    border: 2px solid #8A5082;
+    color: #8A5082;
+     width: 150px;
+    height: 40px;
+    border-radius: 5px;
+  }
+  .custom-button-delete{
+    appearance: none;
+  }
 
 </style>
 <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
