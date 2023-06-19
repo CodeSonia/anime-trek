@@ -2,62 +2,53 @@
   width: 326px;
   height: 418px;
   background-color: white;
-  border-radius: 5px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   overflow: hidden;
   scroll-snap-align: start;
   flex-shrink: 0;
-  width: 300px;
-  margin-right: 25px;
-  background-color: #E6EBF0;
+  margin-right: 35px;
   padding-bottom: 16px;
-  position: relative;
   border: $gray solid 0.5px;
-  border-radius: 100px 28px 28px 28px;
+  border-radius: 28px 28px 28px 28px;
   cursor: pointer;
-}
-
-.anime-card img {
-  width: 326px;
-  height: 418px;
-  object-fit: cover;
-}
-
-.anime-card .anime-infos {
-  position: absolute;
-  top: 0;
-  right: 0;
-  height: 100%;
-  width: 40px;
-  padding-top:  32px;
-  padding-bottom:  16px;
   background-color: $violet;
-  color: $light-gray;
-  border-left: $gray solid 0.5px ;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-start;
-}
 
-.anime-card .anime-infos h2 {
-  font-size: 18px;
-  font-weight: bold;
-  white-space: nowrap;
-  transform-origin: top right;
-  writing-mode: vertical-lr;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  max-width: 70px;
-  text-shadow: 0 0 2px $gray;
-}
+  img {
+    width: 326px;
+    height: 342px;
+    object-fit: cover;
+  }
 
-.anime-card .anime-infos h2::before {
-  content: "\2606 \2606";
-  margin-bottom: 20px;
-  color: white; /* Set the text color to white */
-  text-shadow: 0 0 2px $gray;
+  .anime-infos {
+    padding: 16px;
+    padding-right: 16px;
+    color: $light-gray;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border-top: $gray solid 0.5px;
 
+    h2 {
+      font-size: 16px;
+      font-weight: bold;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      text-shadow: 0 0 2px $gray;
+      word-wrap: break-word;
+
+
+      &:after {
+        content: '';
+        flex-grow: 1;
+      }
+    }
+
+    .year {
+      align-self: flex-end;
+      padding-right: 10px;
+    }
+  }
 }
 
 .animes {
@@ -65,9 +56,9 @@
   overflow-x: scroll;
   scroll-snap-type: x mandatory;
   margin-bottom: content-box !important;
-  padding: 24px;
-}
+  padding: 16px;
 
-.animes::-webkit-scrollbar {
-  display: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
 }
