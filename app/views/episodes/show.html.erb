@@ -86,7 +86,7 @@
             <div class="mb-3 d-flex justify-content-start review-info">
               <img src="<%= comment.user.photo %>" alt="User Photo" class="mr-5 rounded-circle " width="35" height="35">
               <div class="mx-2 text-left">
-                <p class="mb-0"> <strong> <%= comment.user.username %></strong></p>
+                <p class="mb-0"> <strong> <%= link_to user_path(comment.user) do%> <%= comment.user.username %> <% end %></strong></p>
                 <small class="mb-0 ml-0"><%= comment.created_at.strftime('%d %b %Y') %></small>
               </div>
             </div>
@@ -105,8 +105,8 @@
         </div>
       <% end %>
       <div data-autoclick-target="moreComments"></div>
-      
-      <div data-autoclick-target="stopLoading"></div>
+
+      <div data-autoclick-target="stopLoading" class="mb-1"></div>
     </div>
   </div>
 
