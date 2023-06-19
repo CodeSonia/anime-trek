@@ -10,6 +10,7 @@ export default class extends Controller {
 
       if (this.inputTarget.value === "") {
         this.listTarget.innerHTML = "We couldn't find any anime matching your search criteria. Could you please provide the name of the anime again?";
+        this.inputTarget.value = "";
       } else {
         console.log(event)
         this.updateList();
@@ -28,7 +29,7 @@ export default class extends Controller {
   updateList(event) {
     console.log("list", this.inputTarget.value);
     const url = `${this.formTarget.action}?query=${this.inputTarget.value}`;
-    if(event.keyCode !== 13) {
+    if(event && event.keyCode !== 13) {
       fetch(url, { method: "get", headers: { "Accept": "text/plain" } })
       .then(response => response.text())
       .then((data) => {
