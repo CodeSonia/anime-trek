@@ -50,6 +50,8 @@ gem "bootsnap", require: false
 #gem pundit & auth
 gem "pundit"
 
+gem 'htmlbeautifier'
+
 #gem better_errors
 # gem 'better_errors'
 
