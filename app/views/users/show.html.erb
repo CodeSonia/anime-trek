@@ -1,5 +1,7 @@
 
-<div class="big-container bg-image" style="">
+<div class="big-container bg-image" style="position: relative;">
+  <img src="/assets/naruto.png" alt="Description de l'image" class="naruto">
+
   <div class="inner-container1 bg-gray-100 shadow d-flex flex-column align-items-center">
     <!-- Contenu du premier conteneur -->
     <%= cl_image_tag('https://res.cloudinary.com/dtjuz4kkr/image/upload/v1686851125/animetrek_logo_fnexfu.png', class: 'logo-image') %>
@@ -64,7 +66,7 @@
                           </div>
                           <% if current_user == @user %>
                           <div class="card-icons">
-                            <ion-icon name="heart-outline"></ion-icon>
+                            <!--<ion-icon name="heart-outline"></ion-icon>-->
                             <%= button_to anime_watchlist_path(watchlist.anime, watchlist), method: :delete, data: { turbo_confirm: 'Are you sure?' }, class: 'custom-button-delete' do %>
                               <ion-icon name="trash-outline"></ion-icon>
                             <% end %>
@@ -154,7 +156,7 @@
     flex: 0 0 15%;
     justify-content: flex-start; /* Espacement à droite */
     margin-left: 70px;
-    margin-top: 200px;
+    margin-top: 280px;
     margin-bottom: 100px;
     border-radius: 20px;
     height: 800px;
@@ -165,7 +167,7 @@
     flex: 1;
     width: 70%;
     margin-left: 70px;
-    margin-top: 200px;
+    margin-top: 280px;
     margin-bottom: 100px;
     border-radius: 20px;
     margin-right: 70px;
@@ -248,6 +250,12 @@
   .custom-button-delete{
     appearance: none;
   }
+  .naruto {
+  position: absolute;
+  top: 1px;
+  left: 1650px;
+  height: 500px;
+}
 
 </style>
 <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
