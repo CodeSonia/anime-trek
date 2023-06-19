@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_06_16_120008) do
+ActiveRecord::Schema[7.0].define(version: 2023_06_19_145712) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -78,17 +78,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_16_120008) do
     t.index ["user_id"], name: "index_reviews_on_user_id"
   end
 
-  create_table "seasons", force: :cascade do |t|
-    t.string "image"
-    t.string "title"
-    t.date "date_start"
-    t.date "date_finish"
-    t.bigint "anime_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["anime_id"], name: "index_seasons_on_anime_id"
-  end
-
   create_table "user_achievements", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.bigint "achievement_id", null: false
@@ -130,7 +119,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_16_120008) do
   add_foreign_key "episodes", "animes"
   add_foreign_key "reviews", "animes"
   add_foreign_key "reviews", "users"
-  add_foreign_key "seasons", "animes"
   add_foreign_key "user_achievements", "achievements"
   add_foreign_key "user_achievements", "users"
   add_foreign_key "watchlists", "animes"
