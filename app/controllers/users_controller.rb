@@ -29,6 +29,4 @@ class UsersController < ApplicationController
   #  redirect_to user_user_profile_path(current_user), notice: #"User profile deleted."
   #end
 
-  private
-
 end
