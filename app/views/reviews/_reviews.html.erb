@@ -1,0 +1,24 @@
+<% reviews.each do |review| %>
+  <div class="review-container mb-4 d-inline-block bg-white p-3 rounded-3 w-100">
+    <div class="review">
+      <div class="mb-3 d-flex justify-content-start review-info">
+        <img src="<%= review.user.photo %>" alt="User Photo" class="mr-5 rounded-circle " width="35" height="35">
+        <div class="mx-2 text-left">
+          <p class="mb-0"> <strong> <%= link_to user_path(review.user) do %> <%= review.user.username %> <% end %></strong> | <%= review.rating %>  <i class="fa-solid fa-star"></i></p>
+          <small class="mb-0 ml-0"><%= review.created_at.strftime('%d %b %Y') %></small>
+        </div>
+      </div>
+      <div data-controller="read-more" data-read-more-more-text-value="Read more ↓" data-read-more-less-text-value="Read less ↑">
+        <p class="my-content" data-read-more-target="content">
+          <%= review.content %>
+        </p>
+        <% if review.content.chars.length > 291 %>
+        <button data-action="read-more#toggle" style="border-radius: 20px;" class="btn-readmore">Read more ↓</button>
+        <% end %>
+          <% if policy(review).destroy? %>
+            <%= link_to "Delete", anime_review_path(@anime, review), data: {turbo_method: :delete, turbo_confirm: "you sure?" }, method: :delete, class: "btn btn-danger text-white" %>
+          <% end %>
+      </div>
+    </div>
+  </div>
+<% end %>

@@ -173,6 +173,7 @@ GEM
     nokogiri (1.15.2-x86_64-linux)
       racc (~> 1.4)
     orm_adapter (0.5.0)
+    pagy (6.0.4)
     pg (1.5.3)
     pry (0.14.2)
       coderay (~> 1.1)
@@ -299,6 +300,7 @@ DEPENDENCIES
   font-awesome-sass (~> 6.1)
   jbuilder
   jsbundling-rails
+  pagy
   pg (~> 1.1)
   pry-byebug
   puma (~> 5.0)

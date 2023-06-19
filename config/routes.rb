@@ -10,11 +10,13 @@ Rails.application.routes.draw do
   root to: "pages#home"
 
   resources :animes do
-    resources :reviews, only: [:new, :create, :edit, :update, :destroy]
-    resources :episodes, only: [:show, :index] do
-      resources :comments, only: [:new, :create, :destroy]
-    end
+    resources :reviews, only: [:index, :new, :create, :edit, :update, :destroy]
     resources :watchlists, only: [:create, :destroy]
   end
+  resources :episodes, only: [:show, :index] do
+    resources :comments, only: [:index, :new, :create]
+  end
 
+  resources :comments, only: [:destroy]
+  # comment delete
 end
