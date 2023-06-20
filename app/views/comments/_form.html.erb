@@ -1,6 +1,9 @@
-<div class="container" data-controller="character-counter">
-<%= simple_form_for [@episode, @comment] do |f| %>
-  <%= f.input :content, input_html: { data: { character_counter_target: "input", controller:"textarea-autogrow", textarea_autogrow_resize_debounce_delay_value:"500" } } %>
-  <%= f.button :submit, "Post your comment", class: 'btn btn-primary' %>
-<% end %>
+
+<div class="col-md-8 w-100">
+  <div class="media g-mb-30 media-comment">
+    <%= simple_form_for [@episode, @comment] do |f| %>
+      <%= f.input :content, input_html: { data: { character_counter_target: "input", controller:"textarea-autogrow", textarea_autogrow_resize_debounce_delay_value:"500" } } %>
+      <%= f.button :submit, "Post your comment", class: 'btn btn-primary' %>
+    <% end %>
+  </div>
 </div>

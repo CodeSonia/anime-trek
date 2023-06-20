@@ -28,6 +28,9 @@
         <% else %>
           <h2>Welcome to <%= @user.username %>'s profile 👋 </h2>
         <% end %>
+        <% @user.user_achievements.order(:created_at).each do |ach| %>
+          <%= ach.achievement.name %> | <%= ach.achievement.description %> <br>-
+        <% end %>
       </div>
     </div>
       <ul class="nav nav-tabs mx-2" id="myTab" role="tablist">
