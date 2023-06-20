@@ -37,8 +37,8 @@ random_comments = [
   "This anime is so good!",
 ]
 
-# puts "Deleting all comments..."
-# Comment.delete_all
+puts "Deleting all comments..."
+Comment.delete_all
 puts "Deleting all users achievements..."
 UserAchievement.delete_all
 puts "Deleting all achievements..."
