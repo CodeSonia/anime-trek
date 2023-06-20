@@ -2,8 +2,6 @@
   overflow-x: hidden;
   padding-bottom: 16px;
 
-
-
   .animesCd {
     overflow-x: auto;
     display: grid;
@@ -47,7 +45,7 @@
       word-wrap: break-word;
 
       h2 {
-        font-size: 24px;
+        font-size: 16px;
         font-weight: bold;
         white-space: nowrap;
         overflow: hidden;
@@ -59,7 +57,7 @@
       }
 
       .year {
-        font-size: 16px;
+        font-size: 14px;
         font-weight: bold;
         line-height: 1.4;
         opacity: 0.7;
