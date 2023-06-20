@@ -33,12 +33,13 @@ class WatchlistsController < ApplicationController
 
   def destroy
     @watchlist = current_user.watchlists.find(params[:id])
+    authorize @watchlist, :destroy?
     if @watchlist
       @watchlist.destroy
       Watchlist.check_watchlists_decrease_points(current_user)
-      redirect_to @watchlist.anime, notice: "Anime was successfully removed from your watchlist."
+      redirect_to user_path(current_user), notice: "Anime was successfully removed from your watchlist."
     else
-      redirect_to @watchlist.anime, status: :unprocessable_entity, alert: "Anime was not removed from your watchlist."
+      redirect_to user_path(current_user), status: :unprocessable_entity, alert: "Anime was not removed from your watchlist."
     end
   end
 
