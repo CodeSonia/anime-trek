@@ -5,29 +5,57 @@ class Review < ApplicationRecord
   validates :content, presence: true
   validates :rating, presence: true, numericality: { only_integer: true, greater_than_or_equal_to: 0, less_than_or_equal_to: 5}
   # validates :user_id, uniqueness: { scope: :anime_id, message: "has already reviewed this anime" }
-  # after_create :check_reviews_increase_points
+  def self.check_reviews_increase_points(user)
+    u = user
+    if u.reviews.size == 1
+      u.points += 10
+      u.save!
+      UserAchievement.create!(
+        user: u,
+        achievement: Achievement.find_by(name: "The Review Rookie")
+      )
+    elsif u.reviews.size == 5
+      u.points += 20
+      u.save!
+      UserAchievement.create!(
+        user: u,
+        achievement: Achievement.find_by(name: "The Review Guru")
+      )
+    elsif u.reviews.size == 10
+      u.points += 50
+      u.save!
+      UserAchievement.create!(
+        user: u,
+        achievement: Achievement.find_by(name: "The Review Maestro")
+      )
+    end
+  end
 
-  def check_reviews_increase_points
-    if self.user.reviews.size == 1
-      self.user.update(points: self.user.points + 10)
-      UserAchievement.create!(
-        user: self.user,
-        achievement: Achievement.find_by(name: "First Review")
-      )
+  def self.check_reviews_decrease_points(user)
+    u = user
+    if u.reviews.size == 0
+      u.points -= 10
+      u.save!
+      UserAchievement.find_by(
+        user: u,
+        achievement: Achievement.find_by(name: "The Review Rookie")
+      ).destroy
     end
-    if self.user.reviews.size == 3
-      self.user.update(points: self.user.points + 20)
-      UserAchievement.create!(
-        user: self.user,
-        achievement: Achievement.find_by(name: "Review Master")
-      )
+    if u.reviews.size == 4
+      u.points -= 20
+      u.save!
+      UserAchievement.find_by(
+        user: u,
+        achievement: Achievement.find_by(name: "The Review Guru")
+      ).destroy
     end
-    if self.user.reviews.size == 50
-      self.user.update(points: self.user.points + 50)
-      UserAchievement.create!(
-        user: self.user,
-        achievement: Achievement.find_by(name: "Super Reviewer")
-      )
+    if u.reviews.size == 9
+      u.points -= 50
+      u.save!
+      UserAchievement.find_by(
+        user: u,
+        achievement: Achievement.find_by(name: "The Review Maestro")
+      ).destroy
     end
   end
 end

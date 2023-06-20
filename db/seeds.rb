@@ -37,22 +37,22 @@ random_comments = [
   "This anime is so good!",
 ]
 
-puts "Deleting all comments..."
-Comment.delete_all
+# puts "Deleting all comments..."
+# Comment.delete_all
 puts "Deleting all users achievements..."
 UserAchievement.delete_all
 puts "Deleting all achievements..."
 Achievement.delete_all
-puts "Deleting all reviews..."
-Review.delete_all
-puts "Deleting all watchlists..."
-Watchlist.delete_all
+# puts "Deleting all reviews..."
+# Review.delete_all
+# puts "Deleting all watchlists..."
+# Watchlist.delete_all
 # puts "Deleting all episodes..."
 # Episode.delete_all
 # puts "Deleting all animes..."
 # Anime.delete_all
-puts "Deleting all users..."
-User.delete_all
+# puts "Deleting all users..."
+# User.delete_all
 
 # 1. get the data from the api
 # 2. parse the data
@@ -156,20 +156,20 @@ User.delete_all
 
 # puts "Created #{Anime.count} animes"
 
-puts "Creating users..."
+# puts "Creating users..."
 
-10.times do
-  User.create!(
-    email: Faker::Internet.email,
-    username: Faker::Internet.username,
-    password: "123456",
-    bio: Faker::Quote.famous_last_words,
-    photo: Faker::Avatar.image,
-    points: rand(1000..10000)
-  )
-end
+# 10.times do
+#   User.create!(
+#     email: Faker::Internet.email,
+#     username: Faker::Internet.username,
+#     password: "123456",
+#     bio: Faker::Quote.famous_last_words,
+#     photo: Faker::Avatar.image,
+#     points: rand(1000..10000)
+#   )
+# end
 
-puts "Created #{User.count} users"
+# puts "Created #{User.count} users"
 
 
 # puts "Creating episodes..."
@@ -202,30 +202,30 @@ puts "Created #{User.count} users"
 
 # puts "Created #{Episode.count} episodes"
 
-puts "Creating reviews..."
-# Let's make some reviews
-Anime.all.each do |anime|
-  sleep(1)
-  begin
-    reviews_serialized = URI.open("https://api.jikan.moe/v4/anime/#{anime.api_id}/reviews").read
-    reviews = JSON.parse(reviews_serialized)
-    reviews["data"].first(5).each do |review|
-      puts "Creating reviews for #{anime.title}"
-      if review.present?
-        Review.create!(
-          content: review["review"],
-          rating: review["score"].to_i / 2,
-          user: User.all.sample,
-          anime: anime,
-        )
-      end
-    end
-  rescue
-    puts "Broken..."
-  end
-end
+# puts "Creating reviews..."
+# # Let's make some reviews
+# Anime.all.each do |anime|
+#   sleep(1)
+#   begin
+#     reviews_serialized = URI.open("https://api.jikan.moe/v4/anime/#{anime.api_id}/reviews").read
+#     reviews = JSON.parse(reviews_serialized)
+#     reviews["data"].first(5).each do |review|
+#       puts "Creating reviews for #{anime.title}"
+#       if review.present?
+#         Review.create!(
+#           content: review["review"],
+#           rating: review["score"].to_i / 2,
+#           user: User.all.sample,
+#           anime: anime,
+#         )
+#       end
+#     end
+#   rescue
+#     puts "Broken..."
+#   end
+# end
 
-puts "Created #{Review.count} reviews"
+# puts "Created #{Review.count} reviews"
 
 puts "Creating achievements..."
 
@@ -250,68 +250,68 @@ Achievement.create!(
 
 Achievement.create!(
   name: "The Review Guru",
-  description: "Reviewing Prodigy! You've written 20 reviews and become a master of sharing your anime experiences.",
+  description: "Reviewing Prodigy! You've written 5 reviews and become a master of sharing your anime experiences.",
   points: 20
 )
 
 Achievement.create!(
   name: "Anime Collector",
-  description: "Anime Collector Extraordinaire! You've added 20 animes to your watchlist, building an epic collection.",
+  description: "Anime Collector Extraordinaire! You've added 5 animes to your watchlist, building an epic collection.",
   points: 20
 )
 
 Achievement.create!(
   name: "The Chatterbox",
-  description: "Opinionator Supreme! You've written 20 comments, spreading your wisdom and sparking conversations.",
+  description: "Opinionator Supreme! You've written 5 comments, spreading your wisdom and sparking conversations.",
   points: 20
 )
 
 Achievement.create!(
   name: "The Anime Connoisseur",
-  description: "Anime Enthusiast Overlord! You've added a whopping 50 animes to your watchlist. Your power level is off the charts!",
+  description: "Anime Enthusiast Overlord! You've added a whopping 10 animes to your watchlist. Your power level is off the charts!",
   points: 50
 )
 
 Achievement.create!(
   name: "The Review Maestro",
-  description: "Review Maestro! You've written 50 reviews, captivating readers with your unparalleled anime analysis.",
+  description: "Review Maestro! You've written 10 reviews, captivating readers with your unparalleled anime analysis.",
   points: 50
 )
 
 Achievement.create!(
   name: "The Socializer",
-  description: "Commenting Dynamo! You've written 50 comments, creating a tidal wave of discussion and camaraderie.",
+  description: "Commenting Dynamo! You've written 10 comments, creating a tidal wave of discussion and camaraderie.",
   points: 50
 )
 
 puts "Created #{Achievement.count} achievements"
 
-puts "Creating user watchlists..."
+# puts "Creating user watchlists..."
 
-User.all.each do |user|
-  Watchlist.create!(
-    user: user,
-    status: true,
-    notes: Faker::Lorem.paragraph(sentence_count: 2),
-    anime: Anime.all.sample
-  )
-end
+# User.all.each do |user|
+#   Watchlist.create!(
+#     user: user,
+#     status: true,
+#     notes: Faker::Lorem.paragraph(sentence_count: 2),
+#     anime: Anime.all.sample
+#   )
+# end
 
-puts "Created #{Watchlist.count} user watchlists"
+# puts "Created #{Watchlist.count} user watchlists"
 
-puts "Creating comments for each episode"
+# puts "Creating comments for each episode"
 
-Episode.all.each do |episode|
-  10.times do
-    Comment.create!(
-      content: random_comments.sample,
-      user: User.all.sample,
-      episode: episode
-    )
-  end
-end
+# Episode.all.each do |episode|
+#   10.times do
+#     Comment.create!(
+#       content: random_comments.sample,
+#       user: User.all.sample,
+#       episode: episode
+#     )
+#   end
+# end
 
-puts "Created #{Comment.count} comments"
+# puts "Created #{Comment.count} comments"
 
 puts "Creating user achivements..."
 

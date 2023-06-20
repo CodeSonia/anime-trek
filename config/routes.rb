@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   root to: "pages#home"
 
   resources :animes do
-    resources :reviews, only: [:index, :new, :create, :edit, :update, :destroy]
+    resources :reviews, only: [:index, :new, :create, :edit, :update]
     resources :watchlists, only: [:create, :destroy]
   end
   resources :episodes, only: [:show, :index] do
@@ -18,5 +18,6 @@ Rails.application.routes.draw do
   end
 
   resources :comments, only: [:destroy]
+  resources :reviews, only: [:destroy]
   # comment delete
 end

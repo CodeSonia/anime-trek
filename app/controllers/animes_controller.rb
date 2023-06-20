@@ -12,8 +12,9 @@ class AnimesController < ApplicationController
     @review = Review.new
     @watchlist = Watchlist.new
     @watchlistadded = current_user.watchlists.find_by(anime_id: @anime.id) if user_signed_in?
-    # @new_achievement = current_user.user_achievements.find { |ua| ua.created_at <= Time.now - 1 }
+    # @new_achievement = current_user.user_achievements.find { |ua| ua.created_at <= Time.now - 1.minutes }
     authorize @anime
+    # raise
     # flash[:ua] = @new_achievement.achievement.name if @new_achievement
     redirect_to animes_path, alert: 'Anime not found' if @anime.nil?
   end

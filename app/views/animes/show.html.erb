@@ -1,50 +1,46 @@
-
 <% content_for :meta_title, "#{@anime.title}" %>
 <% content_for :meta_description, @anime.synopsis %>
 <% content_for :meta_image, @anime.image_urls.sample %>
-
 <div class="py-5" style="background:linear-gradient(rgba(0, 0, 0, .7), rgba(0, 0, 0, .7)), url('<%= @anime.image_urls.sample %>');
                         background-position: center;
                         background-size: cover;
                         height:782px">
-
-<div class="container text-white" style="padding:100px 0 100px 0;">
-  <div class="row  align-items-end">
-  <div class="col">
-    <p class="fs-3"> <strong>#<%= @anime.rank %></strong> Most popular</p>
-    <h1 class="display-1 fw-bold"><%= truncate(@anime.title, :length => 25) %></h1>
-    <p class="fs-6"> <%= truncate(@anime.synopsis, :length => 200) %></p>
-    <p class="display-6">
-      <% @avg.to_i.times do %>
-     <i class="fa-solid fa-star"></i>
-     <% end %>
-     <% (5 - @avg.to_i).times do %>
-     <i class="fa-regular fa-star"></i>
-     <% end %> <span class="fs-6">(<%= @avg.round(2) if @avg %>)</span> <br>
-     </p>
-     <% unless user_signed_in? %>
-        <a href="#" class="btn watchlist-button mt-5"> Login to add to watchlist</a>
-     <% else %>
-        <% if @watchlistadded %>
-          <a href="#" class="btn watchlist-button mt-5"> <i class="fa-solid fa-check"></i> Added to watchlist</a>
+  <div class="container text-white" style="padding:100px 0 100px 0;">
+    <div class="row  align-items-end">
+      <div class="col">
+        <p class="fs-3"> <strong>#<%= @anime.rank %></strong> Most popular</p>
+        <h1 class="display-1 fw-bold"><%= truncate(@anime.title, :length => 25) %></h1>
+        <p class="fs-6"> <%= truncate(@anime.synopsis, :length => 200) %></p>
+        <p class="display-6">
+          <% @avg.to_i.times do %>
+            <i class="fa-solid fa-star"></i>
+          <% end %>
+          <% (5 - @avg.to_i).times do %>
+            <i class="fa-regular fa-star"></i>
+          <% end %> <span class="fs-6">(<%= @avg.round(2) if @avg %>)</span> <br>
+        </p>
+        <% unless user_signed_in? %>
+          <a href="#" class="btn watchlist-button mt-5"> Login to add to watchlist</a>
         <% else %>
+          <% if @watchlistadded %>
+            <a href="#" class="btn watchlist-button mt-5"> <i class="fa-solid fa-check"></i> Added to watchlist</a>
+          <% else %>
             <%= simple_form_for [@anime, @watchlist] do |f| %>
               <%= button_tag type: 'submit', class: "btn watchlist-button mt-5" do %>
-                  <i class="fa-solid fa-plus" aria-hidden="true"></i> Add to watchlist
+                <i class="fa-solid fa-plus" aria-hidden="true"></i> Add to watchlist
               <% end %>
             <% end %>
+          <% end %>
         <% end %>
-      <% end %>
+      </div>
+      <div class="col-4">
+        <div class="bg-secondary p-3 rounded-3 d-inline-flex">
+          <% @anime.image_urls.first(2).each do |image| %>
+            <img src="<%= image %>" class="rounded-3 mx-2" alt="" width=250 >
+          <% end %>
+        </div>
+      </div>
     </div>
-  <div class="col-4">
-    <div class="bg-secondary p-3 rounded-3 d-inline-flex">
-    <% @anime.image_urls.first(2).each do |image| %>
-      <img src="<%= image %>" class="rounded-3 mx-2" alt="" width=250 >
-    <% end %>
-    </div>
-  </div>
-  </div>
-
   </div>
 </div>
 <div class="container mt-5">
@@ -53,115 +49,116 @@
       <h3 class="display-5 fw-bold mb-2">Details</h3>
       <p><%= @anime.synopsis %></p>
       <% unless @anime.producers.empty? %>
-      <div class="characters">
-        <div class="text-left">Publishers:</div> <div class="text-right"> <%= @anime.producers.join(", ") %> </div>
-      </div>
-      <hr>
+        <div class="characters">
+          <div class="text-left">Publishers:</div>
+
+          <div class="text-right"> <%= @anime.producers.join(", ") %> </div>
+        </div>
+        <hr>
       <% end %>
       <% unless @anime.themes.empty? %>
-      <div class="characters">
-        <div class="text-left">Themes:</div> <div class="text-right"> <%= @anime.themes.join(", ") %></div>
-      </div>
-      <hr>
+        <div class="characters">
+          <div class="text-left">Themes:</div>
+
+          <div class="text-right"> <%= @anime.themes.join(", ") %></div>
+        </div>
+        <hr>
       <% end %>
       <% unless @anime.status.nil? %>
-      <div class="characters">
-        <div class="text-left">Status:</div> <div class="text-right"> <%= @anime.status %> </div>
-      </div>
+        <div class="characters">
+          <div class="text-left">Status:</div>
+
+          <div class="text-right"> <%= @anime.status %> </div>
+        </div>
       <% end %>
-
-
     </div>
     <div class="col-6">
       <h3 class="display-5 fw-bold mb-2 pl-5">Trailer</h3>
       <iframe width="560" height="315" src="<%= @anime.embed_url %>" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
     </div>
   </div>
-
   <div class="row mt-3">
-      <h3 class="display-5 fw-bold mb-2">Episodes</h3>
-  <div class="row row-cols-1 row-cols-md-5 g-4">
-    <% @anime.episodes.each do |episode| %>
-      <%= link_to episode_path(episode), class: "text-decoration-none" do %>
-        <div class="card-group" style="height:540px;">
-          <div class="card bg-white shadow-card ">
-            <img src="<%= episode.image %>" class="card-img-top" alt="...">
-            <div class="card-body">
-              <h5 class="card-title"><%= truncate(episode.title, :length => 30) %></h5>
-              <p class="card-text"> <small><%= truncate(episode.description, :length => 100) %></small> </p>
+    <h3 class="display-5 fw-bold mb-2">Episodes</h3>
+    <div class="row row-cols-1 row-cols-md-5 g-4">
+      <% @anime.episodes.each do |episode| %>
+        <%= link_to episode_path(episode), class: "text-decoration-none" do %>
+          <div class="card-group" style="height:540px;">
+            <div class="card bg-white shadow-card ">
+              <img src="<%= episode.image %>" class="card-img-top" alt="...">
+              <div class="card-body">
+                <h5 class="card-title"><%= truncate(episode.title, :length => 30) %></h5>
+                <p class="card-text"> <small><%= truncate(episode.description, :length => 100) %></small> </p>
+              </div>
             </div>
           </div>
-        </div>
+        <% end %>
       <% end %>
-
-    <% end %>
-
-</div>
-</div>
-
+    </div>
+  </div>
 </div>
 <div class="reviews-container container mt-5" data-controller="reveal" data-reveal-hidden-class="d-none" >
   <div class="reviews-header">
     <h3 class="display-5 fw-bold mb-2">Reviews</h3>
   </div>
   <div class="reviews-info d-flex justify-content-between align-items-center">
-      <p><%= @anime.reviews.count %> Reviews | <%= @avg.round(2) if @avg %>
+    <p><%= @anime.reviews.count %> Reviews | <%= @avg.round(2) if @avg %>
       <% @avg.to_i.times do %>
-      <i class="fa-solid fa-star" style="color: #cde03e;"></i>
+        <i class="fa-solid fa-star" style="color: #cde03e;"></i>
       <% end %>
       <% (5 - @avg.to_i).times do %>
-      <i class="fa-regular fa-star"></i>
+        <i class="fa-regular fa-star"></i>
       <% end %>
-      </p>
+    </p>
     <% unless user_signed_in? %>
-  </div>
-      <div class="account-required text-center rounded-3 py-3 review-container" style="background-color: #eaeaea;">
-        <strong>Account Required</strong>
-        <p>Please <strong><%= link_to "Log in", new_user_session_url %></strong> or a <strong><%= link_to "Create an Account", new_user_registration_path %></strong> to add a review</p>
-      </div>
-      <% else %>
-        <div>
-          <button data-action="click->reveal#toggle" type="button" class="btn btn-primary"><i class="fa-solid fa-pen-to-square"></i> Add a review</button>
-        </div>
-  </div>
-    <% end %>
-    <div data-reveal-target="item" class="d-none mt-4 review-form bg-white p-3 rounded-3 review-container" >
-      <%= render partial: "reviews/form", locals: { anime: @anime, review: @review } %>
+    </div>
+    <div class="account-required text-center rounded-3 py-3 review-container" style="background-color: #eaeaea;">
+      <strong>Account Required</strong>
+      <p>Please <strong><%= link_to "Log in", new_user_session_url %></strong> or a <strong><%= link_to "Create an Account", new_user_registration_path %></strong> to add a review</p>
+    </div>
+  <% else %>
+    <div>
+      <button data-action="click->reveal#toggle" type="button" class="btn btn-primary"><i class="fa-solid fa-pen-to-square"></i> Add a review</button>
     </div>
   </div>
-
+<% end %>
+<div data-reveal-target="item" class="d-none mt-4 review-form bg-white p-3 rounded-3 review-container" >
+  <%= render partial: "reviews/form", locals: { anime: @anime, review: @review } %>
+</div>
+</div>
 </div>
 
-  <div class="reviews-list container mx-auto mt-4 " data-controller="autoclickreviews"
-          data-autoclickreviews-page-number-value="<%= @pagy.page %>"
-          data-autoclickreviews-anime-id-value="<%= @anime.id %>">
+<div class="container" data-controller="autoclickreviews" data-autoclickreviews-page-number-value="<%= @pagy.page %>" data-autoclickreviews-anime-id-value="<%= @anime.id %>">
+  <div class="row w-100">
     <% @reviews.each do |review| %>
-      <div class="review-container mb-4 d-inline-block bg-white p-3 rounded-3 w-100">
-        <div class="review">
-          <div class="mb-3 d-flex justify-content-start review-info">
-            <img src="<%= review.user.photo %>" alt="User Photo" class="mr-5 rounded-circle " width="35" height="35">
-            <div class="mx-2 text-left">
-              <p class="mb-0"> <strong> <%= link_to user_path(review.user) do %> <%= review.user.username %> <% end %></strong> | <%= review.rating %>  <i class="fa-solid fa-star"></i></p>
-              <small class="mb-0 ml-0"><%= review.created_at.strftime('%d %b %Y') %></small>
+
+      <div class="col-md-8 w-100">
+        <div class="media g-mb-30 media-comment d-flex">
+          <img class="d-flex g-width-50 g-height-50 rounded-circle g-mt-3 g-mr-15" src="<%= review.user.photo %>" alt="<%= review.user.username %> ">
+          <div class="media-body u-shadow-v18 g-bg-secondary g-pa-30 w-100">
+            <div class="g-mb-15">
+              <h5 class="h5 g-color-gray-dark-v1 mb-0"><strong> <%= link_to user_path(review.user), class: "text-decoration-none text-secondary" do%> <%= review.user.username %> <% end %></h5>
+                <span class="g-color-gray-dark-v4 g-font-size-12"><%= review.created_at.strftime('%d %b %Y') %></span>
+              <div data-controller="read-more" data-read-more-more-text-value="Read more ↓" data-read-more-less-text-value="Read less ↑">
+                <p class="my-content" data-read-more-target="content">
+                  <%= review.content %>
+                </p>
+                <% if policy(review).destroy? %>
+                  <%= link_to "Delete", review_path( review), data: {turbo_method: :delete, turbo_confirm: "you sure?" }, method: :delete, class: "btn btn-danger text-white" %>
+                <% end %>
+                <% if review.content.chars.length > 291 %>
+                  <button data-action="read-more#toggle" style="border-radius: 20px;" class="btn-readmore">Read more ↓</button>
+                <% end %>
+              </div>
             </div>
-          </div>
-          <div data-controller="read-more" data-read-more-more-text-value="Read more ↓" data-read-more-less-text-value="Read less ↑">
-            <p class="my-content" data-read-more-target="content">
-              <%= review.content %>
-            </p>
-            <% if review.content.chars.length > 291 %>
-            <button data-action="read-more#toggle" style="border-radius: 20px;" class="btn-readmore">Read more ↓</button>
-            <% end %>
-              <% if policy(review).destroy? %>
-                <%= link_to "Delete", anime_review_path(@anime, review), data: {turbo_method: :delete, turbo_confirm: "you sure?" }, method: :delete, class: "btn btn-danger text-white" %>
-              <% end %>
           </div>
         </div>
       </div>
+
     <% end %>
+  </div>
 
     <div data-autoclickreviews-target="moreComments"></div>
+    <div data-autoclickreviews-target="stopLoading" class="pb-5"></div>
+</div>
 
-    <div data-autoclickreviews-target="stopLoading"></div>
-  </div>
 </div>
