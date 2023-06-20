@@ -233,54 +233,63 @@ puts "Creating achievements..."
 Achievement.create!(
   name: "The Review Rookie",
   description: "Unleashed your inner critic! You wrote your first review and shared your thoughts with the world.",
+  image: "https://res.cloudinary.com/dtjuz4kkr/image/upload/v1687269885/review_rookie_wr0u0n.png ",
   points: 10
 )
 
 Achievement.create!(
   name: "Anime Adventurer",
   description: "Your anime collection starts here! You added your first anime to your watchlist.",
+  image: "https://res.cloudinary.com/dtjuz4kkr/image/upload/v1687272685/anime_adventurer_ar9gvk.png",
   points: 10
 )
 
 Achievement.create!(
   name: "The Commentator",
   description: "Voiced your thoughts! You wrote your first comment and joined the discussion.",
+  image: "https://res.cloudinary.com/dtjuz4kkr/image/upload/v1687266321/review_rookie_ek3sd9.png",
   points: 10
 )
 
 Achievement.create!(
   name: "The Review Guru",
   description: "Reviewing Prodigy! You've written 5 reviews and become a master of sharing your anime experiences.",
+  image: "https://res.cloudinary.com/dtjuz4kkr/image/upload/v1687269878/review_guru_viayuc.png",
   points: 20
 )
 
 Achievement.create!(
   name: "Anime Collector",
   description: "Anime Collector Extraordinaire! You've added 5 animes to your watchlist, building an epic collection.",
+  image: "https://res.cloudinary.com/dtjuz4kkr/image/upload/v1687272677/anime_collector_ml1z3z.png",
   points: 20
 )
 
 Achievement.create!(
   name: "The Chatterbox",
   description: "Opinionator Supreme! You've written 5 comments, spreading your wisdom and sparking conversations.",
+  image: "https://res.cloudinary.com/dtjuz4kkr/image/upload/v1687266321/review_rookie_ek3sd9.png",
   points: 20
 )
 
 Achievement.create!(
   name: "The Anime Connoisseur",
   description: "Anime Enthusiast Overlord! You've added a whopping 10 animes to your watchlist. Your power level is off the charts!",
+  image: "https://res.cloudinary.com/dtjuz4kkr/image/upload/v1687266321/review_rookie_ek3sd9.png",
   points: 50
 )
 
 Achievement.create!(
   name: "The Review Maestro",
   description: "Review Maestro! You've written 10 reviews, captivating readers with your unparalleled anime analysis.",
+  image: "https://res.cloudinary.com/dtjuz4kkr/image/upload/v1687269882/review_maestro_knxkxq.png",
   points: 50
 )
 
 Achievement.create!(
   name: "The Socializer",
   description: "Commenting Dynamo! You've written 10 comments, creating a tidal wave of discussion and camaraderie.",
+  image: "https://res.cloudinary.com/dtjuz4kkr/image/upload/v1687266321/review_rookie_ek3sd9.png",
   points: 50
 )
 
