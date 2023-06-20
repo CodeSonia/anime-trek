@@ -102,7 +102,7 @@
 
                           <!-- Champ de téléchargement de la photo -->
                           <%= simple_form_for(current_user, url: registration_path(current_user), method: :put) do |f| %>
-                            <%= f.input :photo, as: :file %>
+                            <%= f.input :photo, as: :file, input_html: { name: 'photo_update[photo]' } %>
                             <%= f.button :submit, "Upload Photo", class: "UploadPhotoBtn" %>
                           <% end %>
 
