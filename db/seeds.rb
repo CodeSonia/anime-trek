@@ -247,7 +247,7 @@ Achievement.create!(
 Achievement.create!(
   name: "The Commentator",
   description: "Voiced your thoughts! You wrote your first comment and joined the discussion.",
-  image: "https://res.cloudinary.com/dtjuz4kkr/image/upload/v1687266321/review_rookie_ek3sd9.png",
+  image: "https://res.cloudinary.com/dtjuz4kkr/image/upload/v1687287085/commentator_ryfm4a.png",
   points: 10
 )
 
@@ -268,14 +268,14 @@ Achievement.create!(
 Achievement.create!(
   name: "The Chatterbox",
   description: "Opinionator Supreme! You've written 5 comments, spreading your wisdom and sparking conversations.",
-  image: "https://res.cloudinary.com/dtjuz4kkr/image/upload/v1687266321/review_rookie_ek3sd9.png",
+  image: "https://res.cloudinary.com/dtjuz4kkr/image/upload/v1687287093/chatterbox_tx9mfs.png",
   points: 20
 )
 
 Achievement.create!(
   name: "The Anime Connoisseur",
   description: "Anime Enthusiast Overlord! You've added a whopping 10 animes to your watchlist. Your power level is off the charts!",
-  image: "https://res.cloudinary.com/dtjuz4kkr/image/upload/v1687266321/review_rookie_ek3sd9.png",
+  image: "https://res.cloudinary.com/dtjuz4kkr/image/upload/v1687272873/connoisseur_1_cly9uw.png",
   points: 50
 )
 
@@ -289,7 +289,7 @@ Achievement.create!(
 Achievement.create!(
   name: "The Socializer",
   description: "Commenting Dynamo! You've written 10 comments, creating a tidal wave of discussion and camaraderie.",
-  image: "https://res.cloudinary.com/dtjuz4kkr/image/upload/v1687266321/review_rookie_ek3sd9.png",
+  image: "https://res.cloudinary.com/dtjuz4kkr/image/upload/v1687287096/socialiser_i06tu9.png",
   points: 50
 )
 
