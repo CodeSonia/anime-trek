@@ -1,34 +1,31 @@
 .lg-card {
-  width: 326px;
-  height: 418px;
+  width: 280px;
+  height: 400px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   overflow: hidden;
   flex-shrink: 0;
-  background-color: $blue;
-  padding-bottom: 16px;
-  border: 0.5px solid $gray;
-  border-radius: 28px 28px 28px 28px;
+  border: 0.5px solid #6f6d6df2;
+  border-radius: 16px;
   cursor: pointer;
-  transition: transform 0.2s ease;
-
-  &:hover {
-    transform: scale(1.05);
-  }
+  transform: scale(1);
 
   img {
-    width: 326px;
-    height: 342px;
+    width: 280px;
+    height: 400px;
     object-fit: cover;
   }
 
   .lg-card-infos {
     padding: 16px;
-    padding-right: 16px;
-    color: $light-gray;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    border-top: $gray solid 0.5px;
+    color: #000;
+    background-color: rgba(255, 255, 255, 0.8);
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    border-top: 0.5px solid #6f6d6df2;
+    border-radius: 0 0 16px 16px;
+    transition: opacity 0.2s ease;
+    opacity: 1;
 
     h2 {
       font-size: 16px;
@@ -36,19 +33,28 @@
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
-      text-shadow: 0 0 2px $gray;
       word-wrap: break-word;
-
-
-      &:after {
-        content: '';
-        flex-grow: 1;
-      }
+      margin-bottom: 8px;
+      text-transform: uppercase;
     }
 
-    .year {
-      align-self: flex-end;
-      padding-right: 10px;
+    .genre {
+      font-size: 16px;
+      font-weight: bold;
+      margin-bottom: 0;
+      display: flex;
+      justify-content: space-between;
+
+      .rating {
+        font-size: 16px;
+        margin-bottom: 0;
+        display: flex;
+        align-items: center;
+      }
+
+      .rating i {
+        color: $gray;
+      }
     }
   }
 }

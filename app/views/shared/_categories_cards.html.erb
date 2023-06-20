@@ -17,7 +17,7 @@
               <h2><%= anime.title %></h2>
               <small class="year"><%= anime.date_start.strftime("%Y")%></small>
               <p><%= anime.themes.join(", ") %></p>
-              <p><%= truncate(anime.synopsis, length: 80, omission: '...') %></p>
+              <p><%= truncate(anime.synopsis, length: 100, omission: '...') %></p>
             </div>
           </div>
           <% end %>

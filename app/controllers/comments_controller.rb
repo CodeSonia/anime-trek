@@ -16,7 +16,11 @@ class CommentsController < ApplicationController
     @comment.user = @user
     authorize @comment
     if @comment.save
-      redirect_to episode_path(@episode), notice: "Comment was successfully created."
+      if Comment.check_comments_increase_points(current_user)
+        redirect_to episode_path(@episode), flash[:ua] = { name: UserAchievement.last.achievement.name, desc: UserAchievement.last.achievement.description }
+      else
+        redirect_to episode_path(@episode), notice: "Comment was successfully created."
+      end
     else
       redirect_to episode_path(@episode), status: :unprocessable_entity, alert: "Comment was not created."
     end
@@ -25,6 +29,7 @@ class CommentsController < ApplicationController
   def destroy
     @comment = Comment.find(params[:id])
     @comment.delete
+    Comment.check_comments_decrease_points(current_user)
     authorize @comment
     redirect_to episode_path(@comment.episode), notice: "Comment was deleted successfully"
   end

@@ -1,23 +1,23 @@
-.anime-card {
-  width: 280px;
-  height: 400px;
+.md-card {
+  width: 250px;
+  height: 540px;
+  margin: 24px 0 ;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   overflow: hidden;
-  margin-left: 0;
-  margin-right: 24px;
   flex-shrink: 0;
   border: 0.5px solid #6f6d6df2;
   border-radius: 16px;
   cursor: pointer;
   transform: scale(1);
 
-  img {
-    width: 280px;
-    height: 400px;
-    object-fit: cover;
-  }
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
 
-  .anime-infos {
+    }
+
+  .md-card-infos {
     padding: 16px;
     color: #000;
     background-color: rgba(255, 255, 255, 0.8);
@@ -29,7 +29,7 @@
     transition: opacity 0.2s ease;
     opacity: 1;
 
-    h3 {
+    h5 {
       font-size: 16px;
       font-weight: bold;
       white-space: nowrap;
@@ -39,36 +39,34 @@
       margin-bottom: 8px;
       text-transform: uppercase;
     }
-
-    .genre {
+    .episode {
       font-size: 16px;
-      font-weight: bold;
       margin-bottom: 0;
       display: flex;
       justify-content: space-between;
+
+      h6 {
+        font-weight: bold;
+      }
 
       .rating {
         font-size: 16px;
         margin-bottom: 0;
         display: flex;
-        align-items: center;
+        justify-content: flex-end;
       }
 
       .rating i {
         color: $gray;
       }
     }
-  }
-}
 
-.animes {
-  display: flex;
-  overflow-x: scroll;
-  scroll-snap-type: x mandatory;
-  margin-bottom: content-box !important;
-  padding-bottom: 16px;
-
-  &::-webkit-scrollbar {
-    display: none;
+    small {
+      align-self: flex-end;
+      font-size: 14px;
+      color: $gray;
+      margin-bottom: 0;
+      letter-spacing: 0.4px;
+    }
   }
 }

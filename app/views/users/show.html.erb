@@ -5,12 +5,29 @@
     </div>
     <div class="banner"></div>
   </div>
+
   <div class="row2">
     <div class="column1">
       <div class="content mt-5" style="text-align: center; position: relative;">
         <img src="<%= @user.photo %>" alt="Photo de l'utilisateur" class="profile-image ">
         <h2><%= @user.username %></h2>
         <p><%= @user.bio %></p>
+
+
+  <div class="inner-container2 shadow ml-5">
+    <!-- Contenu du deuxième conteneur -->
+    <div class="cardfirst ml-5 mt-5">
+      <div class="card-body text-center">
+        <% if current_user.id == @user.id %>
+          <h2>Hi, <%= @user.username %> 👋</h2>
+          <p>Welcome to your Dashboard! Here you can view your watchlist and manage your anime collection.</p>
+        <% else %>
+          <h2>Welcome to <%= @user.username %>'s profile 👋 </h2>
+        <% end %>
+        <% @user.user_achievements.order(:created_at).each do |ach| %>
+          <%= ach.achievement.name %> | <%= ach.achievement.description %> <br>-
+        <% end %>
+
       </div>
     </div>
     <div class="column2">
