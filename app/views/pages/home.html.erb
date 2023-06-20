@@ -307,12 +307,12 @@
 
 <%# <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script> %>
 <script>
-      // Delay the execution of the code until the Lottie player script is fully loaded
-      window.addEventListener('DOMContentLoaded', (event) => {
-        // Check if the "lottie-player" custom element is already registered
-        if (!window.customElements.get('lottie-player')) {
-          // Register the "lottie-player" custom element if it's not already registered
-          window.customElements.define('lottie-player', window.lottie.defaultPlayerElement);
-        }
-      });
-    </script>
+// Delay the execution of the code until the Lottie player script is fully loaded
+ window.addEventListener('DOMContentLoaded', (event) => {
+   // Check if the "lottie-player" custom element is already registered
+   if (!window.customElements.get('lottie-player')) {
+     // Register the "lottie-player" custom element if it's not already registered
+     window.customElements.define('lottie-player', window.lottie.defaultPlayerElement);
+  }
+});
+</script>
