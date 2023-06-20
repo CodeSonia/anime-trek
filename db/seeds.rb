@@ -43,16 +43,16 @@ puts "Deleting all users achievements..."
 UserAchievement.delete_all
 puts "Deleting all achievements..."
 Achievement.delete_all
-# puts "Deleting all reviews..."
-# Review.delete_all
-# puts "Deleting all watchlists..."
-# Watchlist.delete_all
-# puts "Deleting all episodes..."
-# Episode.delete_all
-# puts "Deleting all animes..."
-# Anime.delete_all
-# puts "Deleting all users..."
-# User.delete_all
+puts "Deleting all reviews..."
+Review.delete_all
+puts "Deleting all watchlists..."
+Watchlist.delete_all
+puts "Deleting all episodes..."
+Episode.delete_all
+puts "Deleting all animes..."
+Anime.delete_all
+puts "Deleting all users..."
+User.delete_all
 
 # 1. get the data from the api
 # 2. parse the data
@@ -66,6 +66,7 @@ anime1_serialized = URI.open(url1).read
 
 # 2. parse the data
 anime1 = JSON.parse(anime1_serialized)
+sleep(1)
 
 url2 = "https://api.jikan.moe/v4/top/anime?type=TV&page=2"
 
@@ -74,7 +75,7 @@ anime2_serialized = URI.open(url2).read
 
 # 2. parse the data
 anime2 = JSON.parse(anime2_serialized)
-
+sleep(1)
 url3 = "https://api.jikan.moe/v4/top/anime?type=TV&page=3"
 
 # 1. get the data from the api
@@ -82,6 +83,7 @@ anime3_serialized = URI.open(url3).read
 
 # 2. parse the data
 anime3 = JSON.parse(anime3_serialized)
+sleep(1)
 url4 = "https://api.jikan.moe/v4/top/anime?type=TV&page=4"
 
 # 1. get the data from the api
@@ -89,6 +91,7 @@ anime4_serialized = URI.open(url4).read
 
 # 2. parse the data
 anime4 = JSON.parse(anime4_serialized)
+sleep(1)
 url5 = "https://api.jikan.moe/v4/top/anime?type=TV&page=5"
 
 # 1. get the data from the api
@@ -96,7 +99,7 @@ anime5_serialized = URI.open(url5).read
 
 # 2. parse the data
 anime5 = JSON.parse(anime5_serialized)
-
+sleep(1)
 url6 = "https://api.jikan.moe/v4/top/anime?type=TV&page=6"
 
 # 1. get the data from the api
