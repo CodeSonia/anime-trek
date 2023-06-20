@@ -28,6 +28,9 @@
         <% else %>
           <h2>Welcome to <%= @user.username %>'s profile 👋 </h2>
         <% end %>
+        <% @user.user_achievements.order(:created_at).each do |ach| %>
+          <%= ach.achievement.name %> | <%= ach.achievement.description %> <br>-
+        <% end %>
       </div>
     </div>
       <ul class="nav nav-tabs mx-2" id="myTab" role="tablist">
@@ -103,7 +106,7 @@
                           <!-- Champ de téléchargement de la photo -->
                           <%= simple_form_for(current_user, url: registration_path(current_user), method: :put) do |f| %>
                             <%= f.input :photo, as: :file %>
-                            <%= f.button :submit, "Upload Photo" %>
+                            <%= f.button :submit, "Upload Photo", class: "UploadPhotoBtn" %>
                           <% end %>
 
                          <!-- <div class="confirmation">
@@ -156,7 +159,7 @@
     flex: 0 0 15%;
     justify-content: flex-start; /* Espacement à droite */
     margin-left: 70px;
-    margin-top: 280px;
+    margin-top: 250px;
     margin-bottom: 100px;
     border-radius: 20px;
     height: 800px;
@@ -167,7 +170,7 @@
     flex: 1;
     width: 70%;
     margin-left: 70px;
-    margin-top: 280px;
+    margin-top: 250px;
     margin-bottom: 100px;
     border-radius: 20px;
     margin-right: 70px;
@@ -232,6 +235,13 @@
   .content-2 {
     margin-left: 180px;
   }
+  .UploadPhotoBtn {
+    background-color: #8A5082;
+    color: white;
+    width: 150px;
+    height: 40px;
+    border-radius: 5px;
+  }
   .buttontype1 {
     background-color: #8A5082;
     color: white;
@@ -249,6 +259,8 @@
   }
   .custom-button-delete{
     appearance: none;
+    border: none;
+    background-color: transparent;
   }
   .naruto {
   position: absolute;

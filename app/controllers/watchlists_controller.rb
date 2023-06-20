@@ -11,7 +11,11 @@ class WatchlistsController < ApplicationController
     @watchlist = current_user.watchlists.build(anime: @anime, status: true)
 
     if @watchlist.save
-      redirect_to anime_path(@anime), notice: "Anime was successfully added to your watchlist."
+      if Watchlist.check_watchlists_increase_points(current_user)
+        redirect_to anime_path(@anime), flash[:ua] = { name: UserAchievement.last.achievement.name, desc: UserAchievement.last.achievement.description }
+      else
+        redirect_to anime_path(@anime), notice: "Anime was successfully added to your watchlist."
+      end
     else
       redirect_to anime_path(@anime), status: :unprocessable_entity, alert: "Anime was not added to your watchlist."
     end
@@ -29,11 +33,13 @@ class WatchlistsController < ApplicationController
 
   def destroy
     @watchlist = current_user.watchlists.find(params[:id])
+    authorize @watchlist, :destroy?
     if @watchlist
       @watchlist.destroy
-      redirect_to @watchlist.anime, notice: "Anime was successfully removed from your watchlist."
+      Watchlist.check_watchlists_decrease_points(current_user)
+      redirect_to user_path(current_user), notice: "Anime was successfully removed from your watchlist."
     else
-      redirect_to @watchlist.anime, status: :unprocessable_entity, alert: "Anime was not removed from your watchlist."
+      redirect_to user_path(current_user), status: :unprocessable_entity, alert: "Anime was not removed from your watchlist."
     end
   end
 

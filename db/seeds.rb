@@ -37,12 +37,12 @@ random_comments = [
   "This anime is so good!",
 ]
 
-puts "Deleting all comments..."
-Comment.delete_all
-# puts "Deleting all users achievements..."
-# UserAchievement.delete_all
-# puts "Deleting all achievements..."
-# Achievement.delete_all
+# puts "Deleting all comments..."
+# Comment.delete_all
+puts "Deleting all users achievements..."
+UserAchievement.delete_all
+puts "Deleting all achievements..."
+Achievement.delete_all
 # puts "Deleting all reviews..."
 # Review.delete_all
 # puts "Deleting all watchlists..."
@@ -227,65 +227,64 @@ Comment.delete_all
 
 # puts "Created #{Review.count} reviews"
 
-# puts "Creating achievements..."
+puts "Creating achievements..."
 
-# # Let's make some achievements
-# Achievement.create!(
-#   name: "First Review",
-#   description: "You wrote your first review!",
-#   points: 10
-# )
+# Let's make some achievements
+Achievement.create!(
+  name: "The Review Rookie",
+  description: "Unleashed your inner critic! You wrote your first review and shared your thoughts with the world.",
+  points: 10
+)
 
-# Achievement.create!(
-#   name: "First Watchlist",
-#   description: "You added your first watchlist!",
-#   points: 10
-# )
+Achievement.create!(
+  name: "Anime Adventurer",
+  description: "Your anime collection starts here! You added your first anime to your watchlist.",
+  points: 10
+)
 
-# Achievement.create!(
-#   name: "First comment",
-#   description: "You wrote your first comment!",
-#   points: 10
-# )
+Achievement.create!(
+  name: "The Commentator",
+  description: "Voiced your thoughts! You wrote your first comment and joined the discussion.",
+  points: 10
+)
 
-# Achievement.create!(
-#   name: "Review Master",
-#   description: "You wrote 20 reviews!",
-#   points: 20
-# )
+Achievement.create!(
+  name: "The Review Guru",
+  description: "Reviewing Prodigy! You've written 5 reviews and become a master of sharing your anime experiences.",
+  points: 20
+)
 
-# Achievement.create!(
-#   name: "Anime Master",
-#   description: "You added 20 animes to your watchlist!",
-#   points: 20
-# )
+Achievement.create!(
+  name: "Anime Collector",
+  description: "Anime Collector Extraordinaire! You've added 5 animes to your watchlist, building an epic collection.",
+  points: 20
+)
 
-# Achievement.create!(
-#   name: "Comment Master",
-#   description: "You wrote 20 comments!",
-#   points: 20
-# )
+Achievement.create!(
+  name: "The Chatterbox",
+  description: "Opinionator Supreme! You've written 5 comments, spreading your wisdom and sparking conversations.",
+  points: 20
+)
 
-# Achievement.create!(
-#   name: "Anime God",
-#   description: "You added 50 animes to your watchlist!",
-#   points: 50
-# )
+Achievement.create!(
+  name: "The Anime Connoisseur",
+  description: "Anime Enthusiast Overlord! You've added a whopping 10 animes to your watchlist. Your power level is off the charts!",
+  points: 50
+)
 
-# Achievement.create!(
-#   name: "Super Reviewer",
-#   description: "You wrote 50 reviews!",
-#   points: 50
-# )
+Achievement.create!(
+  name: "The Review Maestro",
+  description: "Review Maestro! You've written 10 reviews, captivating readers with your unparalleled anime analysis.",
+  points: 50
+)
 
+Achievement.create!(
+  name: "The Socializer",
+  description: "Commenting Dynamo! You've written 10 comments, creating a tidal wave of discussion and camaraderie.",
+  points: 50
+)
 
-# Achievement.create!(
-#   name: "Super Commenter",
-#   description: "You wrote 50 comments!",
-#   points: 50
-# )
-
-# puts "Created #{Achievement.count} achievements"
+puts "Created #{Achievement.count} achievements"
 
 # puts "Creating user watchlists..."
 
@@ -300,27 +299,27 @@ Comment.delete_all
 
 # puts "Created #{Watchlist.count} user watchlists"
 
-puts "Creating comments for each episode"
+# puts "Creating comments for each episode"
 
-Episode.all.each do |episode|
-  10.times do
-    Comment.create!(
-      content: random_comments.sample,
-      user: User.all.sample,
-      episode: episode
-    )
-  end
-end
-
-puts "Created #{Comment.count} comments"
-
-# puts "Creating user achivements..."
-
-# User.all.each do |user|
-#   UserAchievement.create!(
-#     user: user,
-#     achievement: Achievement.all.sample
-#   )
+# Episode.all.each do |episode|
+#   10.times do
+#     Comment.create!(
+#       content: random_comments.sample,
+#       user: User.all.sample,
+#       episode: episode
+#     )
+#   end
 # end
 
-# puts "Created #{UserAchievement.count} user achievements"
+# puts "Created #{Comment.count} comments"
+
+puts "Creating user achivements..."
+
+User.all.each do |user|
+  UserAchievement.create!(
+    user: user,
+    achievement: Achievement.all.sample
+  )
+end
+
+puts "Created #{UserAchievement.count} user achievements"

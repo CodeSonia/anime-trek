@@ -23,8 +23,11 @@ class ReviewsController < ApplicationController
     # binding.pry
     authorize @review
     if @review.save
-
-      redirect_to anime_path(@anime), notice: 'Review was successfully created.'
+      if Review.check_reviews_increase_points(current_user)
+        redirect_to anime_path(@anime), flash[:ua] = { name: UserAchievement.last.achievement.name, desc: UserAchievement.last.achievement.description }
+      else
+        redirect_to anime_path(@anime), notice: 'Review was successfully created.'
+      end
     else
       redirect_to anime_path(@anime), status: :unprocessable_entity, alert: 'Review was not created.'
     end
@@ -44,8 +47,9 @@ class ReviewsController < ApplicationController
   def destroy
     @review = Review.find(params[:id])
     @review.delete
+    Review.check_reviews_decrease_points(current_user)
     authorize @review
-    redirect_to anime_path(params[:anime_id]), notice: 'Review was successfully deleted.'
+    redirect_to anime_path(@review.anime), notice: 'Review was successfully deleted.'
   end
 
   private
