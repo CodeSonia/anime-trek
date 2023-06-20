@@ -1,6 +1,6 @@
-    <% @commentsall.each do |comment| %>
+    <% comments.each do |comment| %>
 
-      <div class="col-md-8 w-100">
+      <div class="col-md-8 w-50">
         <div class="media g-mb-30 media-comment d-flex">
           <img class="d-flex g-width-50 g-height-50 rounded-circle g-mt-3 g-mr-15" src="<%= comment.user.photo %>" alt="<%= comment.user.username %> ">
           <div class="media-body u-shadow-v18 g-bg-secondary g-pa-30 w-100">

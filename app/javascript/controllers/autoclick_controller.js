@@ -18,6 +18,7 @@ export default class extends Controller {
   }
 
   appear(entry) {
+    console.log("appear")
     this.pageNumberValue = this.pageNumberValue + 1
     const url = `/episodes/${this.episodeIdValue}/comments?page=${this.pageNumberValue}`
     fetch(url, {headers: {"Accept": "text/plain"}})

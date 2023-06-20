@@ -72,11 +72,11 @@
   <%= render partial: "comments/form", locals: {episode: @episode, comment: @comment} %>
 </div>
 </div>
-<div class="container" data-controller="autclick" data-autclick-page-number-value="<%= @pagy.page %>" data-autclick-episode-id-value="<%= @episode.id %>">
-  <div class="row w-50">
+<div class="container" data-controller="autoclick" data-autoclick-page-number-value="<%= @pagy.page %>" data-autoclick-episode-id-value="<%= @episode.id %>">
+  <div class="row">
     <% @commentsall.each do |comment| %>
 
-      <div class="col-md-8 w-100 justify-content-start">
+      <div class="col-md-8 w-50 justify-content-start">
         <div class="media g-mb-30 media-comment d-flex">
           <img class="d-flex g-width-50 g-height-50 rounded-circle g-mt-3 g-mr-15" src="<%= comment.user.photo %>" alt="<%= comment.user.username %> ">
           <div class="media-body u-shadow-v18 g-bg-secondary g-pa-30 w-100">
@@ -88,7 +88,7 @@
                   <%= comment.content %>
                 </p>
                 <% if policy(comment).destroy? %>
-                  <%= link_to "Delete", episode_comments_path(@episode, comment), data: {turbo_method: :delete, turbo_confirm: "you sure?" }, method: :delete, class: "btn btn-danger text-white" %>
+                  <%= link_to "Delete", comment_path(comment), data: {turbo_method: :delete, turbo_confirm: "you sure?" }, method: :delete, class: "btn btn-danger text-white" %>
                 <% end %>
                 <% if comment.content.chars.length > 291 %>
                   <button data-action="read-more#toggle" style="border-radius: 20px;" class="btn-readmore">Read more ↓</button>
@@ -102,6 +102,7 @@
     <% end %>
   </div>
 
-    <div data-autclick-target="moreComments"></div>
-    <div data-autclick-target="stopLoading" class="pb-5"></div>
+    <div data-autoclick-target="moreComments"></div>
+    <div data-autoclick-target="stopLoading" class="pb-5"></div>
+    <br>
 </div>

@@ -49,7 +49,7 @@ class ReviewsController < ApplicationController
     @review.delete
     Review.check_reviews_decrease_points(current_user)
     authorize @review
-    redirect_to anime_path(params[:anime_id]), notice: 'Review was successfully deleted.'
+    redirect_to anime_path(@review.anime), notice: 'Review was successfully deleted.'
   end
 
   private
