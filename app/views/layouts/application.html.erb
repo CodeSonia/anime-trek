@@ -26,9 +26,7 @@
   </head>
 
   <body>
-    <% unless params[:controller] == "users" && params[:action] == "show" %>
      <%= render "shared/navbar" %>
-    <% end %>
       <%= render "shared/flashes" %>
 
       <%= yield %>
