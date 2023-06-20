@@ -4,13 +4,14 @@
   border: 2px solid #bb6bc7;
   border-radius: 10px;
   font-size: 24px;
+  border-radius: 32px;
 }
 
 .watchlist-button:hover {
   color: white;
   background-color: #63355d;
   border: 2px solid #94519e;
-  border-radius: 10px;
+  border-radius: 32px;
   font-size: 24px;
 }
 
@@ -31,25 +32,26 @@
   color: #3C6091;
   font-size: 14px;
   font-weight: bold;
+  border-radius: 32px;
 }
 
 .btn-search {
-  background-color: #3c6091;
-  border: 1px solid #3c6091;
+  display: inline-block;
+  text-align: center;
+  background-color: $blue;
+  border: 3px solid $ligth-blue;
   color: aliceblue;
   border-radius: 32px;
-  padding: 5px;
-  padding-left: 24px;
-  padding-right: 24px;
+  padding: 8px 16px;
   font-weight: 400;
   font-size: 16px;
-  line-height: 24px;
   transition: 0.3s;
+  cursor: pointer;
 }
 
 .btn-search:hover{
   color: white;
-  border: 1px solid #3c6091;
+  border: 3px solid $ligth-blue;
   opacity: 0.8;
 }
 
@@ -76,7 +78,7 @@
 
  .register-btn {
   background-color: #8A5082;
-  border: 1px solid #8A5082;
+  border: 2px solid #bb6bc7;
   color: white;
   border-radius: 32px;
   padding: 5px;
@@ -86,11 +88,93 @@
   font-size: 16px;
   line-height: 24px;
   transition: 0.3s;
+  border-radius: 32px;
  }
 
  .register-btn:hover{
   background-color: #8A5082;
-  border: 1px solid #8A5082;
+  border: 1px solid #bb6bc7;
   color: white;
   opacity: 0.8;
  }
+
+ .btn-secondary {
+  display: inline-block;
+  text-align: center;
+  background-color: $blue;
+  border: 3px solid $ligth-blue;
+  color: aliceblue;
+  border-radius: 32px;
+  padding: 8px 16px;
+  font-weight: 400;
+  font-size: 16px;
+  transition: 0.3s;
+  cursor: pointer;
+}
+
+.btn-secondary:hover{
+  color: white;
+  border: 3px solid $ligth-blue;
+  opacity: 0.8;
+}
+
+.btn-primary {
+  display: inline-block;
+  text-align: center;
+  background-color: $violet;
+  border: 3px solid #bb6bc7;
+  color: aliceblue;
+  border-radius: 32px;
+  padding: 8px 16px;
+  font-weight: 400;
+  font-size: 16px;
+  transition: 0.3s;
+  cursor: pointer;
+}
+
+.btn-primary:hover{
+  color: white;
+  border: 3px solid #bb6bc7;
+  opacity: 0.8;
+}
+
+.btn-cancel {
+  display: inline-block;
+  text-align: center;
+  background-color: $gray;
+  border: 3px solid #6f6d6df2;
+  color: aliceblue;
+  border-radius: 32px;
+  padding: 8px 16px;
+  font-weight: 400;
+  font-size: 16px;
+  transition: 0.3s;
+  cursor: pointer;
+}
+
+.btn-cancel:hover {
+  color: white;
+  border: 1px solid #6f6d6df2;
+  opacity: 0.9;
+}
+
+
+.btn-success {
+  display: inline-block;
+  text-align: center;
+  background-color: $blue;
+  border: 3px solid $ligth-blue;
+  color: aliceblue;
+  border-radius: 32px;
+  padding: 8px 16px;
+  font-weight: 400;
+  font-size: 16px;
+  transition: 0.3s;
+  cursor: pointer;
+}
+
+.btn-success:hover{
+  color: white;
+  border: 3px solid $ligth-blue;
+  opacity: 0.8;
+}

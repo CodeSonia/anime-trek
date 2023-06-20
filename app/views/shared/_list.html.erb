@@ -13,7 +13,18 @@
         <%= image_tag anime.image %>
         <div class="anime-infos" data-edit-anime-target="infos">
           <h2><%= anime.title %></h2>
-          <small class="year"><%= anime.date_start.strftime("%Y") %></small>
+          <div class="genre">
+            <small><%= anime.genre %></small>
+            <div class="rating">
+            <% (1..5).each do |i| %>
+            <% if i <= anime.rating %>
+              <i class="fas fa-star"></i>
+            <% else %>
+              <i class="far fa-star"></i>
+            <% end %>
+            <% end %>
+            </div>
+          </div>
         </div>
       </div>
       <% end %>
