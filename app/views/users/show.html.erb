@@ -1,7 +1,6 @@
 
 <div class="big-container bg-image" style="position: relative;">
   <img src="/assets/naruto.png" alt="Description de l'image" class="naruto">
-
   <div class="inner-container1 bg-gray-100 shadow d-flex flex-column align-items-center">
     <!-- Contenu du premier conteneur -->
     <%= cl_image_tag('https://res.cloudinary.com/dtjuz4kkr/image/upload/v1686851125/animetrek_logo_fnexfu.png', class: 'logo-image') %>
@@ -10,14 +9,13 @@
       <%= link_to "Home", root_path, class: "nav-link2 active mt-2 mb-3 rounded-pill border text-center", style: " border: 1px solid #8A5082; color: white; border-radius: 32px; padding: 5px; padding-left: 24px; padding-right: 24px; font-weight: 400; font-size: 16px; line-height: 24px; transition: 0.3s;" %>
       <%= link_to "Categories", search_path, class: "nav-link2 mb-3 mt-2 rounded-pill border text-center", style: "border: 1px solid #8A5082; color: white; border-radius: 32px; padding: 5px; padding-left: 24px; padding-right: 24px; font-weight: 400; font-size: 16px; line-height: 24px; transition: 0.3s;" %>
       <% if current_user.id == @user.id %>
-      <%= link_to "Edit Profile", edit_user_registration_path, class: "nav-link2 mb-2 mt-2 rounded-pill border text-center", style:  "border: 1px solid #8A5082; color: white; border-radius: 32px; padding: 5px; padding-left: 24px; padding-right: 24px; font-weight: 400; font-size: 16px; line-height: 24px; transition: 0.3s;" %>
-        <% else %>
-      <%= link_to "My Profile", user_path(current_user), class: "nav-link2 mb-2 mt-2 rounded-pill border text-center", style:  "border: 1px solid #8A5082; color: white; border-radius: 32px; padding: 5px; padding-left: 24px; padding-right: 24px; font-weight: 400; font-size: 16px; line-height: 24px; transition: 0.3s;" %>
+        <%= link_to "Edit Profile", edit_user_registration_path, class: "nav-link2 mb-2 mt-2 rounded-pill border text-center", style:  "border: 1px solid #8A5082; color: white; border-radius: 32px; padding: 5px; padding-left: 24px; padding-right: 24px; font-weight: 400; font-size: 16px; line-height: 24px; transition: 0.3s;" %>
+      <% else %>
+        <%= link_to "My Profile", user_path(current_user), class: "nav-link2 mb-2 mt-2 rounded-pill border text-center", style:  "border: 1px solid #8A5082; color: white; border-radius: 32px; padding: 5px; padding-left: 24px; padding-right: 24px; font-weight: 400; font-size: 16px; line-height: 24px; transition: 0.3s;" %>
       <% end %>
     </nav>
     <%= image_tag('character.png', alt: 'Character Image', class: 'mt-auto', width: 200) %>
   </div>
-
   <div class="inner-container2 shadow ml-5">
     <!-- Contenu du deuxième conteneur -->
     <div class="cardfirst ml-5 mt-5">
@@ -28,28 +26,36 @@
         <% else %>
           <h2>Welcome to <%= @user.username %>'s profile 👋 </h2>
         <% end %>
-        <% @user.user_achievements.order(:created_at).each do |ach| %>
-          <%= ach.achievement.name %> | <%= ach.achievement.description %> <br>-
+        <div class="d-flex ">
+        <% @user.user_achievements.order(created_at: :desc).each do |ach| %>
+        <div id="<%= ach.achievement.name %>" style="display: none;text-align:center;">
+        <strong><%= ach.achievement.name %></strong> <br> <%= ach.achievement.description %>
+        </div>
+        <div class="justify-content-center">
+          <img src="<%= ach.achievement.image %>" alt="" height=120 id="myButton" data-template="<%= ach.achievement.name %>">
+        </div>
+
+           <br>
         <% end %>
+        </div>
       </div>
     </div>
-      <ul class="nav nav-tabs mx-2" id="myTab" role="tablist">
-        <li class="nav-item" role="presentation">
-          <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true" style="color: black;">Watchlist</button>
-        </li>
-        <li class="nav-item" role="presentation">
-          <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="false" style="color: black;">Profile</button>
-        </li>
-        <li class="nav-item" role="presentation">
-          <button class="nav-link" id="edit-profile-tab" data-bs-toggle="tab" data-bs-target="#edit-profile" type="button" role="tab" aria-controls="edit-profile" aria-selected="false" style="color: black;">Edit Profile</button>
-        </li>
-      </ul>
+    <ul class="nav nav-tabs mx-2" id="myTab" role="tablist">
+      <li class="nav-item" role="presentation">
+        <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true" style="color: black;">Watchlist</button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="false" style="color: black;">Profile</button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button class="nav-link" id="edit-profile-tab" data-bs-toggle="tab" data-bs-target="#edit-profile" type="button" role="tab" aria-controls="edit-profile" aria-selected="false" style="color: black;">Edit Profile</button>
+      </li>
+    </ul>
     <div class="d-flex justify-content-start mx-2">
       <div class="cardsecond">
         <div class="card-body">
           <div class="container" style="height: 100vh;">
             <div class="inner-container">
-
               <div class="tab-content w-100" id="myTabContent">
                 <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
                   <div class="animes-container justify-content-start">
@@ -68,12 +74,12 @@
                             <p style="font-size: 12px;overflow-x:hidden"><%= watchlist.anime.themes.join(", ") %></p>
                           </div>
                           <% if current_user == @user %>
-                          <div class="card-icons">
-                            <!--<ion-icon name="heart-outline"></ion-icon>-->
-                            <%= button_to anime_watchlist_path(watchlist.anime, watchlist), method: :delete, data: { turbo_confirm: 'Are you sure?' }, class: 'custom-button-delete' do %>
-                              <ion-icon name="trash-outline"></ion-icon>
-                            <% end %>
-                          </div>
+                            <div class="card-icons">
+                              <!--<ion-icon name="heart-outline"></ion-icon>-->
+                              <%= button_to anime_watchlist_path(watchlist.anime, watchlist), method: :delete, data: { turbo_confirm: 'Are you sure?' }, class: 'custom-button-delete' do %>
+                                <ion-icon name="trash-outline"></ion-icon>
+                              <% end %>
+                            </div>
                           <% end %>
                         </div>
                       <% end %>
@@ -102,20 +108,17 @@
                               <%= image_tag(asset_path("profile.png"), alt: "User Photo") %>
                             <% end %>
                           </div>
-
                           <!-- Champ de téléchargement de la photo -->
                           <%= simple_form_for(current_user, url: registration_path(current_user), method: :put) do |f| %>
                             <%= f.input :photo, as: :file %>
                             <%= f.button :submit, "Upload Photo", class: "UploadPhotoBtn" %>
                           <% end %>
-
-                         <!-- <div class="confirmation">
+                          <!-- <div class="confirmation">
                             <label for="confirm">Confirm:</label>
                             <input type="checkbox" id="confirm" name="confirm">
                           </div> -->
                         </div>
                       </div>
-
                       <div class="col-md-6">
                         <div class="content-2">
                           <h2>Edit Profile</h2>
@@ -139,7 +142,6 @@
     </div>
   </div>
 </div>
-
 <style>
   .big-container {
     display: flex;
@@ -268,8 +270,24 @@
   left: 1650px;
   height: 500px;
 
-}
-
+  }
 </style>
 <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
 <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+<script src="https://unpkg.com/@popperjs/core@2"></script>
+<script src="https://unpkg.com/tippy.js@6"></script>
+<script>
+  // With the above scripts loaded, you can call `tippy()` with a CSS
+  // selector and a `content` prop:
+
+tippy('#myButton', {
+  content(reference) {
+    const id = reference.getAttribute('data-template');
+    const template = document.getElementById(id);
+    return template.innerHTML;
+  },
+  allowHTML: true,
+  animation: 'fade',
+
+});
+</script>
