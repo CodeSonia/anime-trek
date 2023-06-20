@@ -1,6 +1,6 @@
 .lg-card {
-  width: 326px;
-  height: 418px;
+  width: 280px;
+  height: 400px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   overflow: hidden;
   flex-shrink: 0;
@@ -10,8 +10,8 @@
   transform: scale(1);
 
   img {
-    width: 326px;
-    height: 418px;
+    width: 280px;
+    height: 400px;
     object-fit: cover;
   }
 
@@ -28,7 +28,7 @@
     opacity: 1;
 
     h2 {
-      font-size: 24px;
+      font-size: 16px;
       font-weight: bold;
       white-space: nowrap;
       overflow: hidden;
@@ -40,6 +40,7 @@
 
     .genre {
       font-size: 16px;
+      font-weight: bold;
       margin-bottom: 0;
       display: flex;
       justify-content: space-between;
