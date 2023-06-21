@@ -22,12 +22,11 @@
               <div class="genre">
                 <small><%= anime.genre %></small>
                 <div class="rating">
-                  <% (1..5).each do |i| %>
-                    <% if i <= anime.rating %>
+                  <% anime.reviews.average(:rating).to_i.times do %>
                       <i class="fas fa-star"></i>
-                    <% else %>
+                  <% end %>
+                  <% (5 - anime.reviews.average(:rating).to_i).times do %>
                       <i class="far fa-star"></i>
-                    <% end %>
                   <% end %>
                 </div>
               </div>
