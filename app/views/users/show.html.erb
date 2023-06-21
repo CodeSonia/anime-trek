@@ -14,6 +14,19 @@
           <p><%= @user.bio %></p>
           <hr width="95%">
           <h3>Achievement:</h3>
+           <div class="d-flex ">
+            <% @user.user_achievements.order(created_at: :desc).each do |ach| %>
+            <div id="<%= ach.achievement.name %>" style="display: none;text-align:center;">
+            <strong><%= ach.achievement.name %></strong> <br> <%= ach.achievement.description %>
+            </div>
+            <div class="justify-content-center">
+              <img src="<%= ach.achievement.image %>" alt="" height=120 id="myButton" data-template="<%= ach.achievement.name %>">
+            </div>
+
+              <br>
+            <% end %>
+
+          </div>
           <p>Points: <%= @user.points %></p>
         </div>
       </div>
@@ -250,3 +263,20 @@
 
 <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
 <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+<script src="https://unpkg.com/@popperjs/core@2"></script>
+<script src="https://unpkg.com/tippy.js@6"></script>
+<script>
+  // With the above scripts loaded, you can call `tippy()` with a CSS
+  // selector and a `content` prop:
+
+tippy('#myButton', {
+  content(reference) {
+    const id = reference.getAttribute('data-template');
+    const template = document.getElementById(id);
+    return template.innerHTML;
+  },
+  allowHTML: true,
+  animation: 'fade',
+
+});
+</script>
