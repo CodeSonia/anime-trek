@@ -1,4 +1,6 @@
 class Anime < ApplicationRecord
+  extend FriendlyId
+
   has_many :episodes, dependent: :delete_all
   has_many :reviews, dependent: :delete_all
   has_many :users, through: :reviews, dependent: :destroy
@@ -11,4 +13,5 @@ class Anime < ApplicationRecord
   validates :genre, presence: true
   validates :rating, presence: true
   validates :image, presence: true
+  friendly_id :title, use: :slugged
 end

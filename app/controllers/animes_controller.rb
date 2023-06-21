@@ -5,7 +5,7 @@ class AnimesController < ApplicationController
   end
 
   def show
-    @anime = Anime.includes(:episodes, :reviews, :users).find(params[:id])
+    @anime = Anime.includes(:episodes, :reviews, :users).friendly.find(params[:id])
     @avg = @anime.reviews.average(:rating)
     @pagy, @reviews = pagy(@anime.reviews, items: 2)
 
