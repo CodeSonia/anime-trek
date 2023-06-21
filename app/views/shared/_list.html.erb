@@ -6,28 +6,107 @@
       Top <%= pluralize animes.count, "result" %> for <code><%= params[:query] %></code>
     <% end %>
   </h2>
-  <div class="animes">
-    <% animes.each do |anime| %>
-      <%= link_to anime_path(anime), style: 'text-decoration: none;' do %>
-      <div class="anime-card img">
-        <%= image_tag anime.image %>
-        <div class="anime-infos" data-edit-anime-target="infos">
-          <h3><%= anime.title %></h3>
-          <div class="genre">
-            <small><%= anime.genre %></small>
-            <div class="rating">
-            <% (1..5).each do |i| %>
-            <% if i <= anime.rating %>
-              <i class="fas fa-star"></i>
-            <% else %>
-              <i class="far fa-star"></i>
-            <% end %>
-            <% end %>
+  <div id="button-left" onclick="scrollLft()">
+    <i class="fa-solid fa-chevron-left"></i>
+  </div>
+  <div id="button-right" onclick="scrollRight()">
+    <i class="fa-solid fa-chevron-right"></i>
+  </div>
+  <div class="animes" id="outsider">
+      <% animes.each do |anime| %>
+        <%= link_to anime_path(anime), style: 'text-decoration: none;' do %>
+          <div class="anime-card img">
+            <%= image_tag anime.image %>
+            <div class="anime-infos" data-edit-anime-target="infos">
+              <h3><%= anime.title %></h3>
+              <div class="genre">
+                <small><%= anime.genre %></small>
+                <div class="rating">
+                  <% (1..5).each do |i| %>
+                    <% if i <= anime.rating %>
+                      <i class="fas fa-star"></i>
+                    <% else %>
+                      <i class="far fa-star"></i>
+                    <% end %>
+                  <% end %>
+                </div>
+              </div>
             </div>
           </div>
-        </div>
-      </div>
+        <% end %>
       <% end %>
-    <% end %>
   </div>
 </div>
+<style>
+  @keyframes timeline {
+    0% {
+      right: 0px;
+    }
+    100% {
+      right: 1000px;
+    }
+  }
+  #outsider:hover {
+    animation-play-state: paused;
+  }
+  #button-left,
+  #button-right {
+    position: absolute;
+    align-items: center;
+    align-content: center;
+    vertical-align: middle;
+    justify-content: center;
+    display: flex;
+    align-items: center;
+    z-index: 1000;
+    color: black;
+    max-height: 1000px;
+    width: 50px;
+    background-color: white;
+    opacity: 0.5;
+  }
+  #button-left {
+
+    height: 40%;
+    margin-left: 13%;
+    left: 0;
+    color: black;
+  }
+  #button-right {
+    height: 40%;
+    margin-right: 13%;
+    right: 0;
+  }
+  #button-right:hover {
+    opacity: 0.7;
+  }
+  #button-left:hover {
+    opacity: 0.7;
+  }
+  #insider {
+  position: absolute;
+  display: inline-block;
+  height: 100%;
+  width: auto;
+  overflow: hidden;
+  white-space: nowrap;
+  }
+</style>
+<script>
+  const outsider = document.getElementById('outsider');
+  const distance = 200;
+
+  function scrollLft() {
+    outsider.scrollBy({
+      left: -distance,
+      behavior: 'smooth'
+    });
+  }
+
+  function scrollRight() {
+    outsider.scrollBy({
+      left: distance,
+      behavior: 'smooth'
+    });
+  }
+</script>

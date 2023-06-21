@@ -6,7 +6,7 @@
     <div>
       <h4 class="genre-title mt-5 mb-2"><%= genre %> - <%= pluralize animes.size, "result" %></h4>
     </div>
-      <div class="animesCd">
+      <div class="animesCd" style="grid-template-columns: repeat(<%= animes.count %>, 450px);">
         <% animes.each do |anime| %>
           <%= link_to anime_path(anime), class: "text-decoration-none" do %>
           <div class="card-anime">
