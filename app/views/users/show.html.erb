@@ -123,7 +123,7 @@
                       <%= f.input :password, label: "New password", required: true, input_html: { autocomplete: "off" } %>
                       <%= f.input :password_confirmation, label: "Confirm new password", required: true, input_html: { autocomplete: "off" } %>
                       <%= f.button :submit, "Update Profile", class: "btn btn-primary" %>
-                      <%= button_tag "Cancel", type: :button, class: "button btn-search", onclick: "window.location.href='#{user_path(current_user)}'" %>
+                      <%= button_tag "Cancel", type: :button, class: "button btn-cancel", onclick: "window.location.href='#{user_path(current_user)}'" %>
                     <% end %>
                   </div>
                 </div>
@@ -159,7 +159,21 @@
     margin-right: 0px !important;
   }
 
+.nav-tabs .nav-link {
+    color: black;
+    font-weight: bold;
+    border: none !important;
+    opacity: 0.5;
+  }
 
+  .active {
+    opacity: 1 !important;
+    background: none !important;
+  }
+  .nav-link > .nav-field {
+    font-size: 18px !important;
+
+  }
    .custom-button-delete {
      background-color: transparent;
      border: none;
