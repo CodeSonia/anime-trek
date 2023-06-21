@@ -98,7 +98,7 @@
       <div id="button-right" onclick="scrollRight()">
         <i class="fa-solid fa-chevron-right"></i>
       </div>
-      <div class="animes" id="outsider">
+      <div class="animes" id="outsider2">
         <% @animes.first(20).each do |anime| %>
           <%= link_to anime_path(anime), style: 'text-decoration: none;' do %>
             <div class="anime-card img">
@@ -135,19 +135,19 @@
        window.customElements.define('lottie-player', window.lottie.defaultPlayerElement);
     }
   });
-    const outsider = document.getElementById('outsider');
-    const distance = 200;
+    var outsider2 = document.getElementById('outsider2');
+    var distance2 = 200;
 
     function scrollLft() {
-      outsider.scrollBy({
-        left: -distance,
+      outsider2.scrollBy({
+        left: -distance2,
         behavior: 'smooth'
       });
     }
 
     function scrollRight() {
-      outsider.scrollBy({
-        left: distance,
+      outsider2.scrollBy({
+        left: distance2,
         behavior: 'smooth'
       });
     }
