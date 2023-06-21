@@ -8,29 +8,27 @@
       <p class="slogan">Discover, Explore, Simplify:</p>
       <h1 class="text-uppercase landing-header">Unleash The Anime Universe</h1>
       <p class="support-text text-muted">
-      Introducing AnimeTrek: Your Ultimate Anime Exploration Companion. Embark on a journey to discover new anime series, explore a myriad of genres, and immerse yourself in captivating storylines that will transport you to extraordinary worlds.
+        Introducing AnimeTrek: Your Ultimate Anime Exploration Companion. Embark on a journey to discover new anime series, explore a myriad of genres, and immerse yourself in captivating storylines that will transport you to extraordinary worlds.
       </p>
       <div class="form-inline">
         <%= form_with url: search_path, method: :get, html: { class: "d-flex mb-4 search-container" } do |f| %>
-        <div class="form-group icon-parent">
-          <span class="mag-icon"><i class="fas fa-thin fa-magnifying-glass"></i></span>
-          <%= f.text_field :query,
+          <div class="form-group icon-parent">
+            <span class="mag-icon"><i class="fas fa-thin fa-magnifying-glass"></i></span>
+            <%= f.text_field :query,
                         class: "form-control search-text-field input-form",
                         placeholder: "Search for an anime...",
                         value: params[:query] %>
-        </div>
-        <%= f.submit "Search", class: "button btn-search" %>
-      <% end %>
+          </div>
+          <%= f.submit "Search", class: "button btn-search" %>
+        <% end %>
+      </div>
     </div>
-    </div>
-
     <div class="col-4">
-     <lottie-player id="my-lottie" src="https://assets5.lottiefiles.com/packages/lf20_AxapO9m4rW.json"  background="transparent"  speed="1"  style="width: 500px; height: 500px;"  loop  autoplay></lottie-player>
+      <lottie-player id="my-lottie" src="https://assets5.lottiefiles.com/packages/lf20_AxapO9m4rW.json"  background="transparent"  speed="1"  style="width: 500px; height: 500px;"  loop  autoplay></lottie-player>
     </div>
   </div>
 </div>
-
-  <section class="about-section mt-8">
+<section class="about-section mt-8">
   <div class="container">
     <div class="row">
       <div class="col-6">
@@ -42,81 +40,80 @@
           AnimeTrek is your ultimate destination for exploring the fascinating world of anime. Immerse yourself in captivating storylines, vibrant characters, and breathtaking animation. Discover a vast collection of anime series spanning various genres, from action-packed adventures to heartwarming slice-of-life stories.
           <%# With AnimeTrek, you can embark on a journey of exploration, uncovering hidden gems and popular classics alike. Our curated selection ensures that you'll find something to suit your taste and preferences. Whether you're a seasoned anime enthusiast or just starting your anime journey, AnimeTrek is here to accompany you every step of the way.
           Join our vibrant community of anime lovers, where you can engage in discussions, share recommendations, and connect with fellow fans. Stay up-to-date with the latest releases, follow your favorite shows, and dive into the rich world of anime culture. %>
-
-        <p class="section-description">
-          With AnimeTrek, you can embark on a journey of exploration, uncovering hidden gems and popular classics alike. Start your anime adventure with AnimeTrek today and unleash the boundless wonders of the anime universe!
-        </p>
-        <%= link_to "Start today", new_user_registration_path, class: "btn register-btn" %>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="features-section">
-  <div class="container">
-    <h2 class="text-center features-header">More than just a platform</h2>
-    <p class="features-support text-muted text-center mx-auto mt-3">AnimeTrek is more than just a platform - it's your gateway to a world of captivating anime series, vibrant community discussions, and personalized recommendations. Explore, engage, and discover your next favorite anime adventure on AnimeTrek</p>
-    <div class="row mx-auto">
-      <div class="mt-5 col-12 col-xl-4 mb-24">
-        <div class="feature-card">
-          <div class="feature-icon-box">
-            <div class="feature-icon">
-              <i class="fas fa-binoculars fa-3x"></i>
-            </div>
-          </div>
-          <div class="feature-title">Discover & Explore</div>
-          <div class="feature-description">Whether you're into action-packed adventures, heartwarming romances, or mind-bending mysteries, AnimeTrek has something for everyone.</div>
-        </div>
-      </div>
-      <div class="mt-5 col-12 col-xl-4 mb-24">
-        <div class="feature-card">
-          <div class="feature-icon-box">
-            <div class="feature-icon">
-              <i class="fas fa-list-ul fa-3x"></i>
-            </div>
-          </div>
-          <div class="feature-title">Watch List Wonder</div>
-          <div class="feature-description">Keep track of your anime journey by creating a personalized watchlist on AnimeTrek, allowing you to easily add, remove, and mark anime series as watched.</div>
-        </div>
-      </div>
-      <div class="mt-5 col-12 col-xl-4 mb-24">
-        <div class="feature-card">
-          <div class="feature-icon-box">
-            <div class="feature-icon">
-              <i class="fas fa-trophy fa-3x"></i>
-            </div>
-          </div>
-          <div class="feature-title">Points and Achievements</div>
-          <div class="feature-description">Unlock your anime prowess and earn points for rating anime, writing engaging reviews, and more. Unlock a dazzling array of achievements and badges!</div>
+          <p class="section-description">
+            With AnimeTrek, you can embark on a journey of exploration, uncovering hidden gems and popular classics alike. Start your anime adventure with AnimeTrek today and unleash the boundless wonders of the anime universe!
+          </p>
+          <%= link_to "Start today", new_user_registration_path, class: "btn register-btn" %>
         </div>
       </div>
     </div>
-  </div>
-</section>
-
-
-
-<section class="mt-5">
-  <div class="container">
-  <h2 class="top-25-header">Top 25 <span>Animes</span></h2>
-  <div class="row mb-5 justify-content-start">
-    <div class="col-4">
-      <% @animes.each do |anime| %>
-        <% if anime.id == 102 %>
+  </section>
+  <section class="features-section">
+    <div class="container">
+      <h2 class="text-center features-header">More than just a platform</h2>
+      <p class="features-support text-muted text-center mx-auto mt-3">AnimeTrek is more than just a platform - it's your gateway to a world of captivating anime series, vibrant community discussions, and personalized recommendations. Explore, engage, and discover your next favorite anime adventure on AnimeTrek</p>
+      <div class="row mx-auto">
+        <div class="mt-5 col-12 col-xl-4 mb-24">
+          <div class="feature-card">
+            <div class="feature-icon-box">
+              <div class="feature-icon">
+                <i class="fas fa-binoculars fa-3x"></i>
+              </div>
+            </div>
+            <div class="feature-title">Discover & Explore</div>
+            <div class="feature-description">Whether you're into action-packed adventures, heartwarming romances, or mind-bending mysteries, AnimeTrek has something for everyone.</div>
+          </div>
+        </div>
+        <div class="mt-5 col-12 col-xl-4 mb-24">
+          <div class="feature-card">
+            <div class="feature-icon-box">
+              <div class="feature-icon">
+                <i class="fas fa-list-ul fa-3x"></i>
+              </div>
+            </div>
+            <div class="feature-title">Watch List Wonder</div>
+            <div class="feature-description">Keep track of your anime journey by creating a personalized watchlist on AnimeTrek, allowing you to easily add, remove, and mark anime series as watched.</div>
+          </div>
+        </div>
+        <div class="mt-5 col-12 col-xl-4 mb-24">
+          <div class="feature-card">
+            <div class="feature-icon-box">
+              <div class="feature-icon">
+                <i class="fas fa-trophy fa-3x"></i>
+              </div>
+            </div>
+            <div class="feature-title">Points and Achievements</div>
+            <div class="feature-description">Unlock your anime prowess and earn points for rating anime, writing engaging reviews, and more. Unlock a dazzling array of achievements and badges!</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="my-5">
+    <div class="container">
+      <h2 class="top-25-header">Top 20 <span>Animes</span></h2>
+      <div id="button-left" onclick="scrollLft()">
+        <i class="fa-solid fa-chevron-left"></i>
+      </div>
+      <div id="button-right" onclick="scrollRight()">
+        <i class="fa-solid fa-chevron-right"></i>
+      </div>
+      <div class="animes" id="outsider">
+        <% @animes.first(20).each do |anime| %>
           <%= link_to anime_path(anime), style: 'text-decoration: none;' do %>
-            <div class="lg-card img">
+            <div class="anime-card img">
               <%= image_tag anime.image %>
-              <div class="lg-card-infos" data-edit-anime-target="infos">
-                <h2><%= anime.title %></h2>
+              <div class="anime-infos" data-edit-anime-target="infos">
+                <h3><%= anime.title %></h3>
                 <div class="genre">
                   <small><%= anime.genre %></small>
                   <div class="rating">
                     <% (1..5).each do |i| %>
-                    <% if i <= anime.rating %>
-                      <i class="fas fa-star"></i>
-                    <% else %>
-                      <i class="far fa-star"></i>
-                    <% end %>
+                      <% if i <= anime.rating %>
+                        <i class="fas fa-star"></i>
+                      <% else %>
+                        <i class="far fa-star"></i>
+                      <% end %>
                     <% end %>
                   </div>
                 </div>
@@ -124,208 +121,34 @@
             </div>
           <% end %>
         <% end %>
-      <% end %>
+      </div>
     </div>
-    <div class="col-4">
-      <% @animes.each do |anime| %>
-        <% if anime.id == 103 %>
-          <%= link_to anime_path(anime), style: 'text-decoration: none;' do %>
-            <div class="lg-card img">
-              <%= image_tag anime.image %>
-              <div class="lg-card-infos" data-edit-anime-target="infos">
-                <h2><%= truncate(anime.title, length: 12) %></h2>
-                <div class="genre">
-                  <small><%= anime.genre %></small>
-                  <div class="rating">
-                    <% (1..5).each do |i| %>
-                    <% if i <= anime.rating %>
-                      <i class="fas fa-star"></i>
-                    <% else %>
-                      <i class="far fa-star"></i>
-                    <% end %>
-                    <% end %>
-                  </div>
-                </div>
-              </div>
-            </div>
-          <% end %>
-        <% end %>
-      <% end %>
-    </div>
-    <div class="col-4">
-      <% @animes.each do |anime| %>
-        <% if anime.id == 106 %>
-          <%= link_to anime_path(anime), style: 'text-decoration: none;' do %>
-            <div class="lg-card img">
-              <%= image_tag anime.image %>
-              <div class="lg-card-infos" data-edit-anime-target="infos">
-                <h2><%= anime.title %></h2>
-                <div class="genre">
-                  <small><%= anime.genre %></small>
-                  <div class="rating">
-                    <% (1..5).each do |i| %>
-                    <% if i <= anime.rating %>
-                      <i class="fas fa-star"></i>
-                    <% else %>
-                      <i class="far fa-star"></i>
-                    <% end %>
-                    <% end %>
-                  </div>
-                </div>
-              </div>
-            </div>
-          <% end %>
-        <% end %>
-      <% end %>
-    </div>
-  </div>
-  <div class="row mb-5 justify-content-center">
-    <div class="col-4">
-      <% @animes.each do |anime| %>
-        <% if anime.id == 118 %>
-          <%= link_to anime_path(anime), style: 'text-decoration: none;' do %>
-            <div class="lg-card img">
-              <%= image_tag anime.image %>
-              <div class="lg-card-infos" data-edit-anime-target="infos">
-                <h2><%= anime.title %></h2>
-                <div class="genre">
-                  <small><%= anime.genre %></small>
-                  <div class="rating">
-                    <% (1..5).each do |i| %>
-                    <% if i <= anime.rating %>
-                      <i class="fas fa-star"></i>
-                    <% else %>
-                      <i class="far fa-star"></i>
-                    <% end %>
-                    <% end %>
-                  </div>
-                </div>
-              </div>
-            </div>
-          <% end %>
-        <% end %>
-      <% end %>
-    </div>
-    <div class="col-4">
-      <% @animes.each do |anime| %>
-        <% if anime.id == 203 %>
-          <%= link_to anime_path(anime), style: 'text-decoration: none;' do %>
-            <div class="lg-card img">
-              <%= image_tag anime.image %>
-              <div class="lg-card-infos" data-edit-anime-target="infos">
-                <h2><%= anime.title %></h2>
-                <div class="genre">
-                  <small><%= anime.genre %></small>
-                  <div class="rating">
-                    <% (1..5).each do |i| %>
-                    <% if i <= anime.rating %>
-                      <i class="fas fa-star"></i>
-                    <% else %>
-                      <i class="far fa-star"></i>
-                    <% end %>
-                    <% end %>
-                  </div>
-                </div>
-              </div>
-            </div>
-          <% end %>
-        <% end %>
-      <% end %>
-    </div>
-  </div>
-  <div class="row mb-5 justify-content-end">
-    <div class="col-4">
-      <% @animes.each do |anime| %>
-        <% if anime.id == 150 %>
-          <%= link_to anime_path(anime), style: 'text-decoration: none;' do %>
-            <div class="lg-card img">
-              <%= image_tag anime.image %>
-              <div class="lg-card-infos" data-edit-anime-target="infos">
-                <h2><%= anime.title %></h2>
-                <div class="genre">
-                  <small><%= anime.genre %></small>
-                  <div class="rating">
-                    <% (1..5).each do |i| %>
-                    <% if i <= anime.rating %>
-                      <i class="fas fa-star"></i>
-                    <% else %>
-                      <i class="far fa-star"></i>
-                    <% end %>
-                    <% end %>
-                  </div>
-                </div>
-              </div>
-            </div>
-          <% end %>
-        <% end %>
-      <% end %>
-    </div>
-    <div class="col-4">
-      <% @animes.each do |anime| %>
-        <% if anime.id == 177 %>
-          <%= link_to anime_path(anime), style: 'text-decoration: none;' do %>
-            <div class="lg-card img">
-              <%= image_tag anime.image %>
-              <div class="lg-card-infos" data-edit-anime-target="infos">
-                <h2><%= anime.title %></h2>
-                <div class="genre">
-                  <small><%= anime.genre %></small>
-                  <div class="rating">
-                    <% (1..5).each do |i| %>
-                    <% if i <= anime.rating %>
-                      <i class="fas fa-star"></i>
-                    <% else %>
-                      <i class="far fa-star"></i>
-                    <% end %>
-                    <% end %>
-                  </div>
-                </div>
-              </div>
-            </div>
-          <% end %>
-        <% end %>
-      <% end %>
-    </div>
-    <div class="col-4">
-      <% @animes.each do |anime| %>
-        <% if anime.id == 92 %>
-          <%= link_to anime_path(anime), style: 'text-decoration: none;' do %>
-            <div class="lg-card img">
-              <%= image_tag anime.image %>
-              <div class="lg-card-infos" data-edit-anime-target="infos">
-                <h2><%= anime.title %></h2>
-                <div class="genre">
-                  <small><%= anime.genre %></small>
-                  <div class="rating">
-                    <% (1..5).each do |i| %>
-                    <% if i <= anime.rating %>
-                      <i class="fas fa-star"></i>
-                    <% else %>
-                      <i class="far fa-star"></i>
-                    <% end %>
-                    <% end %>
-                  </div>
-                </div>
-              </div>
-            </div>
-          <% end %>
-        <% end %>
-      <% end %>
-    </div>
-  </div>
+  </section>
 </div>
-</section>
-
-</div>
-
 <%# <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script> %>
 <script>
-// Delay the execution of the code until the Lottie player script is fully loaded
- window.addEventListener('DOMContentLoaded', (event) => {
-   // Check if the "lottie-player" custom element is already registered
-   if (!window.customElements.get('lottie-player')) {
-     // Register the "lottie-player" custom element if it's not already registered
-     window.customElements.define('lottie-player', window.lottie.defaultPlayerElement);
-  }
-});
+  // Delay the execution of the code until the Lottie player script is fully loaded
+   window.addEventListener('DOMContentLoaded', (event) => {
+     // Check if the "lottie-player" custom element is already registered
+     if (!window.customElements.get('lottie-player')) {
+       // Register the "lottie-player" custom element if it's not already registered
+       window.customElements.define('lottie-player', window.lottie.defaultPlayerElement);
+    }
+  });
+    const outsider = document.getElementById('outsider');
+    const distance = 200;
+
+    function scrollLft() {
+      outsider.scrollBy({
+        left: -distance,
+        behavior: 'smooth'
+      });
+    }
+
+    function scrollRight() {
+      outsider.scrollBy({
+        left: distance,
+        behavior: 'smooth'
+      });
+    }
 </script>
