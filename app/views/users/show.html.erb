@@ -1,122 +1,117 @@
-<div class="container">
-  <div class="row1">
-    <div class="image-overlay">
-      <img src="https://res.cloudinary.com/dtjuz4kkr/image/upload/v1687252507/banner_img_r1onbm.png" alt="Image Cloudinary">
-    </div>
-    <div class="banner"></div>
-  </div>
-
-  <div class="row2">
-    <div class="column1">
-      <div class="content mt-5" style="text-align: center; position: relative;">
-        <img src="<%= @user.photo %>" alt="Photo de l'utilisateur" class="profile-image ">
-        <h2><%= @user.username %></h2>
-        <p><%= @user.bio %></p>
-
-
-  <div class="inner-container2 shadow ml-5">
-    <!-- Contenu du deuxième conteneur -->
-    <div class="cardfirst ml-5 mt-5">
-      <div class="card-body text-center">
-        <% if current_user.id == @user.id %>
-          <h2>Hi, <%= @user.username %> 👋</h2>
-          <p>Welcome to your Dashboard! Here you can view your watchlist and manage your anime collection.</p>
-        <% else %>
-          <h2>Welcome to <%= @user.username %>'s profile 👋 </h2>
-        <% end %>
-        <% @user.user_achievements.order(:created_at).each do |ach| %>
-          <%= ach.achievement.name %> | <%= ach.achievement.description %> <br>-
-        <% end %>
-
+<div class="primary-container">
+  <div class="banner-container">
+    <div class="row row1">
+      <div class="image-overlay">
+        <img src="https://res.cloudinary.com/dtjuz4kkr/image/upload/v1687252507/banner_img_r1onbm.png" alt="Image Cloudinary">
       </div>
+      <div class="banner"></div>
     </div>
-    <div class="column2">
-      <ul class="nav nav-tabs mx-2" id="myTab" role="tablist">
-        <li class="nav-item" role="presentation">
-          <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true" style="color: black;">Watchlist</button>
-        </li>
-        <li class="nav-item" role="presentation">
-          <button class="nav-link" id="edit-profile-tab" data-bs-toggle="tab" data-bs-target="#edit-profile" type="button" role="tab" aria-controls="edit-profile" aria-selected="false" style="color: black;">Edit Profile</button>
-        </li>
-        <li class="nav-item" role="presentation">
-          <button class="nav-link" id="achievement-tab" data-bs-toggle="tab" data-bs-target="#achievement" type="button" role="tab" aria-controls="achievement" aria-selected="false" style="color: black;">Achievement</button>
-        </li>
-      </ul>
-      <div class="d-flex justify-content-start mx-2">
-        <div class="cardsecond">
-          <div class="card-body">
+    <div class="row row2">
+      <div class="column1">
+        <div class="content mt-5" style="text-align: center; position: relative;">
+          <img src="<%= @user.photo %>" alt="Photo de l'utilisateur" class="profile-image">
+          <h2><%= @user.username %></h2>
+          <p><%= @user.bio %></p>
+          <hr width="95%">
+          <h3 class="achievement">Achievement:</h3>
+          <p>Points: <%= @user.points %></p>
+        </div>
+      </div>
+      <div class="column2">
+        <ul class="nav nav-tabs mx-2" id="myTab" role="tablist">
+          <li class="nav-item" role="presentation">
+            <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true" style="color: black;">Watchlist</button>
+          </li>
+          <li class="nav-item" role="presentation">
+            <button class="nav-link" id="edit-profile-tab" data-bs-toggle="tab" data-bs-target="#edit-profile" type="button" role="tab" aria-controls="edit-profile" aria-selected="false" style="color: black;">Edit Profile</button>
+          </li>
+          <li class="nav-item" role="presentation">
+            <button class="nav-link" id="achievement-tab" data-bs-toggle="tab" data-bs-target="#achievement" type="button" role="tab" aria-controls="achievement" aria-selected="false" style="color: black;">Achievement</button>
+          </li>
+        </ul>
 
-            <div class="tab-content w-100" id="myTabContent">
-              <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-                <div class="animes-container justify-content-start">
-                  <div class="genre-section">
-                    <h4 class="genre-title mt-5 mb-2">Watchlist - <%= pluralize @user.watchlists.count, "result" %></h4>
-                  </div>
-                  <div class="row row-cols-1 row-cols-md-5 gap-5" style="margin-left:10px">
-                    <% @user.watchlists.each do |watchlist| %>
-                      <div class="card-anime d-inline-block" style="width: 200px;">
-                        <div class="image-card">
-                          <%= image_tag watchlist.anime.image %>
-                        </div>
-                        <div class="info-anime">
-                          <h2 style="font-size: 18px; width: 100%; overflow: hidden; text-overflow: ellipsis;"><%= watchlist.anime.title %></h2>
-                          <small style="font-size: 12px;"> (<%= watchlist.anime.date_start.strftime("%d %b %Y") %>)</small>
-                          <p style="font-size: 12px;overflow-x:hidden"><%= watchlist.anime.themes.join(", ") %></p>
-                        </div>
-                        <% if current_user == @user %>
-                          <div class="card-icons">
-                            <%= button_to anime_watchlist_path(watchlist.anime, watchlist), method: :delete, data: { turbo_confirm: 'Are you sure?' }, class: 'custom-button-delete' do %>
-                              <ion-icon name="trash-outline"></ion-icon>
-                            <% end %>
-                          </div>
-                        <% end %>
-                      </div>
-                    <% end %>
-                  </div>
-                </div>
-              </div>
-              <div class="tab-pane fade" id="edit-profile" role="tabpanel" aria-labelledby="edit-profile-tab">
-                <div class="d-flex flex-column align-items-center mt-5 mx-auto">
-                  <div class="row">
-                    <div class="col-md-6">
-                      <div class="content-1">
-                        <!-- Affichage de la photo -->
-                        <div class="user-photo">
-                          <% if current_user.photo %>
-                            <%= image_tag(current_user.photo, alt: "User Photo") %>
-                          <% else %>
-                            <%= image_tag(asset_path("profile.png"), alt: "User Photo") %>
+        <div class="d-flex justify-content-start mx-2">
+          <div class="cardsecond ">
+            <div class="card-body">
+              <div class="tab-content w-100" id="myTabContent">
+                <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                  <div class="animes-container justify-content-start">
+                    <div class="genre-section">
+                      <h4 class="genre-title mt-5 mb-2">Watchlist - <%= pluralize @user.watchlists.count, "result" %></h4>
+                    </div>
+                    <div class="row row-cols-1 gap-5" style="margin-left:10px;">
+                      <div class="animes">
+                        <% @user.watchlists.each do |watchlist| %>
+                          <%= link_to anime_path(watchlist.anime), style: 'text-decoration: none;' do %>
+                            <div class="anime-card img">
+                              <%= image_tag watchlist.anime.image %>
+                              <div class="anime-infos" data-edit-anime-target="infos">
+                                <h3><%= watchlist.anime.title %></h3>
+                                <div class="genre">
+                                  <small><%= watchlist.anime.genre %></small>
+                                  <div class="rating">
+                                    <% (1..5).each do |i| %>
+                                      <% if i <= watchlist.anime.rating %>
+                                        <i class="fas fa-star"></i>
+                                      <% else %>
+                                        <i class="far fa-star"></i>
+                                      <% end %>
+                                    <% end %>
+                                  </div>
+                                  <% if current_user == @user %>
+                                    <div class="card-icons">
+                                      <%= button_to anime_watchlist_path(watchlist.anime, watchlist), method: :delete, data: { turbo_confirm: 'Are you sure?' }, class: 'custom-button-delete', onclick: "event.stopPropagation();" do %>
+                                        <ion-icon name="trash-outline"></ion-icon>
+                                      <% end %>
+                                    </div>
+                                  <% end %>
+                                </div>
+                              </div>
+                            </div>
                           <% end %>
-                        </div>
-
-                        <!-- Champ de téléchargement de la photo -->
-                        <%= simple_form_for(current_user, url: registration_path(current_user), method: :put) do |f| %>
-                          <%= f.input :photo, as: :file, input_html: { name: 'photo_update[photo]' } %>
-                          <%= f.button :submit, "Upload Photo", class: "UploadPhotoBtn" %>
                         <% end %>
-
-                        <!-- <div class="confirmation">
-                          <label for="confirm">Confirm:</label>
-                          <input type="checkbox" id="confirm" name="confirm">
-                        </div> -->
                       </div>
                     </div>
+                  </div>
+                </div>
+                <div class="tab-pane fade" id="edit-profile" role="tabpanel" aria-labelledby="edit-profile-tab">
+                  <div class="d-flex flex-column align-items-center mt-5 mx-auto">
+                    <div class="row">
+                      <div class="col-md-6">
+                        <div class="content-1">
+                          <!-- Affichage de la photo -->
+                          <div class="user-photo">
+                            <% if current_user.photo %>
+                              <%= image_tag(current_user.photo, alt: "User Photo") %>
+                            <% else %>
+                              <%= image_tag(asset_path("profile.png"), alt: "User Photo") %>
+                            <% end %>
+                          </div>
 
-                    <div class="col-md-6">
-                      <div class="content-2">
-                        <h2>Edit Profile</h2>
-                        <%= simple_form_for(current_user, url: registration_path(current_user), method: :put) do |f| %>
-                          <%= f.input :username %>
-                          <%= f.input :email %>
-                          <%= f.input :bio, as: :text %>
+                          <!-- Champ de téléchargement de la photo -->
+                          <%= simple_form_for(current_user, url: registration_path(current_user), method: :put) do |f| %>
+                            <%= f.input :photo, as: :file, input_html: { name: 'photo_update[photo]' } %>
+                            <%= f.button :submit, "Upload Photo", class: "UploadPhotoBtn" %>
+                          <% end %>
+                        </div>
+                      </div>
 
-                          <%= f.input :current_password, label: "Current password", required: true, input_html: { autocomplete: "off" } %>
-                          <%= f.input :password, label: "New password", required: true, input_html: { autocomplete: "off" } %>
-                          <%= f.input :password_confirmation, label: "Confirm new password", required: true, input_html: { autocomplete: "off" } %>
+                      <div class="col-md-6">
+                        <div class="content-2">
+                          <h2>Edit Profile</h2>
+                          <%= simple_form_for(current_user, url: registration_path(current_user), method: :put) do |f| %>
+                            <%= f.input :username %>
+                            <%= f.input :email %>
+                            <%= f.input :bio, as: :text %>
 
-                          <%= f.button :submit, "Update Profile", class: "buttontype1" %>
-                          <%= button_tag "Cancel", type: :button, class: "buttontype2", onclick: "window.location.href='#{user_path(current_user)}'" %>
-                        <% end %>
+                            <%= f.input :current_password, label: "Current password", required: true, input_html: { autocomplete: "off" } %>
+                            <%= f.input :password, label: "New password", required: true, input_html: { autocomplete: "off" } %>
+                            <%= f.input :password_confirmation, label: "Confirm new password", required: true, input_html: { autocomplete: "off" } %>
+
+                            <%= f.button :submit, "Update Profile", class: "buttontype1" %>
+                            <%= button_tag "Cancel", type: :button, class: "buttontype2", onclick: "window.location.href='#{user_path(current_user)}'" %>
+                          <% end %>
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -131,18 +126,15 @@
 </div>
 
 <style>
-  * {
-  box-sizing: border-box;
-  }
-  body {
+ .primary-container {
     margin: 0;
     padding: 0;
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
-  }
-  .container {
+ }
+  .banner-container {
     width: 90%;
     height: 75vh;
     display: flex;
@@ -179,9 +171,9 @@
   }
 
   .image-overlay img {
-    width: 50%;
+    width: 30%;
     height: auto;
-    margin-top: -50px;
+    margin-top: -82px;
   }
 
   .row2 {
@@ -203,7 +195,7 @@
   object-fit: cover;
   position: relative;
   z-index: 3;
-  margin-top: -90%;
+  margin-top: -50%;
   margin-bottom: -75px;
   border: 2px solid black;
   box-shadow: 0 0 0 2px black;
@@ -231,6 +223,20 @@
   .content {
     justify-content: flex-start;
     margin-left: 20px;
+  }
+  .custom-button-delete {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    color: #6366F1;
+    font-size: 20px;
+  }
+  .nav{
+    border: none;
+  }
+  .achievement {
+
+
   }
 </style>
 
