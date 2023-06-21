@@ -1,49 +1,8 @@
-
 <div class="primary-container">
   <div class="banner-container">
     <div class="row row1">
       <div class="image-overlay">
         <img src="https://res.cloudinary.com/dtjuz4kkr/image/upload/v1687252507/banner_img_r1onbm.png" alt="Image Cloudinary">
-
-<div class="container">
-  <div class="row1">
-    <div class="image-overlay">
-      <img src="https://res.cloudinary.com/dtjuz4kkr/image/upload/v1687252507/banner_img_r1onbm.png" alt="Image Cloudinary">
-    </div>
-    <div class="banner"></div>
-  </div>
-
-  <div class="row2">
-    <div class="column1">
-      <div class="content mt-5" style="text-align: center; position: relative;">
-        <img src="<%= @user.photo %>" alt="Photo de l'utilisateur" class="profile-image ">
-        <h2><%= @user.username %></h2>
-        <p><%= @user.bio %></p>
-
-
-  <div class="inner-container2 shadow ml-5">
-    <!-- Contenu du deuxième conteneur -->
-    <div class="cardfirst ml-5 mt-5">
-      <div class="card-body text-center">
-        <% if current_user.id == @user.id %>
-          <h2>Hi, <%= @user.username %> 👋</h2>
-          <p>Welcome to your Dashboard! Here you can view your watchlist and manage your anime collection.</p>
-        <% else %>
-          <h2>Welcome to <%= @user.username %>'s profile 👋 </h2>
-        <% end %>
-        <div class="d-flex ">
-        <% @user.user_achievements.order(created_at: :desc).each do |ach| %>
-        <div id="<%= ach.achievement.name %>" style="display: none;text-align:center;">
-        <strong><%= ach.achievement.name %></strong> <br> <%= ach.achievement.description %>
-        </div>
-        <div class="justify-content-center">
-          <img src="<%= ach.achievement.image %>" alt="" height=120 id="myButton" data-template="<%= ach.achievement.name %>">
-        </div>
-
-           <br>
-        <% end %>
-
-
       </div>
       <div class="banner"></div>
     </div>
@@ -54,7 +13,7 @@
           <h2><%= @user.username %></h2>
           <p><%= @user.bio %></p>
           <hr width="95%">
-          <h3 class="achievement">Achievement:</h3>
+          <h3>Achievement:</h3>
           <p>Points: <%= @user.points %></p>
         </div>
       </div>
@@ -76,11 +35,11 @@
             <div class="card-body">
               <div class="tab-content w-100" id="myTabContent">
                 <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-                  <div class="animes-container justify-content-start">
+                  <div class="animes-container justify-content-start ">
                     <div class="genre-section">
                       <h4 class="genre-title mt-5 mb-2">Watchlist - <%= pluralize @user.watchlists.count, "result" %></h4>
                     </div>
-                    <div class="row row-cols-1 gap-5" style="margin-left:10px;">
+                    <div class="row row-cols-1  gap-5" style="margin-left:10px">
                       <div class="animes">
                         <% @user.watchlists.each do |watchlist| %>
                           <%= link_to anime_path(watchlist.anime), style: 'text-decoration: none;' do %>
@@ -101,7 +60,7 @@
                                   </div>
                                   <% if current_user == @user %>
                                     <div class="card-icons">
-                                      <%= button_to anime_watchlist_path(watchlist.anime, watchlist), method: :delete, data: { turbo_confirm: 'Are you sure?' }, class: 'custom-button-delete', onclick: "event.stopPropagation();" do %>
+                                      <%= button_to anime_watchlist_path(watchlist.anime, watchlist), method: :delete, data: { turbo_confirm: 'Are you sure?' }, class: 'custom-button-delete' do %>
                                         <ion-icon name="trash-outline"></ion-icon>
                                       <% end %>
                                     </div>
@@ -165,6 +124,7 @@
     </div>
   </div>
 </div>
+
 <style>
  .primary-container {
     margin: 0;
