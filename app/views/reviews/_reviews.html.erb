@@ -12,7 +12,7 @@
                   <%= review.content %>
                 </p>
                 <% if policy(review).destroy? %>
-                  <%= link_to "Delete", anime_reviews_path(@anime, review), data: {turbo_method: :delete, turbo_confirm: "you sure?" }, method: :delete, class: "btn btn-danger text-white" %>
+                  <%= link_to "Delete", review_path( review), data: {turbo_method: :delete, turbo_confirm: "you sure?" }, method: :delete, class: "btn btn-danger text-white" %>
                 <% end %>
                 <% if review.content.chars.length > 291 %>
                   <button data-action="read-more#toggle" style="border-radius: 20px;" class="btn-readmore">Read more ↓</button>
