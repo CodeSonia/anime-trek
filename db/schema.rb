@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_06_21_085719) do
+ActiveRecord::Schema[7.0].define(version: 2023_06_21_143242) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -41,6 +41,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_21_085719) do
     t.string "status"
     t.text "producers", default: [], array: true
     t.text "themes", default: [], array: true
+    t.string "slug"
+    t.index ["slug"], name: "index_animes_on_slug", unique: true
   end
 
   create_table "comments", force: :cascade do |t|
@@ -65,6 +67,17 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_21_085719) do
     t.integer "episodenumber"
     t.integer "duration"
     t.index ["anime_id"], name: "index_episodes_on_anime_id"
+  end
+
+  create_table "friendly_id_slugs", force: :cascade do |t|
+    t.string "slug", null: false
+    t.integer "sluggable_id", null: false
+    t.string "sluggable_type", limit: 50
+    t.string "scope"
+    t.datetime "created_at"
+    t.index ["slug", "sluggable_type", "scope"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type_and_scope", unique: true
+    t.index ["slug", "sluggable_type"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type"
+    t.index ["sluggable_type", "sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_type_and_sluggable_id"
   end
 
   create_table "reviews", force: :cascade do |t|
@@ -96,13 +109,15 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_21_085719) do
     t.datetime "remember_created_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "photo", default: "https://robohash.org/robo@robohash.org?gravatar=yes"
+    t.string "photo", default: "https://robohash.org/inciduntreiciendisvoluptatum.png?size=300x300&set=set1"
     t.string "bio"
     t.integer "points", default: 0
     t.string "username"
     t.string "banner", default: "https://images4.alphacoders.com/129/1293106.png"
+    t.string "slug"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+    t.index ["slug"], name: "index_users_on_slug", unique: true
   end
 
   create_table "watchlists", force: :cascade do |t|
