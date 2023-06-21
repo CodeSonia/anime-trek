@@ -141,8 +141,7 @@
 
 <div class="container" data-controller="autoclickreviews" data-autoclickreviews-page-number-value="<%= @pagy.page %>" data-autoclickreviews-anime-id-value="<%= @anime.id %>">
   <div class="row w-100">
-    <% @reviews.each do |review| %>
-
+    <% @reviews.order(created_at: :desc).each do |review| %>
       <div class="col-md-8 w-100">
         <div class="media g-mb-30 media-comment d-flex">
           <img class="d-flex g-width-50 g-height-50 rounded-circle g-mt-3 g-mr-15" src="<%= review.user.photo %>" alt="<%= review.user.username %> ">
