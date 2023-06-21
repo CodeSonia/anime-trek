@@ -60,7 +60,7 @@
     </div>
     <div class="account-required text-center py-3" style="background-color: #eaeaea;">
       <strong>Account Required</strong>
-      <p>Please <strong><%= link_to "Log in", new_user_session_url %></strong> or a <strong><%= link_to "Create an Account", new_user_registration_path %></strong> to add a comment</p>
+      <p>Please <strong><%= link_to "Log in", new_user_session_url, class: "text-decoration-none" %></strong> or a <strong><%= link_to "Create an Account", new_user_registration_path %></strong> to add a comment</p>
     </div>
   <% else %>
     <div>
