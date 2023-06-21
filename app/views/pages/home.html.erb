@@ -1,3 +1,4 @@
+<script src="https://unpkg.com/@lottiefiles/lottie-player@latest"></script>
 <div class="container container-parent">
   <div class="blurr-img">
     <%= cl_image_tag("https://res.cloudinary.com/dtjuz4kkr/image/upload/v1686840960/blurr_azumrg.png", height: 500) %>
@@ -24,8 +25,7 @@
     </div>
 
     <div class="col-4">
-      <%= cl_image_tag("https://res.cloudinary.com/dtjuz4kkr/image/upload/v1686823182/anime_girl_tutzus.png", height: 500, crop: :fill) %>
-      <%# <lottie-player src="https://assets3.lottiefiles.com/packages/lf20_cPFjIcbNEP.json"  background="transparent"  speed="1"  style="width: 500px; height: 500px;"  loop  autoplay></lottie-player> %>
+     <lottie-player id="my-lottie" src="https://assets5.lottiefiles.com/packages/lf20_AxapO9m4rW.json"  background="transparent"  speed="1"  style="width: 500px; height: 500px;"  loop  autoplay></lottie-player>
     </div>
   </div>
 </div>
@@ -34,7 +34,7 @@
   <div class="container">
     <div class="row">
       <div class="col-6">
-        <%= cl_image_tag("https://res.cloudinary.com/dtjuz4kkr/image/upload/v1686858038/anime_boy_jkravv.png", height: 500, crop: :fill, class: "about-image") %>
+        <%= cl_image_tag("https://res.cloudinary.com/dtjuz4kkr/image/upload/v1686858038/anime_boy_jkravv.png", height: 500, alt: "anime boy", crop: :fill, class: "about-image") %>
       </div>
       <div class="col-6">
         <h2 class="section-title">About <span class="sect-brand">AnimeTrek</span></h2>
@@ -305,4 +305,14 @@
 
 </div>
 
-<script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+<%# <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script> %>
+<script>
+// Delay the execution of the code until the Lottie player script is fully loaded
+ window.addEventListener('DOMContentLoaded', (event) => {
+   // Check if the "lottie-player" custom element is already registered
+   if (!window.customElements.get('lottie-player')) {
+     // Register the "lottie-player" custom element if it's not already registered
+     window.customElements.define('lottie-player', window.lottie.defaultPlayerElement);
+  }
+});
+</script>

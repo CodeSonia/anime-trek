@@ -1,8 +1,49 @@
+
 <div class="primary-container">
   <div class="banner-container">
     <div class="row row1">
       <div class="image-overlay">
         <img src="https://res.cloudinary.com/dtjuz4kkr/image/upload/v1687252507/banner_img_r1onbm.png" alt="Image Cloudinary">
+
+<div class="container">
+  <div class="row1">
+    <div class="image-overlay">
+      <img src="https://res.cloudinary.com/dtjuz4kkr/image/upload/v1687252507/banner_img_r1onbm.png" alt="Image Cloudinary">
+    </div>
+    <div class="banner"></div>
+  </div>
+
+  <div class="row2">
+    <div class="column1">
+      <div class="content mt-5" style="text-align: center; position: relative;">
+        <img src="<%= @user.photo %>" alt="Photo de l'utilisateur" class="profile-image ">
+        <h2><%= @user.username %></h2>
+        <p><%= @user.bio %></p>
+
+
+  <div class="inner-container2 shadow ml-5">
+    <!-- Contenu du deuxième conteneur -->
+    <div class="cardfirst ml-5 mt-5">
+      <div class="card-body text-center">
+        <% if current_user.id == @user.id %>
+          <h2>Hi, <%= @user.username %> 👋</h2>
+          <p>Welcome to your Dashboard! Here you can view your watchlist and manage your anime collection.</p>
+        <% else %>
+          <h2>Welcome to <%= @user.username %>'s profile 👋 </h2>
+        <% end %>
+        <div class="d-flex ">
+        <% @user.user_achievements.order(created_at: :desc).each do |ach| %>
+        <div id="<%= ach.achievement.name %>" style="display: none;text-align:center;">
+        <strong><%= ach.achievement.name %></strong> <br> <%= ach.achievement.description %>
+        </div>
+        <div class="justify-content-center">
+          <img src="<%= ach.achievement.image %>" alt="" height=120 id="myButton" data-template="<%= ach.achievement.name %>">
+        </div>
+
+           <br>
+        <% end %>
+
+
       </div>
       <div class="banner"></div>
     </div>
@@ -124,7 +165,6 @@
     </div>
   </div>
 </div>
-
 <style>
  .primary-container {
     margin: 0;
@@ -245,3 +285,20 @@
 
 <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
 <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+<script src="https://unpkg.com/@popperjs/core@2"></script>
+<script src="https://unpkg.com/tippy.js@6"></script>
+<script>
+  // With the above scripts loaded, you can call `tippy()` with a CSS
+  // selector and a `content` prop:
+
+tippy('#myButton', {
+  content(reference) {
+    const id = reference.getAttribute('data-template');
+    const template = document.getElementById(id);
+    return template.innerHTML;
+  },
+  allowHTML: true,
+  animation: 'fade',
+
+});
+</script>
