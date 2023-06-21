@@ -123,7 +123,7 @@
                       <%= f.input :password, label: "New password", required: true, input_html: { autocomplete: "off" } %>
                       <%= f.input :password_confirmation, label: "Confirm new password", required: true, input_html: { autocomplete: "off" } %>
                       <%= f.button :submit, "Update Profile", class: "btn btn-primary" %>
-                      <%= button_tag "Cancel", type: :button, class: "btn btn-secondary", onclick: "window.location.href='#{user_path(current_user)}'" %>
+                      <%= button_tag "Cancel", type: :button, class: "button btn-search", onclick: "window.location.href='#{user_path(current_user)}'" %>
                     <% end %>
                   </div>
                 </div>
