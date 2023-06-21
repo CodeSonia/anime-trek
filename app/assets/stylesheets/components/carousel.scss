@@ -1,0 +1,45 @@
+#outsider:hover {
+  animation-play-state: paused;
+}
+#button-left,
+#button-right {
+  position: absolute;
+  align-items: center;
+  align-content: center;
+  vertical-align: middle;
+  justify-content: center;
+  display: flex;
+  align-items: center;
+  z-index: 1000;
+  color: black;
+  max-height: 1000px;
+  width: 50px;
+  background-color: white;
+  opacity: 0.5;
+}
+#button-left {
+
+  height: 40%;
+  margin-left: 13%;
+  left: 0;
+  color: black;
+}
+#button-right {
+  height: 40%;
+  margin-right: 13%;
+  right: 0;
+}
+#button-right:hover {
+  opacity: 0.7;
+}
+#button-left:hover {
+  opacity: 0.7;
+}
+#insider {
+position: absolute;
+display: inline-block;
+height: 100%;
+width: auto;
+overflow: hidden;
+white-space: nowrap;
+}
