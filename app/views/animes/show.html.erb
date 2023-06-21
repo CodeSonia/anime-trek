@@ -160,7 +160,7 @@
                 </div>
                 <span class="g-color-gray-dark-v4 g-font-size-12"><%= review.created_at.strftime('%d %b %Y') %></span>
               <div data-controller="read-more" data-read-more-more-text-value="Read more ↓" data-read-more-less-text-value="Read less ↑">
-                <p class="my-content" data-read-more-target="content">
+                <p class="my-content pr-3" data-read-more-target="content">
                   <%= review.content %>
                 </p>
                 <% if policy(review).destroy? %>
