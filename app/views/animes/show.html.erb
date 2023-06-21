@@ -4,10 +4,10 @@
 <div class="py-5" style="background:linear-gradient(rgba(0, 0, 0, .7), rgba(0, 0, 0, .7)), url('<%= @anime.image_urls.sample %>');
                         background-position: center;
                         background-size: cover;
-                        height:782px">
-  <div class="container text-white" style="padding:100px 0 100px 0;">
+                        height:550px">
+  <div class="container text-white" style="padding:0px 0 100px 0;">
     <div class="row  align-items-end">
-      <div class="col">
+      <div class="col mb-9">
         <p class="fs-3"> <strong>#<%= @anime.rank %></strong> Most popular</p>
         <h1 class="display-1 fw-bold"><%= truncate(@anime.title, :length => 25) %></h1>
         <p class="fs-6"> <%= truncate(@anime.synopsis, :length => 200) %></p>
@@ -23,7 +23,7 @@
           <a href="#" class="btn watchlist-button mt-5"> Login to add to watchlist</a>
         <% else %>
           <% if @watchlistadded %>
-            <a href="#" class="btn watchlist-button mt-5"> <i class="fa-solid fa-check"></i> Added to watchlist</a>
+            <a href="#" class="btn watchlist-button mt-4"> <i class="fa-solid fa-check"></i> Added to watchlist</a>
           <% else %>
             <%= simple_form_for [@anime, @watchlist] do |f| %>
               <%= button_tag type: 'submit', class: "btn watchlist-button mt-5" do %>
@@ -174,3 +174,6 @@
 </div>
 
 </div>
+<style>
+
+</style>
