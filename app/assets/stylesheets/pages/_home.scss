@@ -73,8 +73,14 @@
   margin-bottom: 2rem;
 }
 
+// --------------------------------------------------------------- Features section
 .features-section {
   margin-top: 6rem;
+}
+
+.features-header {
+  font-size: 3rem;
+  font-weight: 600;
 }
 
 .feature-icon {
@@ -120,7 +126,7 @@
 }
 
 .features-support {
-  max-width: 700px;
+  max-width: 900px;
 }
 // --------------------------------------------------------------- Top 25 section
 .anime-image {
