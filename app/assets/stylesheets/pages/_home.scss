@@ -73,6 +73,55 @@
   margin-bottom: 2rem;
 }
 
+.features-section {
+  margin-top: 6rem;
+}
+
+.feature-icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 120px;
+  font-size: 0.8rem;
+}
+
+.feature-icon-box {
+  display:flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.feature-title {
+  font-size: 20px;
+  font-weight: bold;
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.feature-description {
+  font-size: 14px;
+  margin-top: 10px;
+  text-align: center;
+}
+
+.feature-card {
+  position: relative;
+  padding: 20px;
+  margin-bottom: 24px;
+  border-radius: 8px;
+  transition: transform 0.3s ease-in-out;
+  border: 0.5px solid #6f6d6df2;
+}
+
+.feature-card:hover {
+  transform: translateY(-5px);
+}
+
+.features-support {
+  max-width: 700px;
+}
 // --------------------------------------------------------------- Top 25 section
 .anime-image {
   height: 200px; /* Adjust the height value as needed */
