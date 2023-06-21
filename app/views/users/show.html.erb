@@ -60,7 +60,7 @@
                                   </div>
                                   <% if current_user == @user %>
                                     <div class="card-icons">
-                                      <%= button_to anime_watchlist_path(watchlist.anime, watchlist), method: :delete, data: { turbo_confirm: 'Are you sure?' }, class: 'custom-button-delete' do %>
+                                      <%= button_to anime_watchlist_path(watchlist.anime, watchlist), method: :delete, data: { turbo_confirm: 'Are you sure?' }, class: 'custom-button-delete', onclick: "event.stopPropagation();" do %>
                                         <ion-icon name="trash-outline"></ion-icon>
                                       <% end %>
                                     </div>
