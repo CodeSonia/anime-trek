@@ -100,7 +100,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_21_085719) do
     t.string "bio"
     t.integer "points", default: 0
     t.string "username"
-    t.string "banner", default: "https://images4.alphacoders.com/129/1293106.png"
+    t.string "banner", default: "https://images8.alphacoders.com/131/1318523.png"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
