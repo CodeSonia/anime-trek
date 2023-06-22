@@ -33,3 +33,9 @@ h5 {
  .rating {
   color: #CEE03D;
  }
+
+ .username {
+  text-transform: capitalize;
+  color: $blue;
+  font-weight: bold;
+ }
