@@ -1,4 +1,6 @@
+
 <script src="https://unpkg.com/@lottiefiles/lottie-player@latest"></script>
+
 <div class="container container-parent">
   <div class="blurr-img">
     <%= cl_image_tag("https://res.cloudinary.com/dtjuz4kkr/image/upload/v1686840960/blurr_azumrg.png", height: 500) %>
@@ -48,7 +50,7 @@
       </div>
     </div>
   </section>
-  <section class="features-section">
+  <section class="features-section" data-aos="fade-down">
     <div class="container">
       <h2 class="text-center features-header">More than just a platform</h2>
       <p class="features-support text-muted text-center mx-auto mt-3">AnimeTrek is more than just a platform - it's your gateway to a world of captivating anime series, vibrant community discussions, and personalized recommendations. Explore, engage, and discover your next favorite anime adventure on AnimeTrek</p>
@@ -89,7 +91,7 @@
       </div>
     </div>
   </section>
-  <section class="my-5">
+  <section class="my-5" data-aos="fade-down">
     <div class="container">
       <h2 class="top-25-header">Top 20 <span>Animes</span></h2>
       <div id="button-left" onclick="scrollLft()">
@@ -126,6 +128,7 @@
 </div>
 <%# <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script> %>
 <script>
+
   // Delay the execution of the code until the Lottie player script is fully loaded
    window.addEventListener('DOMContentLoaded', (event) => {
      // Check if the "lottie-player" custom element is already registered

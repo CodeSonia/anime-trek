@@ -1,6 +1,6 @@
     <% comments.each do |comment| %>
       <hr>
-      <div class="col-md-8 w-100">
+      <div class="col-md-8 w-100" data-aos="fade-down">
         <div class="media g-mb-30 media-comment d-flex">
           <img class="d-flex g-width-50 g-height-50 rounded-circle g-mt-3 g-mr-15 user-photo" src="<%= comment.user.photo %>" alt="<%= comment.user.username %> ">
           <div class="media-body g-bg-white g-pa-5 w-100">

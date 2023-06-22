@@ -3,6 +3,7 @@
   <% animes_by_genre = all_animes.group_by(&:genre) %>
 
   <% animes_by_genre.each do |genre, animes| %>
+  <div data-aos="fade-down">
     <div>
       <h4 class="genre-title mt-5 mb-2"><%= genre %> - <%= pluralize animes.size, "result" %></h4>
     </div>
@@ -16,12 +17,13 @@
             <div class="info-anime">
               <h2><%= anime.title %></h2>
               <small class="year"><%= anime.date_start.strftime("%Y")%></small>
-              <p><%= anime.themes.join(", ") %></p>
+              <p class="year"><%= anime.themes.join(", ") %></p>
               <p><%= truncate(anime.synopsis, length: 100, omission: '...') %></p>
             </div>
           </div>
           <% end %>
         <% end %>
+      </div>
       </div>
   <% end %>
 </div>

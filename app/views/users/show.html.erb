@@ -131,18 +131,21 @@
               <div class="tab-pane fade" id="ach" role="tabpanel" >
                 <div class="d-flex">
             <div class="row">
+            <div class="d-flex flex-wrap">
               <% @user.user_achievements.order(created_at: :desc).each do |ach| %>
-                <div class="col">
+                <div class="col-3 border m-3 pt-2 px-5 rounded-4" style="box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
                   <div id="<%= ach.achievement.name %>" style="display: none;text-align:center;">
                     <strong><%= ach.achievement.name %></strong> <br>
                     <%= ach.achievement.description %>
                   </div>
-                  <div class="justify-content-center">
-                    <img src="<%= ach.achievement.image %>" alt="" height=120 id="myButton" data-template="<%= ach.achievement.name %>">
+                  <div class="justify-content-center text-center">
+                    <img src="<%= ach.achievement.image %>" height=120 id="myButton" data-template="<%= ach.achievement.name %>"> <br>
+                    <strong><%= ach.achievement.name %></strong>
                   </div>
                   <br>
                 </div>
               <% end %>
+              </div>
             </div>
           </div>
               </div>

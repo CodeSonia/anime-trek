@@ -1,6 +1,6 @@
 class EpisodesController < ApplicationController
   def index
-    @anime = Anime.find(params[:anime_id])
+    @anime = Anime.find_by(slug: params[:anime_id])
     @episode = @episodes.includes(:comments).find(params[:id])
 
   end

@@ -15,7 +15,7 @@ class ReviewsController < ApplicationController
   end
 
   def create
-    @anime = Anime.find(params[:anime_id])
+    @anime = Anime.find_by(slug: params[:anime_id])
     @user = current_user
     @review = Review.new(review_params)
     @review.anime = @anime
