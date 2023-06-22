@@ -13,7 +13,7 @@
         Introducing AnimeTrek: Your Ultimate Anime Exploration Companion. Embark on a journey to discover new anime series, explore a myriad of genres, and immerse yourself in captivating storylines that will transport you to extraordinary worlds.
       </p>
       <div class="form-inline">
-        <%= form_with url: search_path, method: :get, html: { class: "d-flex mb-4 search-container" } do |f| %>
+        <%= form_with url: search_path, method: :get, html: { class: "d-flex mb-4 search-container", autocomplete: 'off' } do |f| %>
           <div class="form-group icon-parent">
             <span class="mag-icon"><i class="fas fa-thin fa-magnifying-glass"></i></span>
             <%= f.text_field :query,

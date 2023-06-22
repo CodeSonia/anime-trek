@@ -1,7 +1,7 @@
 
 <div class="container">
   <div class="form-inline" data-controller="search-animes">
-    <%= form_with url: search_path, method: :get, html: { class: "d-flex search-container", data: { search_animes_target: "form" } } do |f| %>
+    <%= form_with url: search_path, method: :get, html: { class: "d-flex search-container", data: { search_animes_target: "form" }, autocomplete: 'off' } do |f| %>
     <div class="form-group mt-5 mb-5 icon-parent">
       <span class="mag-icon"><i class="fas fa-thin fa-magnifying-glass"></i></span>
       <%= f.text_field :query,

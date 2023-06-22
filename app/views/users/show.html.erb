@@ -133,7 +133,7 @@
             <div class="row">
             <div class="d-flex flex-wrap">
               <% @user.user_achievements.order(created_at: :desc).each do |ach| %>
-                <div class="col-3 border m-3 pt-2 px-5 rounded-4" style="box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+                <div class="col border m-3 pt-2 px-5 rounded-4" style="box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
                   <div id="<%= ach.achievement.name %>" style="display: none;text-align:center;">
                     <strong><%= ach.achievement.name %></strong> <br>
                     <%= ach.achievement.description %>
