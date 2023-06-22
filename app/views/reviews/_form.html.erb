@@ -2,7 +2,7 @@
 <%= simple_form_for [@anime, @review] do |f| %>
   <%= f.input :content, input_html: { data: { character_counter_target: "input", controller:"textarea-autogrow", textarea_autogrow_resize_debounce_delay_value:"500" } } %>
   <p>Content is currently <strong data-character-counter-target="counter"></strong> characters long.</p>
-  <%= f.input :rating, input_html: { min:0, max:5} %>
+  <%= f.input :rating, collection: (1..5).to_a, label: "Rate this anime", input_html: {data: {controller: "star-rating"}} %>
 
   <%= f.button :submit, "Post", class: 'btn btn-primary' %>
 <% end %>
