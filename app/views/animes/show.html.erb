@@ -113,10 +113,10 @@
   <div class="reviews-info d-flex justify-content-between align-items-center mt-2 ps-2">
     <p><%= @anime.reviews.count %> Reviews | <%= @avg.round(2) if @avg %>
       <% @avg.to_i.times do %>
-        <i class="fa-solid fa-star" style="color: #cde03e;"></i>
+        <i class="fa-solid fa-star" style="color: #FFB900;"></i>
       <% end %>
       <% (5 - @avg.to_i).times do %>
-        <i class="fa-regular fa-star"></i>
+        <i class="fa-regular fa-star" style="color: #FFB900;"></i>
       <% end %>
     </p>
     <% unless user_signed_in? %>
@@ -149,13 +149,13 @@
                 <div class="rating">
                   <% (1..5).each do |i| %>
                     <% if i <= review.rating %>
-                      <i class="fas fa-star"></i>
+                      <i class="fas fa-star" style="color: #FFB900;"></i>
                     <% else %>
-                      <i class="far fa-star"></i>
+                      <i class="far fa-star" style="color: #FFB900;"></i>
                     <% end %>
                   <% end %>
                 </div>
-                <span class="g-color-gray-dark-v4 g-font-size-12"><%= review.created_at.strftime('%d %b %Y') %></span>
+                <span class="g-color-gray-dark-v4 g-font-size-12"><%= time_ago_in_words(review.created_at) %></span>
                 <div data-controller="read-more" data-read-more-more-text-value="Read more ↓" data-read-more-less-text-value="Read less ↑">
                   <p class="my-content pr-3" data-read-more-target="content">
                     <%= review.content %>

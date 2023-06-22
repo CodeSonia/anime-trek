@@ -16,6 +16,9 @@ application.register("hello", HelloController)
 import SearchAnimesController from "./search_animes_controller"
 application.register("search-animes", SearchAnimesController)
 
+import StarRatingController from "./star_rating_controller"
+application.register("star-rating", StarRatingController)
+
 import PasswordVisibility from 'stimulus-password-visibility'
 application.register('password-visibility', PasswordVisibility)
 

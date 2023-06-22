@@ -1,4 +1,4 @@
-  <% reviews.each do |review| %>
+  <% reviews.order(created_at: :desc).each do |review| %>
     <hr>
       <div class="col-md-8 w-100" data-aos="fade-down">
         <div class="media g-mb-30 media-comment d-flex">
@@ -9,13 +9,13 @@
               <div class="rating">
                 <% (1..5).each do |i| %>
                   <% if i <= review.rating %>
-                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star" style="color: #FFB900;"></i>
                   <% else %>
-                    <i class="far fa-star"></i>
+                    <i class="far fa-star" style="color: #FFB900;"></i>
                   <% end %>
                 <% end %>
               </div>
-                <span class="g-color-gray-dark-v4 g-font-size-12"><%= review.created_at.strftime('%d %b %Y') %></span>
+                <span class="g-color-gray-dark-v4 g-font-size-12"><%= time_ago_in_words(review.created_at) %></span>
               <div data-controller="read-more" data-read-more-more-text-value="Read more ↓" data-read-more-less-text-value="Read less ↑">
                 <p class="my-content pr-3" data-read-more-target="content">
                   <%= review.content %>

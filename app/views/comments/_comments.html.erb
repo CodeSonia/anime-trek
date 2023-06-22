@@ -6,7 +6,7 @@
           <div class="media-body g-bg-white g-pa-5 w-100">
             <div class="g-mb-15">
               <h5 class="h5 g-color-gray-dark-v1 mb-2"><strong> <%= link_to user_path(comment.user), class: "text-decoration-none username" do%> <%= comment.user.username %> <% end %></h5>
-                <span class="g-color-gray-dark-v4 g-font-size-12"><%= comment.created_at.strftime('%d %b %Y') %></span>
+                <span class="g-color-gray-dark-v4 g-font-size-12"><%= time_ago_in_words(comment.created_at) %></span>
               <div data-controller="read-more" data-read-more-more-text-value="Read more ↓" data-read-more-less-text-value="Read less ↑">
                 <p class="my-content" data-read-more-target="content">
                   <%= comment.content %>
