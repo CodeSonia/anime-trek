@@ -109,11 +109,11 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_21_143242) do
     t.datetime "remember_created_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "photo", default: "https://robohash.org/advoluptatesnihil.png?size=300x300&set=set1"
+    t.string "photo", default: "https://robohash.org/consequunturmagnamdolores.png?size=300x300&set=set1"
     t.string "bio"
     t.integer "points", default: 0
     t.string "username"
-    t.string "banner", default: "https://images8.alphacoders.com/131/1318523.png"
+    t.string "banner", default: "https://images.alphacoders.com/131/1318300.png"
     t.string "slug"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
