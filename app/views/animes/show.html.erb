@@ -4,8 +4,9 @@
 <div class="py-5" style="background:linear-gradient(rgba(0, 0, 0, .7), rgba(0, 0, 0, .7)), url('<%= @anime.image_urls.sample %>');
                         background-position: center;
                         background-size: cover;
-                        height:600px">
+                        height:620px">
   <div class="container text-white" style="padding:0 0 100px 0;">
+    <%= link_to "< Go back", search_path, class: "btn btn-back mb-3" %>
     <div class="row align-items-end">
       <div class="col mb-9">
         <p class="fs-3"> <strong>#<%= @anime.rank %></strong> Most popular</p>
@@ -20,7 +21,7 @@
           <% end %> <span class="fs-6">(<%= @avg.round(2) if @avg %>)</span> <br>
         </p>
         <% unless user_signed_in? %>
-          <a href="#" class="btn watchlist-button mt-5"> Login to add to watchlist</a>
+          <%= link_to "Login to add to watchlist", new_user_session_path, class:"btn watchlist-button mt-5" %>
         <% else %>
           <% if @watchlistadded %>
             <a href="#" class="btn watchlist-button mt-5"> <i class="fa-solid fa-check"></i> Added to watchlist</a>
@@ -51,7 +52,6 @@
       <% unless @anime.producers.empty? %>
         <div class="characters">
           <div class="text-left">Publishers:</div>
-
           <div class="text-right"> <%= @anime.producers.join(", ") %> </div>
         </div>
         <hr>
@@ -59,7 +59,6 @@
       <% unless @anime.themes.empty? %>
         <div class="characters">
           <div class="text-left">Themes:</div>
-
           <div class="text-right"> <%= @anime.themes.join(", ") %></div>
         </div>
         <hr>
@@ -67,7 +66,6 @@
       <% unless @anime.status.nil? %>
         <div class="characters">
           <div class="text-left">Status:</div>
-
           <div class="text-right"> <%= @anime.status %> </div>
         </div>
       <% end %>
@@ -77,30 +75,30 @@
       <iframe width="560" height="315" src="<%= @anime.embed_url %>" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
     </div>
   </div>
-  <div class="row mt-3">
+  <div class="row mt-3" data-aos="fade-down">
     <h3 class="display-5 fw-bold mb-2">Episodes</h3>
     <div class="row row-cols-1 row-cols-md-5 g-2">
-    <% @anime.episodes.each do |episode| %>
-      <%= link_to episode_path(episode), class: "text-decoration-none" do %>
-        <div class="card-group">
-          <div class=" md-card">
-            <img src="<%= episode.image %>">
-            <div class="md-card-infos">
-              <h5><%= truncate(episode.title, :length => 20) %></h5>
-              <div class="episode">
-              <h6>Episode: <%= episode.episodenumber%></h6>
-              <div class="rating">
-                <% (1..5).each do |i| %>
-                    <% if i <= episode.rating %>
-                      <i class="fas fa-star"></i>
-                    <% else %>
-                      <i class="far fa-star"></i>
+      <% @anime.episodes.each do |episode| %>
+        <%= link_to episode_path(episode), class: "text-decoration-none" do %>
+          <div class="card-group">
+            <div class=" md-card">
+              <img src="<%= episode.image %>">
+              <div class="md-card-infos">
+                <h5><%= truncate(episode.title, :length => 20) %></h5>
+                <div class="episode">
+                  <h6>Episode: <%= episode.episodenumber%></h6>
+                  <div class="rating">
+                    <% (1..5).each do |i| %>
+                      <% if i <= episode.rating %>
+                        <i class="fas fa-star"></i>
+                      <% else %>
+                        <i class="far fa-star"></i>
+                      <% end %>
                     <% end %>
-                    <% end %>
+                  </div>
+                </div>
+                <small><%= truncate(episode.description, :length => 100) %></small>
               </div>
-            </div>
-            <small><%= truncate(episode.description, :length => 100) %></small>
-          </div>
             </div>
           </div>
         <% end %>
@@ -108,7 +106,7 @@
     </div>
   </div>
 </div>
-<div class="reviews-container container mt-5" data-controller="reveal" data-reveal-hidden-class="d-none" >
+<div class="reviews-container container mt-5" data-controller="reveal" data-reveal-hidden-class="d-none"  data-aos="fade-down">
   <div class="reviews-header">
     <h3 class="display-5 fw-bold mb-2">Reviews</h3>
   </div>
@@ -138,12 +136,11 @@
 </div>
 </div>
 </div>
-
 <div class="container" data-controller="autoclickreviews" data-autoclickreviews-page-number-value="<%= @pagy.page %>" data-autoclickreviews-anime-id-value="<%= @anime.id %>">
   <div class="row w-100 mt-5">
     <% @reviews.order(created_at: :desc).each do |review| %>
-    <hr>
-      <div class="col-md-8 w-100">
+      <hr>
+      <div class="col-md-8 w-100" data-aos="fade-down">
         <div class="media g-mb-30 media-comment d-flex">
           <img class="d-flex g-width-50 g-height-50 rounded-circle g-mt-3  user-photo" src="<%= review.user.photo %>" alt="<%= review.user.username %> ">
           <div class="media-body  g-bg-white g-pa-5 w-100">
@@ -159,31 +156,26 @@
                   <% end %>
                 </div>
                 <span class="g-color-gray-dark-v4 g-font-size-12"><%= review.created_at.strftime('%d %b %Y') %></span>
-              <div data-controller="read-more" data-read-more-more-text-value="Read more ↓" data-read-more-less-text-value="Read less ↑">
-                <p class="my-content pr-3" data-read-more-target="content">
-                  <%= review.content %>
-                </p>
-                <% if policy(review).destroy? %>
-                  <%= link_to "Delete", review_path( review), data: {turbo_method: :delete, turbo_confirm: "you sure?" }, method: :delete, class: "btn btn-danger text-white" %>
-                <% end %>
-                <% if review.content.chars.length > 291 %>
-                  <button data-action="read-more#toggle" style="border-radius: 20px;" class="btn-readmore">Read more ↓</button>
-                <% end %>
+                <div data-controller="read-more" data-read-more-more-text-value="Read more ↓" data-read-more-less-text-value="Read less ↑">
+                  <p class="my-content pr-3" data-read-more-target="content">
+                    <%= review.content %>
+                  </p>
+                  <% if policy(review).destroy? %>
+                    <%= link_to "Delete", review_path( review), data: {turbo_method: :delete, turbo_confirm: "you sure?" }, method: :delete, class: "btn btn-danger text-white" %>
+                  <% end %>
+                  <% if review.content.chars.length > 291 %>
+                    <button data-action="read-more#toggle" style="border-radius: 20px;" class="btn-readmore">Read more ↓</button>
+                  <% end %>
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
-
-    <% end %>
-  </div>
-
+      <% end %>
+    </div>
     <div data-autoclickreviews-target="moreComments"></div>
     <div data-autoclickreviews-target="stopLoading" class="pb-5"></div>
     <br>
+  </div>
 </div>
-
-</div>
-<style>
-
-</style>
+<style></style>
