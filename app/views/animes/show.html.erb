@@ -4,8 +4,10 @@
 <div class="py-5" style="background:linear-gradient(rgba(0, 0, 0, .7), rgba(0, 0, 0, .7)), url('<%= @anime.image_urls.sample %>');
                         background-position: center;
                         background-size: cover;
-                        height:600px">
+                        height:650px">
   <div class="container text-white" style="padding:0 0 100px 0;">
+    <%= link_to "< Go back", :back, class: "btn btn-back" %>
+
     <div class="row align-items-end">
       <div class="col mb-9">
         <p class="fs-3"> <strong>#<%= @anime.rank %></strong> Most popular</p>
@@ -20,7 +22,7 @@
           <% end %> <span class="fs-6">(<%= @avg.round(2) if @avg %>)</span> <br>
         </p>
         <% unless user_signed_in? %>
-          <a href="#" class="btn watchlist-button mt-5"> Login to add to watchlist</a>
+        <%= link_to "Login to add to watchlist", new_user_session_path, class:"btn watchlist-button mt-5" %>
         <% else %>
           <% if @watchlistadded %>
             <a href="#" class="btn watchlist-button mt-5"> <i class="fa-solid fa-check"></i> Added to watchlist</a>

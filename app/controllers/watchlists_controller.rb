@@ -6,7 +6,7 @@ class WatchlistsController < ApplicationController
   end
 
   def create
-    @anime = Anime.find(params[:anime_id])
+    @anime = Anime.find_by(slug: params[:anime_id])
     authorize @anime, :add_to_watchlist?
     @watchlist = current_user.watchlists.build(anime: @anime, status: true)
 
