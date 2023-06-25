@@ -84,45 +84,45 @@ anime1_serialized = URI.open(url1).read
 anime1 = JSON.parse(anime1_serialized)
 sleep(1)
 
-url2 = "https://api.jikan.moe/v4/top/anime?type=TV&page=2"
+# url2 = "https://api.jikan.moe/v4/top/anime?type=TV&page=2"
 
-# 1. get the data from the api
-anime2_serialized = URI.open(url2).read
+# # 1. get the data from the api
+# anime2_serialized = URI.open(url2).read
 
-# 2. parse the data
-anime2 = JSON.parse(anime2_serialized)
-sleep(1)
-url3 = "https://api.jikan.moe/v4/top/anime?type=TV&page=3"
+# # 2. parse the data
+# anime2 = JSON.parse(anime2_serialized)
+# sleep(1)
+# url3 = "https://api.jikan.moe/v4/top/anime?type=TV&page=3"
 
-# 1. get the data from the api
-anime3_serialized = URI.open(url3).read
+# # 1. get the data from the api
+# anime3_serialized = URI.open(url3).read
 
-# 2. parse the data
-anime3 = JSON.parse(anime3_serialized)
-sleep(1)
-url4 = "https://api.jikan.moe/v4/top/anime?type=TV&page=4"
+# # 2. parse the data
+# anime3 = JSON.parse(anime3_serialized)
+# sleep(1)
+# url4 = "https://api.jikan.moe/v4/top/anime?type=TV&page=4"
 
-# 1. get the data from the api
-anime4_serialized = URI.open(url4).read
+# # 1. get the data from the api
+# anime4_serialized = URI.open(url4).read
 
-# 2. parse the data
-anime4 = JSON.parse(anime4_serialized)
-sleep(1)
-url5 = "https://api.jikan.moe/v4/top/anime?type=TV&page=5"
+# # 2. parse the data
+# anime4 = JSON.parse(anime4_serialized)
+# sleep(1)
+# url5 = "https://api.jikan.moe/v4/top/anime?type=TV&page=5"
 
-# 1. get the data from the api
-anime5_serialized = URI.open(url5).read
+# # 1. get the data from the api
+# anime5_serialized = URI.open(url5).read
 
-# 2. parse the data
-anime5 = JSON.parse(anime5_serialized)
-sleep(1)
-url6 = "https://api.jikan.moe/v4/top/anime?type=TV&page=6"
+# # 2. parse the data
+# anime5 = JSON.parse(anime5_serialized)
+# sleep(1)
+# url6 = "https://api.jikan.moe/v4/top/anime?type=TV&page=6"
 
-# 1. get the data from the api
-anime6_serialized = URI.open(url6).read
+# # 1. get the data from the api
+# anime6_serialized = URI.open(url6).read
 
-# 2. parse the data
-anime6 = JSON.parse(anime6_serialized)
+# # 2. parse the data
+# anime6 = JSON.parse(anime6_serialized)
 
 ids = []
 
