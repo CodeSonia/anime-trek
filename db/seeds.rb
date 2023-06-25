@@ -130,23 +130,23 @@ anime1["data"].each do |anime|
   ids << anime["mal_id"]
 end
 
-anime2["data"].each do |anime|
-  ids << anime["mal_id"]
-end
+# anime2["data"].each do |anime|
+#   ids << anime["mal_id"]
+# end
 
-anime3["data"].each do |anime|
-  ids << anime["mal_id"]
-end
-anime4["data"].each do |anime|
-  ids << anime["mal_id"]
-end
-anime5["data"].each do |anime|
-  ids << anime["mal_id"]
-end
-anime6["data"].each do |anime|
-  ids << anime["mal_id"]
-end
-puts "Created #{ids.count} ids"
+# anime3["data"].each do |anime|
+#   ids << anime["mal_id"]
+# end
+# anime4["data"].each do |anime|
+#   ids << anime["mal_id"]
+# end
+# anime5["data"].each do |anime|
+#   ids << anime["mal_id"]
+# end
+# anime6["data"].each do |anime|
+#   ids << anime["mal_id"]
+# end
+# puts "Created #{ids.count} ids"
 
 # ids.map do |id|
 #   puts "Getting data for #{id}"
