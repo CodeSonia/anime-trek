@@ -89,9 +89,9 @@ url2 = "https://api.jikan.moe/v4/top/anime?type=TV&page=2"
 # 1. get the data from the api
 anime2_serialized = URI.open(url2).read
 
-# # 2. parse the data
-# anime2 = JSON.parse(anime2_serialized)
-# sleep(1)
+# 2. parse the data
+anime2 = JSON.parse(anime2_serialized)
+sleep(1)
 # url3 = "https://api.jikan.moe/v4/top/anime?type=TV&page=3"
 
 # # 1. get the data from the api
