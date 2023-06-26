@@ -92,14 +92,14 @@ anime2_serialized = URI.open(url2).read
 # 2. parse the data
 anime2 = JSON.parse(anime2_serialized)
 sleep(1)
-# url3 = "https://api.jikan.moe/v4/top/anime?type=TV&page=3"
+url3 = "https://api.jikan.moe/v4/top/anime?type=TV&page=3"
 
-# # 1. get the data from the api
-# anime3_serialized = URI.open(url3).read
+# 1. get the data from the api
+anime3_serialized = URI.open(url3).read
 
-# # 2. parse the data
-# anime3 = JSON.parse(anime3_serialized)
-# sleep(1)
+# 2. parse the data
+anime3 = JSON.parse(anime3_serialized)
+sleep(1)
 # url4 = "https://api.jikan.moe/v4/top/anime?type=TV&page=4"
 
 # # 1. get the data from the api
@@ -134,9 +134,9 @@ anime2["data"].each do |anime|
   ids << anime["mal_id"]
 end
 
-# anime3["data"].each do |anime|
-#   ids << anime["mal_id"]
-# end
+anime3["data"].each do |anime|
+  ids << anime["mal_id"]
+end
 # anime4["data"].each do |anime|
 #   ids << anime["mal_id"]
 # end
