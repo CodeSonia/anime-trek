@@ -5,6 +5,8 @@ Introducing AnimeTrek: Your Ultimate Anime Exploration Companion
 
 *Discover, explore, simplify: unleash the anime universe*
 
+### Buyer Personas
+
 ### User Stories
 1. As a user, I can view AnimeTrek so that I can view what it is about
 2. As a user, I am able to search for an anime, so that I can go to the anime page
